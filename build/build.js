@@ -19,7 +19,7 @@ function page({p,title,desc,body,type='website',noCta=false,extraHead=''}){
 <title>${esc(full)}</title><meta name="description" content="${esc(desc)}"><link rel="canonical" href="${url}">
 <meta property="og:type" content="${type}"><meta property="og:site_name" content="慢慢變有錢"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE_URL}/assets/og.png"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1E3A8A"><link rel="icon" href="${R}assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="${R}assets/site.css?v=1">${extraHead}</head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="${R}assets/site.css?v=2">${extraHead}</head><body>
 <header class="top"><div class="w nav"><a class="logo" href="${R}">慢慢變有錢<span>.</span></a><nav><a href="${R}learn/">新手入門</a><a href="${R}terms/">股票新手翻譯器</a><a href="${R}about/">關於</a><a class="cta" href="${R}lead/">免費清單</a></nav></div></header>
 <main>${body.replace(/\{R\}/g,R).replace(/\{(t\d+)\}/g,(m,id)=>slug[id])}${noCta?'':cta(R)}</main>
 <footer><div class="w"><b style="color:#fff">慢慢變有錢</b>｜IG <a href="https://www.instagram.com/slow.rich.notes/" rel="noopener">@slow.rich.notes</a>｜<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br><a href="${R}privacy/">隱私權政策</a>・<a href="${R}disclaimer/">免責聲明</a>・<a href="${R}about/">關於</a><br><span class="d">僅供教育參考，非投資建議</span>　© 2026 慢慢變有錢</div></footer></body></html>`;
@@ -31,7 +31,7 @@ const artCard=a=>`<a class="card" href="{R}learn/${a.slug}/"><small>${a.cat}</sm
 const termCard=t=>`<a class="card tcard" href="{R}terms/${slug[t.id]}/"><b>${esc(t.name)}</b><p>${esc(t.plain)}</p></a>`;
 // HOME
 out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。不報明牌，只講你真的用得到的事。',body:`
-<div class="hero"><div class="w"><div class="tag">IG @slow.rich.notes</div><h1>投資不用急，<br><em>慢慢變有錢</em>就好。</h1><p>給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。<br>不報明牌，只講你真的用得到的事。</p><div class="btns"><a class="btn g" href="{R}lead/">免費領《投資新手入門清單》</a><a class="btn o" href="{R}learn/">從這裡開始</a></div></div></div>
+<div class="hero"><div class="w herogrid"><div class="herotxt"><div class="tag">IG @slow.rich.notes</div><h1>投資不用急，<br><em>慢慢變有錢</em>就好。</h1><p>給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。<br>不報明牌，只講你真的用得到的事。</p><div class="btns"><a class="btn g" href="{R}lead/">免費領《投資新手入門清單》</a><a class="btn o" href="{R}learn/">從這裡開始</a></div></div><div class="mascot"><picture><source srcset="{R}assets/img/manman.webp" type="image/webp"><img src="{R}assets/img/manman.png" width="210" height="720" alt="品牌大使慢慢：綁馬尾、穿藍色上衣的女孩，微笑站著" fetchpriority="high" decoding="async"></picture></div></div></div>
 <section><div class="w"><h2>第一次投資？從這三步開始</h2><p class="sub">照順序讀，先把基本觀念建立起來。</p><div class="grid g3">
 <a class="card" href="{R}learn/before-you-invest-3-things/"><div class="i">①</div><b>先顧好地基</b><p>緊急預備金、高利率負債、寫下目標，投資前先做好。</p><span class="more">閱讀 →</span></a>
 <a class="card" href="{R}terms/"><div class="i">②</div><b>看懂基本名詞</b><p>ETF、殖利率、本益比……用一句白話講清楚。</p><span class="more">打開股票新手翻譯器 →</span></a>
@@ -57,6 +57,7 @@ ${rel.length?`<h2>相關名詞</h2><div class="chips">${rel.map(id=>`<a href="{R
 // ABOUT / PRIVACY / DISCLAIMER
 const prose=(h,s,b)=>head(h,s)+`<div class="w narrow"><article class="prose">${b}</article></div>`;
 out.push(page({p:'about/',title:'關於慢慢變有錢',desc:'慢慢變有錢是給投資新手的白話筆記，不報明牌、不帶單、不給買賣建議。',body:prose('關於慢慢變有錢','投資不用急，慢慢變有錢就好。',`
+<div class="hello"><picture><source srcset="{R}assets/img/manman-sign.webp" type="image/webp"><img src="{R}assets/img/manman-sign.png" width="265" height="720" alt="品牌大使慢慢舉著牌子向你打招呼" loading="lazy" decoding="async"></picture><p class="bubble">嗨，我是慢慢，陪你一起慢慢學投資。</p></div>
 <h2>我們在做什麼</h2><p>「慢慢變有錢」是給投資新手的白話筆記，同步經營 IG <a href="https://www.instagram.com/slow.rich.notes/">@slow.rich.notes</a>。我們把常見的投資名詞和觀念翻成人話，幫你在花第一塊錢之前，先把基礎打好。</p>
 <h2>我們的原則</h2><ul><li>不報明牌、不帶單、不推薦特定個股、ETF 或券商。</li><li>只講觀念，用白話說明；文章裡的數字都會標明是「假設例子」。</li><li>提醒風險與成本：投資會漲也會跌，過去績效不代表未來。</li></ul>
 <h2>你可以從這裡開始</h2><ul><li><a href="{R}learn/">新手入門筆記</a>：從起步準備讀起。</li><li><a href="{R}terms/">股票新手翻譯器</a>：看不懂的名詞，查一下。</li><li><a href="{R}lead/">《投資新手入門清單》</a>：免費領取，跟著勾選。</li></ul>
