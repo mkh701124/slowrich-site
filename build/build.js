@@ -2,7 +2,7 @@
 const fs=require('fs'),path=require('path');
 const ROOT=path.join(__dirname,'..');
 // 正式網址：目前預計 GitHub Pages 專案路徑；接自訂網域時只改這行（並加 CNAME，見 README）
-const SITE_URL=(process.env.SITE_URL||'https://mkh701124.github.io/slowrich-site').replace(/\/$/,'');
+const SITE_URL=(process.env.SITE_URL||'https://slowrichnotes.com').replace(/\/$/,'');
 global.window={};require('./glossary-data.js');const G=window.GLOSSARY;
 const ARTS=require('./articles.js');
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
