@@ -20,9 +20,9 @@ function page({p,title,desc,body,type='website',noCta=false,extraHead=''}){
 <meta property="og:type" content="${type}"><meta property="og:site_name" content="慢慢變有錢"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE_URL}/assets/og.png"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1E3A8A"><link rel="icon" href="${R}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="${R}assets/site.css?v=2">${extraHead}</head><body>
-<header class="top"><div class="w nav"><a class="logo" href="${R}">慢慢變有錢<span>.</span></a><nav><a href="${R}learn/">新手入門</a><a href="${R}terms/">股票新手翻譯器</a><a href="${R}about/">關於</a><a class="cta" href="${R}lead/">免費清單</a></nav></div></header>
+<header class="top"><div class="w nav"><a class="logo" href="${R}">慢慢變有錢<span>.</span></a><nav><a href="${R}learn/">新手入門</a><a href="${R}terms/">股票新手翻譯器</a><a href="${R}tools/">理財課程</a><a href="${R}about/">關於</a><a class="cta" href="${R}lead/">免費清單</a></nav></div></header>
 <main>${body.replace(/\{R\}/g,R).replace(/\{(t\d+)\}/g,(m,id)=>slug[id])}${noCta?'':cta(R)}</main>
-<footer><div class="w"><b style="color:#fff">慢慢變有錢</b>｜IG <a href="https://www.instagram.com/slow.rich.notes/" rel="noopener">@slow.rich.notes</a>｜<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br><a href="${R}privacy/">隱私權政策</a>・<a href="${R}disclaimer/">免責聲明</a>・<a href="${R}about/">關於</a><br><span class="d">僅供教育參考，非投資建議</span>　© 2026 慢慢變有錢</div></footer></body></html>`;
+<footer><div class="w"><b style="color:#fff">慢慢變有錢</b>｜IG <a href="https://www.instagram.com/slow.rich.notes/" rel="noopener">@slow.rich.notes</a>｜<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br><a href="${R}privacy/">隱私權政策</a>・<a href="${R}disclaimer/">免責聲明</a>・<a href="${R}tools/">理財課程</a>・<a href="${R}about/">關於</a><br><span class="d">僅供教育參考，非投資建議</span>　© 2026 慢慢變有錢</div></footer></body></html>`;
   const dir=path.join(ROOT,p);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,p==='404/'?'../404.html':'index.html'),html);
   return p;
 }
@@ -81,6 +81,21 @@ out.push(page({p:'disclaimer/',title:'免責聲明',desc:'慢慢變有錢的所�
 <li>名詞解釋為簡化說明，實際定義與規則請以主管機關、交易所、發行機構或券商的官方資料為準。</li>
 <li>做任何投資決定前，請依自己的財務狀況、目標與風險承受度自行評估，必要時諮詢合格專業人士。</li></ul>
 <p>如有內容錯誤，歡迎來信 <a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a> 告訴我們。</p>`)}));
+// TOOLS：新手理財課程推薦頁
+{const card=(n,r,b)=>`<div class="card tl"><span class="ex-badge">範例</span><b>${n}</b><p>${r}</p><a class="btn g tbtn" href="#" aria-disabled="true" rel="sponsored nofollow" onclick="return false">${b}</a></div>`;
+const rc=(n,by,r,pr,st,u)=>`<div class="card tl"><b>${n}</b><small class="meta">${by}</small><p>${r}</p><div class="price"><b>${pr}</b> <small>價格以平台為準</small></div><small class="meta">${st}（資料以平台為準）</small><a class="btn g tlive" href="${u}" target="_blank" rel="sponsored nofollow noopener">看課程介紹 ↗</a></div>`;
+const cat=(i,h,s,cs)=>`<section class="tsec"><div class="w"><h2>${i} ${h}</h2><p class="sub">${s}</p><div class="grid g3">${cs.join('')}</div></div></section>`;
+const css=`<style>.disc{background:#FEF3C7;border-bottom:2px solid #F59E0B;color:#1E3A8A;font-size:14px;padding:10px 0;text-align:center}.tl{position:relative;display:flex;flex-direction:column;gap:6px}.tl p{flex:1}.ex-badge{position:absolute;top:12px;right:12px;background:#FEF3C7;color:#B45309;border:1px solid #F59E0B;border-radius:99px;font-size:12px;padding:1px 10px;font-weight:700}.meta{color:#64748b;font-size:12.5px}.price b{color:#1E3A8A;font-size:18px}.price small{color:#64748b;font-size:12px}.tlive{align-self:flex-start;margin-top:6px}.ex-badge.free{background:#DCFCE7;color:#166534;border-color:#22C55E}.g4c{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.tbtn{align-self:flex-start;opacity:.75;cursor:not-allowed}.tsec{padding-top:8px;padding-bottom:8px}.thead{display:flex;align-items:center;gap:18px}.thead img{width:90px;height:auto}.tcta{display:flex;align-items:center;gap:18px;background:#1E3A8A;color:#fff;border-radius:18px;padding:22px}.tcta h2{color:#fff;margin:0 0 6px}.tcta p{color:#dbe4f5;margin:0 0 12px}.tcta img{width:80px;height:auto;flex:none}@media(max-width:600px){.tcta{flex-direction:column;text-align:center}.tcta img{width:56px}.thead img{width:60px}}</style>`;
+out.push(page({p:'tools/',title:'慢慢的新手理財課程',desc:'慢慢整理給投資新手的理財入門線上課程，含免費的證交所投資通識課。',extraHead:css,body:`
+<div class="disc">📢 本頁含推薦連結，透過連結購買，我們可能獲得佣金，不影響你的價格</div>
+<div class="pagehead"><div class="w narrow thead"><picture><source srcset="{R}assets/img/manman-sign.webp" type="image/webp"><img src="{R}assets/img/manman-sign.png" width="265" height="720" alt="品牌大使慢慢舉著牌子打招呼"></picture><div><h1>慢慢的新手理財課程</h1><p>想有系統地學理財，可以從這幾堂入門課開始。慢慢會持續整理更新。</p></div></div></div>
+${cat('🎓','線上課程','想要有系統地學，可以從課程開始。價格、評分與人數以平台為準。',[
+rc('Adam 個人理財術：從培養財務認知開始！','莫彩曦 Hailey｜Hahow','從建立財務認知開始，適合想先整理自己金錢觀的人。','NT$2,250','4.9★・5,009 人','https://shopsquare.co/3URV4'),
+rc('小資族理財的第一堂入門課','李柏鋒｜Hahow','以小資族為對象的理財入門課，適合剛開始規劃的人。','NT$1,688','4.9★・3,479 人','https://joymall.co/3URV8'),
+rc('動盪時代的資產配置：王伯達人生財務規劃學','王伯達｜Hahow','談資產配置與人生財務規劃，適合想看整體規劃的人。','NT$3,500','5.0★・3,025 人','https://joymall.co/3URVE'),
+`<div class="card tl"><span class="ex-badge free">免費</span><b>全民投資通識課</b><small class="meta">臺灣證券交易所｜PressPlay</small><p>由證交所推出的投資通識課，免費、適合打基礎。</p><small class="meta">此為免費資源，非推薦連結</small><a class="btn b tlive" href="https://www.pressplay.cc/project/04410BD69246CB371A74D26B9778E20D/about" target="_blank" rel="noopener">免費觀看 ↗</a></div>`])}
+<section class="tsec"><div class="w"><div class="tcta"><picture><source srcset="{R}assets/img/manman.webp" type="image/webp"><img src="{R}assets/img/manman.png" width="210" height="720" alt="品牌大使慢慢"></picture><div><h2>還不知道從哪開始？</h2><p>先領取免費的《投資新手入門清單》，跟著勾選，一次做一件事。</p><a class="btn g" href="{R}lead/">領取《投資新手入門清單》→</a></div></div></div></section>
+<section class="tsec"><div class="w narrow"><div class="warn">⚠️ 本頁為教育性質整理，不推薦任何個股、ETF 或特定投資標的；推薦連結內容請自行評估。僅供教育參考，非投資建議。</div></div></section>`,noCta:true}));}
 page({p:'404/',title:'找不到這一頁',desc:'找不到這一頁。',body:prose('找不到這一頁','網址可能打錯了，或這一頁已經搬家。',`<p>你可以：</p><ul><li><a href="/">回首頁</a></li><li><a href="/">到股票新手翻譯器查名詞</a></li></ul>`),noCta:true});
 fs.rmSync(path.join(ROOT,'404'),{recursive:true,force:true});
 // sitemap / robots
