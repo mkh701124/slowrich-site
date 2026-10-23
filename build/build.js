@@ -83,7 +83,7 @@ out.push(page({p:'disclaimer/',title:'免責聲明',desc:'慢慢變有錢的所�
 page({p:'404/',title:'找不到這一頁',desc:'找不到這一頁。',body:prose('找不到這一頁','網址可能打錯了，或這一頁已經搬家。',`<p>你可以：</p><ul><li><a href="/">回首頁</a></li><li><a href="/">到股票新手翻譯器查名詞</a></li></ul>`),noCta:true});
 fs.rmSync(path.join(ROOT,'404'),{recursive:true,force:true});
 // sitemap / robots
-const all=[...out,'lead/'];
+const all=[...out.filter(p=>p!=='404/'),'lead/'];
 fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(p=>`<url><loc>${SITE_URL}/${p}</loc></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 console.log('pages',all.length,'terms',G.terms.length,'articles',ARTS.length);
