@@ -1,0 +1,91 @@
+// node build/build.js  → 產生所有頁面（clean URL：每頁一個資料夾 index.html，全部相對路徑）
+const fs=require('fs'),path=require('path');
+const ROOT=path.join(__dirname,'..');
+// 正式網址：目前預計 GitHub Pages 專案路徑；接自訂網域時只改這行（並加 CNAME，見 README）
+const SITE_URL=(process.env.SITE_URL||'https://mkh701124.github.io/slowrich-site').replace(/\/$/,'');
+global.window={};require('./glossary-data.js');const G=window.GLOSSARY;
+const ARTS=require('./articles.js');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// term slugs
+const used=new Set(),slug={};
+const kebab=s=>s.toLowerCase().replace(/\//g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+for(const t of G.terms){const asc=[t.name,...t.aliases].find(x=>/^[\x20-\x7e]+$/.test(x));let s=asc?kebab(asc):t.id;if(!s||used.has(s))s=t.id;used.add(s);slug[t.id]=s;}
+const T=Object.fromEntries(G.terms.map(t=>[t.id,t]));const C=Object.fromEntries(G.categories.map(c=>[c.id,c]));
+const cta=R=>`<section><div class="w"><div class="leadbox"><div><div class="tag l">免費下載</div><h2>《投資新手入門清單》</h2><p class="sub">開始投資前，你該知道的 10 件事，加上 12 個新手名詞小抄。留下 Email，清單寄到你的信箱。</p><a class="btn g" href="${R}lead/">免費領取 →</a></div><div class="prom"><div>✔ 開始投資前該知道的 10 件事</div><div>✔ 12 個新手名詞小抄</div><div>✔ 白話說明，零基礎也看得懂</div></div></div></div></section>`;
+function page({p,title,desc,body,type='website',noCta=false,extraHead=''}){
+  const depth=p===''?0:p.split('/').filter(Boolean).length;const R='../'.repeat(depth)||'./';
+  const url=SITE_URL+'/'+p;const full=title.includes('慢慢變有錢')?title:title+'｜慢慢變有錢';
+  const html=`<!doctype html><html lang="zh-Hant-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(full)}</title><meta name="description" content="${esc(desc)}"><link rel="canonical" href="${url}">
+<meta property="og:type" content="${type}"><meta property="og:site_name" content="慢慢變有錢"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE_URL}/assets/og.png"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1E3A8A"><link rel="icon" href="${R}assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="${R}assets/site.css?v=1">${extraHead}</head><body>
+<header class="top"><div class="w nav"><a class="logo" href="${R}">慢慢變有錢<span>.</span></a><nav><a href="${R}learn/">新手入門</a><a href="${R}terms/">股票新手翻譯器</a><a href="${R}about/">關於</a><a class="cta" href="${R}lead/">免費清單</a></nav></div></header>
+<main>${body.replace(/\{R\}/g,R).replace(/\{(t\d+)\}/g,(m,id)=>slug[id])}${noCta?'':cta(R)}</main>
+<footer><div class="w"><b style="color:#fff">慢慢變有錢</b>｜IG <a href="https://www.instagram.com/slow.rich.notes/" rel="noopener">@slow.rich.notes</a>｜<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br><a href="${R}privacy/">隱私權政策</a>・<a href="${R}disclaimer/">免責聲明</a>・<a href="${R}about/">關於</a><br><span class="d">僅供教育參考，非投資建議</span>　© 2026 慢慢變有錢</div></footer></body></html>`;
+  const dir=path.join(ROOT,p);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,p==='404/'?'../404.html':'index.html'),html);
+  return p;
+}
+const out=[];const head=(h,s,crumb='')=>`<div class="pagehead"><div class="w narrow">${crumb}<h1>${h}</h1>${s?`<p>${s}</p>`:''}</div></div>`;
+const artCard=a=>`<a class="card" href="{R}learn/${a.slug}/"><small>${a.cat}</small><br><b>${esc(a.title)}</b><p>${esc(a.desc)}</p><span class="more">閱讀 →</span></a>`;
+const termCard=t=>`<a class="card tcard" href="{R}terms/${slug[t.id]}/"><b>${esc(t.name)}</b><p>${esc(t.plain)}</p></a>`;
+// HOME
+out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。不報明牌，只講你真的用得到的事。',body:`
+<div class="hero"><div class="w"><div class="tag">IG @slow.rich.notes</div><h1>投資不用急，<br><em>慢慢變有錢</em>就好。</h1><p>給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。<br>不報明牌，只講你真的用得到的事。</p><div class="btns"><a class="btn g" href="{R}lead/">免費領《投資新手入門清單》</a><a class="btn o" href="{R}learn/">從這裡開始</a></div></div></div>
+<section><div class="w"><h2>第一次投資？從這三步開始</h2><p class="sub">照順序讀，先把基本觀念建立起來。</p><div class="grid g3">
+<a class="card" href="{R}learn/before-you-invest-3-things/"><div class="i">①</div><b>先顧好地基</b><p>緊急預備金、高利率負債、寫下目標，投資前先做好。</p><span class="more">閱讀 →</span></a>
+<a class="card" href="{R}terms/"><div class="i">②</div><b>看懂基本名詞</b><p>ETF、殖利率、本益比……用一句白話講清楚。</p><span class="more">打開股票新手翻譯器 →</span></a>
+<a class="card" href="{R}learn/dca-vs-lump-sum/"><div class="i">③</div><b>選一個能持續的方法</b><p>定期定額或單筆投入，先想清楚再出發。</p><span class="more">閱讀 →</span></a></div></div></section>
+<section style="padding-top:0"><div class="w"><h2>股票新手翻譯器</h2><p class="sub">看不懂財經新聞？${G.terms.length} 個術語翻成人話。</p><div class="grid g4">${['t40','t15','t8','t16'].map(id=>termCard(T[id])).join('')}</div>
+<p style="text-align:center;margin-top:18px"><a class="btn b" href="{R}terms/">查更多名詞 →</a></p></div></section>
+<section style="padding-top:0"><div class="w"><h2>最新筆記</h2><p class="sub">同步 IG @slow.rich.notes 圖文。</p><div class="grid g3">${ARTS.slice().reverse().slice(0,3).map(artCard).join('')}</div><p style="text-align:center;margin-top:18px"><a class="btn b" href="{R}learn/">看全部 ${ARTS.length} 篇 →</a></p></div></section>
+<section style="padding-top:0;padding-bottom:0"><div class="w"><div class="card" style="text-align:center"><h2>我們的承諾</h2><p>不報明牌・不帶單・不給買賣建議。只用白話，陪你慢慢建立自己的投資習慣。</p><a class="more" href="{R}about/">關於慢慢變有錢 →</a></div></div></section>`}));
+// LEARN
+out.push(page({p:'learn/',title:'新手入門筆記',desc:'給投資新手的白話文章：起步準備、觀念、工具與心態。',body:head('新手入門筆記','從零開始，一篇一篇慢慢讀。')+`<section><div class="w"><div class="grid g3">${ARTS.map(artCard).join('')}</div></div></section>`}));
+ARTS.forEach((a,i)=>{const rel=a.terms.length?`<h2>相關名詞</h2><div class="chips">${a.terms.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:'';
+ const nav=`<p style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:24px">${i>0?`<a href="{R}learn/${ARTS[i-1].slug}/">← ${esc(ARTS[i-1].title)}</a>`:'<span></span>'}${i<ARTS.length-1?`<a href="{R}learn/${ARTS[i+1].slug}/">${esc(ARTS[i+1].title)} →</a>`:''}</p>`;
+ out.push(page({p:`learn/${a.slug}/`,type:'article',title:a.title,desc:a.desc,body:head(esc(a.title),esc(a.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}learn/">新手入門</a> › ${a.cat}</div>`)+`<div class="w narrow"><article class="prose">${a.body}${rel}<div class="warn">⚠️ 本內容僅供教育參考，非投資建議，投資有風險，請自行評估。</div>${nav}</article></div>`}));});
+// TERMS index
+const cats=G.categories.map(c=>`<button data-c="${c.id}">${esc(c.name)}</button>`).join('');
+const list=G.terms.map(t=>`<a class="card tcard" data-c="${t.category}" data-k="${esc([t.name,...t.aliases,t.plain].join(' ').toLowerCase())}" href="{R}terms/${slug[t.id]}/"><b>${esc(t.name)}</b> <span class="alias">${esc(t.aliases.join('・'))}</span><p>${esc(t.plain)}</p></a>`).join('');
+out.push(page({p:'terms/',title:'股票新手翻譯器｜投資名詞白話查詢',desc:`${G.terms.length} 個股票、ETF、財經新聞常見名詞，用一句白話解釋，附例子與常見誤解。`,body:head('股票新手翻譯器',`把 ${G.terms.length} 個投資術語翻成人話。輸入名詞、英文或白話都能找。`)+`<section><div class="w"><input class="search" id="q" type="search" placeholder="搜尋：例如 本益比、ETF、除息…" aria-label="搜尋名詞"><div class="cats" id="cats"><button class="on" data-c="">全部</button>${cats}</div><div class="grid g3 tlist" id="list">${list}</div><p class="empty" id="empty" hidden>找不到這個名詞，換個說法試試看。</p></div></section>
+<script>(function(){var q=document.getElementById('q'),cs=document.getElementById('cats'),cards=[].slice.call(document.querySelectorAll('#list .card')),cur='';function run(){var v=q.value.trim().toLowerCase(),n=0;cards.forEach(function(c){var ok=(!cur||c.dataset.c===cur)&&(!v||c.dataset.k.indexOf(v)>-1);c.hidden=!ok;if(ok)n++});document.getElementById('empty').hidden=n>0}q.addEventListener('input',run);cs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cur=b.dataset.c;[].forEach.call(cs.children,function(x){x.classList.toggle('on',x===b)});run()});var p=new URLSearchParams(location.search).get('q');if(p){q.value=p;run()}})();</script>`}));
+for(const t of G.terms){const c=C[t.category];const rel=(t.related||[]).filter(id=>T[id]);
+ out.push(page({p:`terms/${slug[t.id]}/`,type:'article',title:`${t.name} 是什麼？白話解釋`,desc:`${t.name}：${t.plain}`,body:head(`${esc(t.name)} <span style="font-size:.55em;opacity:.8">${esc(t.aliases.join('・'))}</span>`,esc(t.plain),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}terms/">股票新手翻譯器</a> › ${esc(c.name)}</div>`)+`<div class="w narrow"><article class="prose"><dl class="term">
+<dt>一句話白話</dt><dd>${esc(t.plain)}</dd><dt>舉個例子</dt><dd><div class="ex" style="margin:4px 0">${esc(t.example)}</div></dd><dt>怎麼算</dt><dd>${esc(t.formula)}</dd><dt>代表什麼</dt><dd>${esc(t.meaning)}</dd><dt>常見誤解</dt><dd>${esc(t.myth)}</dd><dt>怎麼判斷</dt><dd>${esc(t.judgement)}</dd></dl>
+${rel.length?`<h2>相關名詞</h2><div class="chips">${rel.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:''}<div class="warn">⚠️ 名詞解釋為簡化說明，僅供教育參考，非投資建議。</div><p style="margin-top:18px"><a href="{R}terms/">← 回股票新手翻譯器</a></p></article></div>`}));}
+// ABOUT / PRIVACY / DISCLAIMER
+const prose=(h,s,b)=>head(h,s)+`<div class="w narrow"><article class="prose">${b}</article></div>`;
+out.push(page({p:'about/',title:'關於慢慢變有錢',desc:'慢慢變有錢是給投資新手的白話筆記，不報明牌、不帶單、不給買賣建議。',body:prose('關於慢慢變有錢','投資不用急，慢慢變有錢就好。',`
+<h2>我們在做什麼</h2><p>「慢慢變有錢」是給投資新手的白話筆記，同步經營 IG <a href="https://www.instagram.com/slow.rich.notes/">@slow.rich.notes</a>。我們把常見的投資名詞和觀念翻成人話，幫你在花第一塊錢之前，先把基礎打好。</p>
+<h2>我們的原則</h2><ul><li>不報明牌、不帶單、不推薦特定個股、ETF 或券商。</li><li>只講觀念，用白話說明；文章裡的數字都會標明是「假設例子」。</li><li>提醒風險與成本：投資會漲也會跌，過去績效不代表未來。</li></ul>
+<h2>你可以從這裡開始</h2><ul><li><a href="{R}learn/">新手入門筆記</a>：從起步準備讀起。</li><li><a href="{R}terms/">股票新手翻譯器</a>：看不懂的名詞，查一下。</li><li><a href="{R}lead/">《投資新手入門清單》</a>：免費領取，跟著勾選。</li></ul>
+<h2>聯絡我們</h2><p>Email：<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br>IG：<a href="https://www.instagram.com/slow.rich.notes/">@slow.rich.notes</a></p>`)}));
+out.push(page({p:'privacy/',title:'隱私權政策',desc:'慢慢變有錢如何蒐集、使用與保存你的個人資料，以及如何查詢或刪除。',body:prose('隱私權政策','依《個人資料保護法》說明我們如何處理你的資料。',`
+<p>慢慢變有錢（以下稱「本單位」）重視你的個人資料。本政策說明你在本網站領取《投資新手入門清單》時，我們如何蒐集、處理與利用你的資料。</p>
+<h2>蒐集哪些資料</h2><ul><li>Email（必填）</li><li>稱呼（選填，不填不影響領取）</li><li>同意紀錄：同意時間、同意文字版本、來源頁面</li></ul>
+<h2>蒐集目的</h2><p>寄送《投資新手入門清單》、投資教育電子報與相關活動通知（行銷、消費者及客戶管理與服務）。我們不會出售你的資料，也不會提供給其他第三人。</p>
+<h2>如何儲存</h2><p>你送出的資料會儲存在本單位的 Google 試算表（Google Sheet），並透過 Google 服務寄送 Email。利用地區包含中華民國境內，以及 Google 雲端服務主機所在地區。利用對象為本單位及受託處理寄信、資料儲存之服務提供者。</p>
+<h2>利用期間</h2><p>自你同意起，至你退訂或要求刪除為止。</p>
+<h2>你的權利：查詢、更正、刪除</h2><p>依個資法第 3 條，你可以請求查詢、閱覽、製給複本、補充或更正、停止蒐集處理利用或刪除你的資料。請用你登記的 Email 寄信到 <a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a>，說明你要查詢或刪除，我們收到後會處理並回覆你。每封信件也都附有退訂方式。</p>
+<h2>不提供的影響</h2><p>Email 與同意為必要；若不提供，將無法寄送清單。</p>
+<h2>網站其他技術</h2><p>本網站使用 Google Fonts 載入字型。<!-- 若日後加入流量分析或 Cookie，請更新本段 --></p>
+<h2>聯絡方式</h2><p>慢慢變有錢｜<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a></p>
+<p class="note">最後更新：2026 年 10 月</p>`)}));
+out.push(page({p:'disclaimer/',title:'免責聲明',desc:'慢慢變有錢的所有內容僅供教育參考，非投資建議。',body:prose('免責聲明','僅供教育參考，非投資建議。',`
+<ul><li>本網站、IG @slow.rich.notes 及《投資新手入門清單》的內容，僅供投資理財教育參考，不構成任何投資建議、要約或推薦。</li>
+<li>我們不推薦特定個股、ETF、基金或券商，也不提供買賣時機建議。</li>
+<li>文章中的數字與例子皆為「假設例子」，用來說明觀念，不代表實際或未來報酬；計算通常未計稅費與內扣費用。</li>
+<li>投資有風險，價格會漲也會跌，可能損失本金。過去績效不代表未來。</li>
+<li>名詞解釋為簡化說明，實際定義與規則請以主管機關、交易所、發行機構或券商的官方資料為準。</li>
+<li>做任何投資決定前，請依自己的財務狀況、目標與風險承受度自行評估，必要時諮詢合格專業人士。</li></ul>
+<p>如有內容錯誤，歡迎來信 <a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a> 告訴我們。</p>`)}));
+page({p:'404/',title:'找不到這一頁',desc:'找不到這一頁。',body:prose('找不到這一頁','網址可能打錯了，或這一頁已經搬家。',`<p>你可以：</p><ul><li><a href="/">回首頁</a></li><li><a href="/">到股票新手翻譯器查名詞</a></li></ul>`),noCta:true});
+fs.rmSync(path.join(ROOT,'404'),{recursive:true,force:true});
+// sitemap / robots
+const all=[...out,'lead/'];
+fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(p=>`<url><loc>${SITE_URL}/${p}</loc></url>`).join('\n')}\n</urlset>\n`);
+fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+console.log('pages',all.length,'terms',G.terms.length,'articles',ARTS.length);
+// 404 可能在任何深度被顯示 → 改用絕對網址
+{const f=path.join(ROOT,'404.html');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/(href|src)="\.\.\/([^"]*)"/g,(m,a,b)=>`${a}="${SITE_URL}/${b}"`).replace(/href="\/"/g,`href="${SITE_URL}/"`).replace(`href="${SITE_URL}/">到股票`,`href="${SITE_URL}/terms/">到股票`));}
