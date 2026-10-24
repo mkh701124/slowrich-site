@@ -1,6 +1,7 @@
 # 慢慢變有錢 品牌網站（靜態）
 
-- 產生頁面：`node build/build.js`（資料：`build/glossary-data.js` 名詞、`build/articles.js` 文章）
+- 產生頁面：`node build/build.js`（資料：`build/glossary-data.js` 名詞、`build/articles.js` 新手入門、`build/notes.js` 筆記）
+- `/notes/<slug>/` 是 IG 短文。slug 用 ASCII kebab-case 主題 id（例如 `salary-split`），發布後不改；一篇一個資料夾，封面為該資料夾的 `cover.png`。`/learn/` 仍是入門課程，兩者分開。
 - 所有頁面用相對路徑，GitHub Pages 專案路徑與自訂網域都能用。
 - 正式網址設定在 `build/build.js` 的 `SITE_URL`（canonical、OG、sitemap、404 用）。可用 `SITE_URL=https://example.com node build/build.js`。
 - `/lead/` 與 `/lead/oneperson/` 為手動維護（非產生），其 canonical/OG 網址需手動更新。表單以 `data-magnet` 區分（`invest`、`oneperson`），共用 `lead/lead.js`。
