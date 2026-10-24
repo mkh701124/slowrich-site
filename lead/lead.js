@@ -7,6 +7,7 @@
   const CONSENT_TEXT_VERSION = '2026-10-v1';
   const $ = id => document.getElementById(id);
   const form = $('lead-form'), email = $('email'), consent = $('consent'), btn = $('submit'), status = $('status');
+  const magnet = (document.body.dataset.magnet || form.dataset.magnet || 'invest').trim() || 'invest';
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const setErr = (input, msg) => { $(input.id + '-err').textContent = msg; input.setAttribute('aria-invalid', msg ? 'true' : 'false'); };
   function validate() {
@@ -28,6 +29,7 @@
     if (!validate()) return;
     const q = new URLSearchParams(location.search);
     const payload = {
+      magnet,
       email: email.value.trim(),
       name: $('name').value.trim(),
       consent: true,
