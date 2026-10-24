@@ -31,7 +31,7 @@ const artCard=a=>`<a class="card" href="{R}learn/${a.slug}/"><small>${a.cat}</sm
 const termCard=t=>`<a class="card tcard" href="{R}terms/${slug[t.id]}/"><b>${esc(t.name)}</b><p>${esc(t.plain)}</p></a>`;
 // HOME
 out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。不報明牌，只講你真的用得到的事。',body:`
-<div class="hero"><div class="w herogrid"><div class="herotxt"><div class="tag">IG @slow.rich.notes</div><h1>投資不用急，<br><em>慢慢變有錢</em>就好。</h1><p>給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。<br>不報明牌，只講你真的用得到的事。</p><div class="btns"><a class="btn g" href="{R}lead/">免費領《投資新手入門清單》</a><a class="btn o" href="{R}learn/">從這裡開始</a></div></div><div class="mascot"><picture><source srcset="{R}assets/img/manman.webp" type="image/webp"><img src="{R}assets/img/manman.png" width="210" height="720" alt="品牌大使慢慢：綁馬尾、穿藍色上衣的女孩，微笑站著" fetchpriority="high" decoding="async"></picture></div></div></div>
+<div class="hero"><div class="w herogrid"><div class="herotxt"><div class="tag">IG @slow.rich.notes</div><h1>投資不用急，<br><em>慢慢變有錢</em>就好。</h1><p>給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。<br>不報明牌，只講你真的用得到的事。</p><div class="btns"><a class="btn g" href="{R}lead/">免費領《投資新手入門清單》</a><a class="btn o" href="{R}learn/">從這裡開始</a></div><p style="margin:12px 0 0;font-size:15px">一人公司做事系統？<a href="{R}lead/oneperson/" style="color:#F59E0B;font-weight:700">領《一人公司：下載員工清單》</a></p></div><div class="mascot"><picture><source srcset="{R}assets/img/manman.webp" type="image/webp"><img src="{R}assets/img/manman.png" width="210" height="720" alt="品牌大使慢慢：綁馬尾、穿藍色上衣的女孩，微笑站著" fetchpriority="high" decoding="async"></picture></div></div></div>
 <section><div class="w"><h2>第一次投資？從這三步開始</h2><p class="sub">照順序讀，先把基本觀念建立起來。</p><div class="grid g3">
 <a class="card" href="{R}learn/before-you-invest-3-things/"><div class="i">①</div><b>先顧好地基</b><p>緊急預備金、高利率負債、寫下目標，投資前先做好。</p><span class="more">閱讀 →</span></a>
 <a class="card" href="{R}terms/"><div class="i">②</div><b>看懂基本名詞</b><p>ETF、殖利率、本益比……用一句白話講清楚。</p><span class="more">打開股票新手翻譯器 →</span></a>
@@ -63,9 +63,9 @@ out.push(page({p:'about/',title:'關於慢慢變有錢',desc:'慢慢變有錢是
 <h2>你可以從這裡開始</h2><ul><li><a href="{R}learn/">新手入門筆記</a>：從起步準備讀起。</li><li><a href="{R}terms/">股票新手翻譯器</a>：看不懂的名詞，查一下。</li><li><a href="{R}lead/">《投資新手入門清單》</a>：免費領取，跟著勾選。</li></ul>
 <h2>聯絡我們</h2><p>Email：<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br>IG：<a href="https://www.instagram.com/slow.rich.notes/">@slow.rich.notes</a></p>`)}));
 out.push(page({p:'privacy/',title:'隱私權政策',desc:'慢慢變有錢如何蒐集、使用與保存你的個人資料，以及如何查詢或刪除。',body:prose('隱私權政策','依《個人資料保護法》說明我們如何處理你的資料。',`
-<p>慢慢變有錢（以下稱「本單位」）重視你的個人資料。本政策說明你在本網站領取《投資新手入門清單》時，我們如何蒐集、處理與利用你的資料。</p>
+<p>慢慢變有錢（以下稱「本單位」）重視你的個人資料。本政策說明你在本網站領取《投資新手入門清單》或《一人公司：下載員工清單》時，我們如何蒐集、處理與利用你的資料。</p>
 <h2>蒐集哪些資料</h2><ul><li>Email（必填）</li><li>稱呼（選填，不填不影響領取）</li><li>同意紀錄：同意時間、同意文字版本、來源頁面</li></ul>
-<h2>蒐集目的</h2><p>寄送《投資新手入門清單》、投資教育電子報與相關活動通知（行銷、消費者及客戶管理與服務）。我們不會出售你的資料，也不會提供給其他第三人。</p>
+<h2>蒐集目的</h2><p>寄送《投資新手入門清單》或《一人公司：下載員工清單》、教育內容電子報與相關活動通知（行銷、消費者及客戶管理與服務）。我們不會出售你的資料，也不會提供給其他第三人。</p>
 <h2>如何儲存</h2><p>你送出的資料會儲存在本單位的 Google 試算表（Google Sheet），並透過 Google 服務寄送 Email。利用地區包含中華民國境內，以及 Google 雲端服務主機所在地區。利用對象為本單位及受託處理寄信、資料儲存之服務提供者。</p>
 <h2>利用期間</h2><p>自你同意起，至你退訂或要求刪除為止。</p>
 <h2>你的權利：查詢、更正、刪除</h2><p>依個資法第 3 條，你可以請求查詢、閱覽、製給複本、補充或更正、停止蒐集處理利用或刪除你的資料。請用你登記的 Email 寄信到 <a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a>，說明你要查詢或刪除，我們收到後會處理並回覆你。每封信件也都附有退訂方式。</p>
@@ -94,12 +94,12 @@ rc('Adam 個人理財術：從培養財務認知開始！','莫彩曦 Hailey｜H
 rc('小資族理財的第一堂入門課','李柏鋒｜Hahow','以小資族為對象的理財入門課，適合剛開始規劃的人。','NT$1,688','4.9★・3,479 人','https://joymall.co/3URV8'),
 rc('動盪時代的資產配置：王伯達人生財務規劃學','王伯達｜Hahow','談資產配置與人生財務規劃，適合想看整體規劃的人。','NT$3,500','5.0★・3,025 人','https://joymall.co/3URVE'),
 `<div class="card tl"><span class="ex-badge free">免費</span><b>全民投資通識課</b><small class="meta">臺灣證券交易所｜PressPlay</small><p>由證交所推出的投資通識課，免費、適合打基礎。</p><small class="meta">此為免費資源，非推薦連結</small><a class="btn b tlive" href="https://www.pressplay.cc/project/04410BD69246CB371A74D26B9778E20D/about" target="_blank" rel="noopener">免費觀看 ↗</a></div>`])}
-<section class="tsec"><div class="w"><div class="tcta"><picture><source srcset="{R}assets/img/manman.webp" type="image/webp"><img src="{R}assets/img/manman.png" width="210" height="720" alt="品牌大使慢慢"></picture><div><h2>還不知道從哪開始？</h2><p>先領取免費的《投資新手入門清單》，跟著勾選，一次做一件事。</p><a class="btn g" href="{R}lead/">領取《投資新手入門清單》→</a></div></div></div></section>
+<section class="tsec"><div class="w"><div class="tcta"><picture><source srcset="{R}assets/img/manman.webp" type="image/webp"><img src="{R}assets/img/manman.png" width="210" height="720" alt="品牌大使慢慢"></picture><div><h2>還不知道從哪開始？</h2><p>先領取免費的《投資新手入門清單》，跟著勾選，一次做一件事。</p><a class="btn g" href="{R}lead/">領取《投資新手入門清單》→</a><p style="margin:10px 0 0;font-size:14px"><a href="{R}lead/oneperson/" style="color:#F59E0B;font-weight:700">你要的是一人公司做事系統？</a></p></div></div></div></section>
 <section class="tsec"><div class="w narrow"><div class="warn">⚠️ 本頁為教育性質整理，不推薦任何個股、ETF 或特定投資標的；推薦連結內容請自行評估。僅供教育參考，非投資建議。</div></div></section>`,noCta:true}));}
 page({p:'404/',title:'找不到這一頁',desc:'找不到這一頁。',body:prose('找不到這一頁','網址可能打錯了，或這一頁已經搬家。',`<p>你可以：</p><ul><li><a href="/">回首頁</a></li><li><a href="/">到股票新手翻譯器查名詞</a></li></ul>`),noCta:true});
 fs.rmSync(path.join(ROOT,'404'),{recursive:true,force:true});
 // sitemap / robots
-const all=[...out.filter(p=>p!=='404/'),'lead/'];
+const all=[...out.filter(p=>p!=='404/'),'lead/','lead/oneperson/'];
 fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(p=>`<url><loc>${SITE_URL}/${p}</loc></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 console.log('pages',all.length,'terms',G.terms.length,'articles',ARTS.length);

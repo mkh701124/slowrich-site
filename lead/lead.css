@@ -45,11 +45,14 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
 .tip{background:var(--gold-bg);border-radius:12px;padding:12px 14px;font-size:15px}
 .ig{display:inline-block;margin-top:8px;color:var(--blue);font-weight:700}
 .foot{text-align:center;color:var(--muted);font-size:14px;padding:8px 16px 32px}.foot p{margin:4px 0}.foot strong{color:var(--ink)}
+.switch{margin:4px 0 8px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:14px;font-size:15px;line-height:1.6}
+.switch a{display:inline-block;color:var(--blue);font-weight:700;padding:4px 0;text-underline-offset:3px}
 @media (min-width:760px){
  .wrap{padding-top:36px}
  .hero{grid-template-columns:1.3fr 1fr;align-items:center;padding:40px 0}
  .cover{max-width:300px}
  .card{max-width:620px;margin:0 auto;padding:36px 40px}
+ .switch{max-width:620px;margin-left:auto;margin-right:auto}
 }
 
 .manman{display:flex;align-items:center;gap:14px;max-width:620px;margin:8px auto 14px;padding:0 4px}
