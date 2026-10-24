@@ -5,6 +5,9 @@ const ROOT=path.join(__dirname,'..');
 const SITE_URL=(process.env.SITE_URL||'https://slowrichnotes.com').replace(/\/$/,'');
 global.window={};require('./glossary-data.js');const G=window.GLOSSARY;
 const ARTS=require('./articles.js');
+const NOTES=require('./notes.js');
+const noteSlugOk=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;const noteSeen=new Set();
+for(const n of NOTES){if(!noteSlugOk.test(n.slug)||noteSeen.has(n.slug))throw new Error('note slug 須為 ASCII kebab-case 且不可重複：'+n.slug);noteSeen.add(n.slug);if(!fs.existsSync(path.join(ROOT,'notes',n.slug,'cover.png')))throw new Error('缺少筆記封面：notes/'+n.slug+'/cover.png');}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 // term slugs
 const used=new Set(),slug={};
@@ -12,15 +15,16 @@ const kebab=s=>s.toLowerCase().replace(/\//g,'').replace(/[^a-z0-9]+/g,'-').repl
 for(const t of G.terms){const asc=[t.name,...t.aliases].find(x=>/^[\x20-\x7e]+$/.test(x));let s=asc?kebab(asc):t.id;if(!s||used.has(s))s=t.id;used.add(s);slug[t.id]=s;}
 const T=Object.fromEntries(G.terms.map(t=>[t.id,t]));const C=Object.fromEntries(G.categories.map(c=>[c.id,c]));
 const cta=R=>`<section><div class="w"><div class="leadbox"><div><div class="tag l">免費下載</div><h2>《投資新手入門清單》</h2><p class="sub">開始投資前，你該知道的 10 件事，加上 12 個新手名詞小抄。留下 Email，清單寄到你的信箱。</p><a class="btn g" href="${R}lead/">免費領取 →</a></div><div class="prom"><div>✔ 開始投資前該知道的 10 件事</div><div>✔ 12 個新手名詞小抄</div><div>✔ 白話說明，零基礎也看得懂</div></div></div></div></section>`;
-function page({p,title,desc,body,type='website',noCta=false,extraHead=''}){
+function page({p,title,desc,body,type='website',noCta=false,extraHead='',image=''}){
   const depth=p===''?0:p.split('/').filter(Boolean).length;const R='../'.repeat(depth)||'./';
   const url=SITE_URL+'/'+p;const full=title.includes('慢慢變有錢')?title:title+'｜慢慢變有錢';
+  const ogImage=image?(String(image).startsWith('http')?image:SITE_URL+image):SITE_URL+'/assets/og.png';
   const html=`<!doctype html><html lang="zh-Hant-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(full)}</title><meta name="description" content="${esc(desc)}"><link rel="canonical" href="${url}">
-<meta property="og:type" content="${type}"><meta property="og:site_name" content="慢慢變有錢"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE_URL}/assets/og.png"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="${type}"><meta property="og:site_name" content="慢慢變有錢"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${ogImage}"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${ogImage}">
 <meta name="theme-color" content="#1E3A8A"><link rel="icon" href="${R}assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="${R}assets/site.css?v=3">${extraHead}</head><body>
-<header class="top"><div class="w nav"><a class="logo" href="${R}">慢慢變有錢<span>.</span></a><nav><a href="${R}learn/">新手入門</a><a href="${R}terms/">股票新手翻譯器</a><a href="${R}tools/">慢慢推薦</a><a href="${R}about/">關於</a><a class="cta" href="${R}lead/">免費清單</a></nav></div></header>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="${R}assets/site.css?v=4">${extraHead}</head><body>
+<header class="top"><div class="w nav"><a class="logo" href="${R}">慢慢變有錢<span>.</span></a><nav><a href="${R}learn/">新手入門</a><a href="${R}notes/">筆記</a><a href="${R}terms/">股票新手翻譯器</a><a href="${R}tools/">慢慢推薦</a><a href="${R}about/">關於</a><a class="cta" href="${R}lead/">免費清單</a></nav></div></header>
 <main>${body.replace(/\{R\}/g,R).replace(/\{(t\d+)\}/g,(m,id)=>slug[id])}${noCta?'':cta(R)}</main>
 <footer><div class="w"><b style="color:#fff">慢慢變有錢</b>｜IG <a href="https://www.instagram.com/slow.rich.notes/" rel="noopener">@slow.rich.notes</a>｜<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br><a href="${R}privacy/">隱私權政策</a>・<a href="${R}disclaimer/">免責聲明</a>・<a href="${R}tools/">慢慢推薦</a>・<a href="${R}about/">關於</a><br><span class="d">僅供教育參考，非投資建議</span>　© 2026 慢慢變有錢</div></footer></body></html>`;
   const dir=path.join(ROOT,p);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,p==='404/'?'../404.html':'index.html'),html);
@@ -28,6 +32,8 @@ function page({p,title,desc,body,type='website',noCta=false,extraHead=''}){
 }
 const out=[];const head=(h,s,crumb='')=>`<div class="pagehead"><div class="w narrow">${crumb}<h1>${h}</h1>${s?`<p>${s}</p>`:''}</div></div>`;
 const artCard=a=>`<a class="card" href="{R}learn/${a.slug}/"><small>${a.cat}</small><br><b>${esc(a.title)}</b><p>${esc(a.desc)}</p><span class="more">閱讀 →</span></a>`;
+const noteCard=n=>`<a class="card" href="{R}notes/${n.slug}/"><small>${esc(n.cat)}</small><br><b>${esc(n.title)}</b><p>${esc(n.desc)}</p><span class="more">閱讀 →</span></a>`;
+const noteTile=n=>`<a class="card notecard" href="{R}notes/${n.slug}/"><img src="{R}notes/${n.slug}/cover.png" alt="${esc(n.coverAlt)}" width="${n.w}" height="${n.h}"><span class="pad"><small>${esc(n.cat)}</small><br><b>${esc(n.title)}</b><p>${esc(n.desc)}</p><span class="more">閱讀 →</span></span></a>`;
 const termCard=t=>`<a class="card tcard" href="{R}terms/${slug[t.id]}/"><b>${esc(t.name)}</b><p>${esc(t.plain)}</p></a>`;
 // HOME
 out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。不報明牌，只講你真的用得到的事。',body:`
@@ -39,12 +45,16 @@ out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'
 <section style="padding-top:0"><div class="w"><h2>股票新手翻譯器</h2><p class="sub">看不懂財經新聞？${G.terms.length} 個術語翻成人話。</p><div class="grid g4">${['t40','t15','t8','t16'].map(id=>termCard(T[id])).join('')}</div>
 <p style="text-align:center;margin-top:18px"><a class="btn b" href="{R}terms/">查更多名詞 →</a></p></div></section>
 <section style="padding-top:0"><div class="w"><h2>最新筆記</h2><p class="sub">同步 IG @slow.rich.notes 圖文。</p><div class="grid g3">${ARTS.slice().reverse().slice(0,3).map(artCard).join('')}</div><p style="text-align:center;margin-top:18px"><a class="btn b" href="{R}learn/">看全部 ${ARTS.length} 篇 →</a></p></div></section>
+<section style="padding-top:0"><div class="w"><h2>筆記</h2><p class="sub">同一則 IG，寫成可以慢慢讀的短文。</p><div class="grid g3">${NOTES.slice(0,3).map(noteCard).join('')}</div><p style="text-align:center;margin-top:18px"><a class="btn b" href="{R}notes/">看全部 ${NOTES.length} 篇筆記 →</a></p></div></section>
 <section style="padding-top:0;padding-bottom:0"><div class="w"><div class="card" style="text-align:center"><h2>我們的承諾</h2><p>不報明牌・不帶單・不給買賣建議。只用白話，陪你慢慢建立自己的投資習慣。</p><a class="more" href="{R}about/">關於慢慢變有錢 →</a></div></div></section>`}));
 // LEARN
 out.push(page({p:'learn/',title:'新手入門筆記',desc:'給投資新手的白話文章：起步準備、觀念、工具與心態。',body:head('新手入門筆記','從零開始，一篇一篇慢慢讀。')+`<section><div class="w"><div class="grid g3">${ARTS.map(artCard).join('')}</div></div></section>`}));
 ARTS.forEach((a,i)=>{const rel=a.terms.length?`<h2>相關名詞</h2><div class="chips">${a.terms.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:'';
  const nav=`<p style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:24px">${i>0?`<a href="{R}learn/${ARTS[i-1].slug}/">← ${esc(ARTS[i-1].title)}</a>`:'<span></span>'}${i<ARTS.length-1?`<a href="{R}learn/${ARTS[i+1].slug}/">${esc(ARTS[i+1].title)} →</a>`:''}</p>`;
  out.push(page({p:`learn/${a.slug}/`,type:'article',title:a.title,desc:a.desc,body:head(esc(a.title),esc(a.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}learn/">新手入門</a> › ${a.cat}</div>`)+`<div class="w narrow"><article class="prose">${a.body}${rel}<div class="warn">⚠️ 本內容僅供教育參考，非投資建議，投資有風險，請自行評估。</div>${nav}</article></div>`}));});
+// NOTES（IG 短文；/learn/ 課程文保持不變）
+out.push(page({p:'notes/',title:'筆記',desc:'把 IG 圖文寫成可以慢慢讀的短文。數字若出現，都是假設例子，僅供教育參考，非投資建議。',body:head('筆記','把 IG 圖文寫成可以慢慢讀的短文。觀念為主，不報明牌。')+`<section><div class="w"><div class="grid g3">${NOTES.map(noteTile).join('')}</div></div></section>`}));
+NOTES.forEach(n=>{out.push(page({p:`notes/${n.slug}/`,type:'article',title:n.title,desc:n.desc,image:`/notes/${n.slug}/cover.png`,body:head(esc(n.title),esc(n.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}notes/">筆記</a> › ${esc(n.cat)}</div>`)+`<div class="w narrow"><article class="prose"><figure class="coverfig"><img src="{R}notes/${n.slug}/cover.png" alt="${esc(n.coverAlt)}" width="${n.w}" height="${n.h}"></figure>${n.body}<div class="warn">⚠️ 僅供教育參考，非投資建議。文中若有數字，皆為假設例子，請依自己的狀況調整。投資有風險，請自行評估。</div><p style="margin-top:18px"><a href="{R}notes/">← 回筆記</a></p></article></div>`}));});
 // TERMS index
 const cats=G.categories.map(c=>`<button data-c="${c.id}">${esc(c.name)}</button>`).join('');
 const list=G.terms.map(t=>`<a class="card tcard" data-c="${t.category}" data-k="${esc([t.name,...t.aliases,t.plain].join(' ').toLowerCase())}" href="{R}terms/${slug[t.id]}/"><b>${esc(t.name)}</b> <span class="alias">${esc(t.aliases.join('・'))}</span><p>${esc(t.plain)}</p></a>`).join('');
@@ -60,7 +70,7 @@ out.push(page({p:'about/',title:'關於慢慢變有錢',desc:'慢慢變有錢是
 <div class="hello"><picture><source srcset="{R}assets/img/manman-sign.webp" type="image/webp"><img src="{R}assets/img/manman-sign.png" width="265" height="720" alt="品牌大使慢慢舉著牌子向你打招呼" loading="lazy" decoding="async"></picture><p class="bubble">嗨，我是慢慢，陪你一起慢慢學投資。</p></div>
 <h2>我們在做什麼</h2><p>「慢慢變有錢」是給投資新手的白話筆記，同步經營 IG <a href="https://www.instagram.com/slow.rich.notes/">@slow.rich.notes</a>。我們把常見的投資名詞和觀念翻成人話，幫你在花第一塊錢之前，先把基礎打好。</p>
 <h2>我們的原則</h2><ul><li>不報明牌、不帶單、不推薦特定個股、ETF 或券商。</li><li>只講觀念，用白話說明；文章裡的數字都會標明是「假設例子」。</li><li>提醒風險與成本：投資會漲也會跌，過去績效不代表未來。</li></ul>
-<h2>你可以從這裡開始</h2><ul><li><a href="{R}learn/">新手入門筆記</a>：從起步準備讀起。</li><li><a href="{R}terms/">股票新手翻譯器</a>：看不懂的名詞，查一下。</li><li><a href="{R}lead/">《投資新手入門清單》</a>：免費領取，跟著勾選。</li></ul>
+<h2>你可以從這裡開始</h2><ul><li><a href="{R}learn/">新手入門筆記</a>：從起步準備讀起。</li><li><a href="{R}notes/">筆記</a>：IG 圖文寫成短文。</li><li><a href="{R}terms/">股票新手翻譯器</a>：看不懂的名詞，查一下。</li><li><a href="{R}lead/">《投資新手入門清單》</a>：免費領取，跟著勾選。</li></ul>
 <h2>聯絡我們</h2><p>Email：<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br>IG：<a href="https://www.instagram.com/slow.rich.notes/">@slow.rich.notes</a></p>`)}));
 out.push(page({p:'privacy/',title:'隱私權政策',desc:'慢慢變有錢如何蒐集、使用與保存你的個人資料，以及如何查詢或刪除。',body:prose('隱私權政策','依《個人資料保護法》說明我們如何處理你的資料。',`
 <p>慢慢變有錢（以下稱「本單位」）重視你的個人資料。本政策說明你在本網站領取《投資新手入門清單》或《一人公司：下載員工清單》時，我們如何蒐集、處理與利用你的資料。</p>
@@ -102,6 +112,6 @@ fs.rmSync(path.join(ROOT,'404'),{recursive:true,force:true});
 const all=[...out.filter(p=>p!=='404/'),'lead/','lead/oneperson/'];
 fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(p=>`<url><loc>${SITE_URL}/${p}</loc></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
-console.log('pages',all.length,'terms',G.terms.length,'articles',ARTS.length);
+console.log('pages',all.length,'terms',G.terms.length,'articles',ARTS.length,'notes',NOTES.length);
 // 404 可能在任何深度被顯示 → 改用絕對網址
 {const f=path.join(ROOT,'404.html');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/(href|src)="\.\.\/([^"]*)"/g,(m,a,b)=>`${a}="${SITE_URL}/${b}"`).replace(/href="\/"/g,`href="${SITE_URL}/"`).replace(`href="${SITE_URL}/">到股票`,`href="${SITE_URL}/terms/">到股票`));}
