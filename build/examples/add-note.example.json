@@ -1,0 +1,9 @@
+{
+  "slug": "example-note-do-not-publish",
+  "cat": "範例",
+  "title": "這是乾跑範例，不要發布",
+  "desc": "給 node build/add-note.js --dry-run 用的假筆記。不要加進 build/notes.js，也不要發布。",
+  "coverAlt": "封面：乾跑範例，不要發布。",
+  "cover": "build/examples/example-cover.png",
+  "body": "<p>這段只是 dry-run 範例，不是一篇筆記。相對連結保持 <a href=\"{R}lead/\">《投資新手入門清單》</a> 這種寫法，不要自己展開 {R}。</p><p>免責聲明不用寫在 body，build 會加在內文後面。CTA 則放在 body 裡。</p>"
+}
