@@ -99,7 +99,7 @@ ARTS.forEach((a,i)=>{const rel=a.terms.length?`<h2>相關名詞</h2><div class="
 // NOTES（IG 短文；/learn/ 課程文保持不變）
 // 筆記列表只交叉連結既有 /learn/ 文章（NOTE_REDIRECTS），不寫回 build/notes.js、也不當權威筆記頁。
 const learnCrossLinks=NOTE_REDIRECTS.map(s=>artCard(artBySlug[s])).join('');
-out.push(page({p:'notes/',title:'投資新手筆記｜ETF、存錢與財經新聞白話',desc:'把 IG 圖文寫成可以慢慢讀的短文。數字若出現，都是假設例子，僅供教育參考，非投資建議。',body:head('筆記','把 IG 圖文寫成可以慢慢讀的短文。觀念為主，不報明牌。')+`<section><div class="w"><div class="grid g3">${NOTES.map(noteTile).join('')}</div></div></section>`+`<section style="padding-top:0"><div class="w"><h2>新手入門也有這些</h2><p class="sub">這幾篇完整版在新手入門，點進去讀——避免與筆記重複。</p><div class="grid g3">${learnCrossLinks}</div><p style="text-align:center;margin-top:18px"><a class="btn b" href="{R}learn/">看全部新手入門 →</a></p></div></section>`}));
+out.push(page({p:'notes/',title:'投資新手筆記｜ETF、存錢與財經新聞白話',desc:'把 IG 圖文寫成可以慢慢讀的短文。數字若出現，都是假設例子，僅供教育參考，非投資建議。',body:head('投資新手筆記','把 IG 圖文寫成可以慢慢讀的短文。觀念為主，不報明牌。')+`<section><div class="w"><div class="grid g3">${NOTES.map(noteTile).join('')}</div></div></section>`+`<section style="padding-top:0"><div class="w"><h2>新手入門也有這些</h2><p class="sub">這幾篇完整版在新手入門，點進去讀——避免與筆記重複。</p><div class="grid g3">${learnCrossLinks}</div><p style="text-align:center;margin-top:18px"><a class="btn b" href="{R}learn/">看全部新手入門 →</a></p></div></section>`}));
 NOTES.forEach(n=>{const noteUrl=SITE_URL+'/notes/'+n.slug+'/';const noteImage=SITE_URL+'/notes/'+n.slug+'/cover.png';out.push(page({p:`notes/${n.slug}/`,type:'article',title:n.title,desc:n.desc,image:`/notes/${n.slug}/cover.png`,jsonLd:articleLd({headline:n.title,description:n.desc,url:noteUrl,image:noteImage,crumbs:crumbLd('筆記',SITE_URL+'/notes/',n.title,noteUrl)}),body:head(esc(n.title),esc(n.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}notes/">筆記</a> › ${esc(n.cat)}</div>`)+`<div class="w narrow"><article class="prose"><figure class="coverfig"><img src="{R}notes/${n.slug}/cover.png" alt="${esc(n.coverAlt)}" width="${n.w}" height="${n.h}"></figure>${n.body}<div class="warn">⚠️ 僅供教育參考，非投資建議。文中若有數字，皆為假設例子，請依自己的狀況調整。投資有風險，請自行評估。</div><p style="margin-top:18px"><a href="{R}notes/">← 回筆記</a></p></article></div>`}));});
 // 舊 /notes/<slug>/：canonical 與 meta refresh 指向 /learn/<slug>/。不 push 進 out，因此不進 sitemap、也不出現在列表。
 for(const slug of NOTE_REDIRECTS){const a=artBySlug[slug];const target=SITE_URL+'/learn/'+slug+'/';
@@ -161,8 +161,28 @@ page({p:'404/',title:'找不到這一頁',desc:'找不到這一頁。',canonical
 fs.rmSync(path.join(ROOT,'404'),{recursive:true,force:true});
 // sitemap / robots
 // sitemap 不含 /404/，也不含與 /learn/ 重複的 /notes/ 轉址殘頁。
+// lastmod：Asia/Taipei 建置日（YYYY-MM-DD）。文章／筆記若有 updated 或 date 才採用（updated 優先），且不得晚於建置日。
+// 目前資料沒有日期欄位，不回推發布日。列表與靜態頁（含詞條、lead）一律用建置日，不用「最新子頁」。
+function taipeiDay(d){
+  return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(d||new Date());
+}
+const BUILD_DAY=taipeiDay();
+function contentDay(entry){
+  if(!entry)return BUILD_DAY;
+  for(const key of ['updated','date']){
+    const m=String(entry[key]??'').trim().match(/^(\d{4}-\d{2}-\d{2})/);
+    if(m&&m[1]<=BUILD_DAY)return m[1];
+  }
+  return BUILD_DAY;
+}
+function lastmodFor(p){
+  let m;
+  if((m=/^learn\/([^/]+)\/$/.exec(p)))return contentDay(artBySlug[m[1]]);
+  if((m=/^notes\/([^/]+)\/$/.exec(p)))return contentDay(NOTES.find(n=>n.slug===m[1]));
+  return BUILD_DAY;
+}
 const all=[...out.filter(p=>p!=='404/'),'lead/','lead/oneperson/'];
-fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(p=>`<url><loc>${SITE_URL}/${p}</loc></url>`).join('\n')}\n</urlset>\n`);
+fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(p=>`<url><loc>${SITE_URL}/${p}</loc><lastmod>${lastmodFor(p)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 console.log('pages',all.length,'terms',G.terms.length,'articles',ARTS.length,'notes',NOTES.length);
 // 404 可能在任何深度被顯示 → 改用絕對網址
