@@ -9,7 +9,7 @@ const NOTES=require('./notes.js');
 const noteSlugOk=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;const noteSeen=new Set();
 for(const n of NOTES){if(!noteSlugOk.test(n.slug)||noteSeen.has(n.slug))throw new Error('note slug 須為 ASCII kebab-case 且不可重複：'+n.slug);noteSeen.add(n.slug);if(!fs.existsSync(path.join(ROOT,'notes',n.slug,'cover.png')))throw new Error('缺少筆記封面：notes/'+n.slug+'/cover.png');}
 // 與 /learn/ 重複、已從 build/notes.js 移除的舊網址。GitHub Pages 沒有 301，只留 meta refresh 殘頁。
-const NOTE_REDIRECTS=['before-you-invest-3-things','10-terms-for-financial-news','dca-vs-lump-sum','what-is-a-stock','compound-interest','5-beginner-mistakes','what-is-etf','open-brokerage-account','5-questions-before-investing'];
+const NOTE_REDIRECTS=['before-you-invest-3-things','10-terms-for-financial-news','dca-vs-lump-sum','what-is-a-stock','compound-interest','5-beginner-mistakes','what-is-etf','open-brokerage-account','5-questions-before-investing','twd-fx-outflow'];
 const artBySlug=Object.fromEntries(ARTS.map(a=>[a.slug,a]));
 for(const s of NOTE_REDIRECTS){
   if(!artBySlug[s])throw new Error('轉址目標不存在：/learn/'+s+'/');

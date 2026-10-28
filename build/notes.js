@@ -2,10 +2,11 @@
 // slug 規則：ASCII kebab-case 的短英文主題 id（例如 salary-split）。
 // 一旦發布就不要改 slug。一篇筆記一個資料夾 /notes/<slug>/，封面為同資料夾的 cover.png。
 // 陣列順序＝列表頁順序。不含未列管主題（例如樂透）。
-// 與 /learn/ 同 slug 的 9 篇已從這裡移除，權威在 /learn/<slug>/。
+// 與 /learn/ 同 slug 的 10 篇已從這裡移除，權威在 /learn/<slug>/。
 // 舊 /notes/<slug>/ 由 build/build.js 產生 meta refresh 殘頁，不進列表、不進 sitemap：
 // before-you-invest-3-things、10-terms-for-financial-news、dca-vs-lump-sum、what-is-a-stock、
-// compound-interest、5-beginner-mistakes、what-is-etf、open-brokerage-account、5-questions-before-investing。
+// compound-interest、5-beginner-mistakes、what-is-etf、open-brokerage-account、5-questions-before-investing、
+// twd-fx-outflow。
 module.exports = [
 {
   slug:'ant-half-nvidia',
