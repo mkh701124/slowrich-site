@@ -62,3 +62,13 @@ footer{background:#14275e;color:#cbd5e1;padding:28px 0;font-size:14px;margin-top
 
 .notecard{padding:0;overflow:hidden}.notecard img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:top center;display:block;background:#1E3A8A}.notecard .pad{display:block;padding:16px 18px 18px}
 .coverfig{margin:0 0 16px;display:flex;justify-content:center}.coverfig img{width:auto;max-width:100%;height:auto;max-height:min(78vh,720px);object-fit:contain;object-position:top center;border-radius:12px;display:block}
+.related-sec{padding-top:0}
+.related-notes{background:#fff;border-radius:16px;padding:22px 20px 16px;box-shadow:0 2px 10px rgba(30,58,138,.06)}
+.related-notes h2{margin:0 0 12px}
+.related-notes ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.related-notes li{margin:0}
+.related-notes a{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--bg);border-radius:12px;padding:12px 14px;color:var(--b);font-weight:700;font-size:18px;line-height:1.45}
+.related-notes a:hover{background:#e7eef8}
+.related-notes a:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+.related-notes .relcat{color:#b45309;font-weight:700;font-size:13px;line-height:1.4}
+@media(min-width:760px){.related-notes{padding:26px 28px 18px}}

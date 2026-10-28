@@ -50,8 +50,9 @@ function websiteLd(){
     {'@type':'WebSite','@id':SITE_URL+'/#website',name:ORG_NAME,url:SITE_URL+'/',publisher:{'@id':SITE_URL+'/#organization'}}
   ]};
 }
-function page({p,title,desc,body,type='website',noCta=false,extraHead='',image='',canonical,ogUrl,robots,jsonLd}){
+function page({p,title,desc,body,type='website',noCta=false,extraHead='',image='',canonical,ogUrl,robots,jsonLd,afterCta='',cssVer='6'}){
   const depth=p===''?0:p.split('/').filter(Boolean).length;const R='../'.repeat(depth)||'./';
+  const rel=s=>s.replace(/\{R\}/g,R).replace(/\{(t\d+)\}/g,(m,id)=>slug[id]);
   const url=SITE_URL+'/'+p;const full=title.includes('慢慢變有錢')?title:title+'｜慢慢變有錢';
   // 404 不宣告 /404/ 為正規網址：noindex、og:url 指回首頁、不輸出 JSON-LD。
   if(p==='404/'){canonical=false;ogUrl=SITE_URL+'/';robots='noindex';jsonLd=null;}
@@ -66,9 +67,9 @@ function page({p,title,desc,body,type='website',noCta=false,extraHead='',image='
 <title>${esc(full)}</title><meta name="description" content="${esc(desc)}">${robotsTag}${canonTag}
 <meta property="og:type" content="${type}"><meta property="og:site_name" content="慢慢變有錢"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(desc)}">${ogUrlTag}<meta property="og:image" content="${ogImage}"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${ogImage}">
 <meta name="theme-color" content="#1E3A8A"><link rel="icon" href="${R}assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="${R}assets/site.css?v=6">${extraHead}${ld}</head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="${R}assets/site.css?v=${cssVer}">${extraHead}${ld}</head><body>
 <header class="top"><div class="w nav"><a class="logo" href="${R}">慢慢變有錢<span>.</span></a><input type="checkbox" id="navtoggle" class="navtoggle" aria-label="選單"><label class="navbtn" for="navtoggle" aria-hidden="true"><span></span></label><nav><a href="${R}learn/">新手入門</a><a href="${R}notes/">筆記</a><a href="${R}terms/">股票新手翻譯器</a><a href="${R}tools/">慢慢推薦</a><a href="${R}about/">關於</a><a class="cta" href="${R}lead/">免費清單</a></nav></div></header>
-<main>${body.replace(/\{R\}/g,R).replace(/\{(t\d+)\}/g,(m,id)=>slug[id])}${noCta?'':cta(R)}</main>
+<main>${rel(body)}${noCta?'':cta(R)}${rel(afterCta)}</main>
 <footer><div class="w"><b style="color:#fff">慢慢變有錢</b>｜IG <a href="https://www.instagram.com/slow.rich.notes/" rel="noopener">@slow.rich.notes</a>｜<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br><a href="${R}privacy/">隱私權政策</a>・<a href="${R}disclaimer/">免責聲明</a>・<a href="${R}tools/">慢慢推薦</a>・<a href="${R}about/">關於</a><br><span class="d">僅供教育參考，非投資建議</span>　© 2026 慢慢變有錢</div></footer></body></html>`;
   const dir=path.join(ROOT,p);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,p==='404/'?'../404.html':'index.html'),html);
   return p;
@@ -100,7 +101,23 @@ ARTS.forEach((a,i)=>{const rel=a.terms.length?`<h2>相關名詞</h2><div class="
 // 筆記列表只交叉連結既有 /learn/ 文章（NOTE_REDIRECTS），不寫回 build/notes.js、也不當權威筆記頁。
 const learnCrossLinks=NOTE_REDIRECTS.map(s=>artCard(artBySlug[s])).join('');
 out.push(page({p:'notes/',title:'投資新手筆記｜ETF、存錢與財經新聞白話',desc:'把 IG 圖文寫成可以慢慢讀的短文。數字若出現，都是假設例子，僅供教育參考，非投資建議。',body:head('投資新手筆記','把 IG 圖文寫成可以慢慢讀的短文。觀念為主，不報明牌。')+`<section><div class="w"><div class="grid g3">${NOTES.map(noteTile).join('')}</div></div></section>`+`<section style="padding-top:0"><div class="w"><h2>新手入門也有這些</h2><p class="sub">這幾篇完整版在新手入門，點進去讀——避免與筆記重複。</p><div class="grid g3">${learnCrossLinks}</div><p style="text-align:center;margin-top:18px"><a class="btn b" href="{R}learn/">看全部新手入門 →</a></p></div></section>`}));
-NOTES.forEach(n=>{const noteUrl=SITE_URL+'/notes/'+n.slug+'/';const noteImage=SITE_URL+'/notes/'+n.slug+'/cover.png';out.push(page({p:`notes/${n.slug}/`,type:'article',title:n.title,desc:n.desc,image:`/notes/${n.slug}/cover.png`,jsonLd:articleLd({headline:n.title,description:n.desc,url:noteUrl,image:noteImage,crumbs:crumbLd('筆記',SITE_URL+'/notes/',n.title,noteUrl)}),body:head(esc(n.title),esc(n.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}notes/">筆記</a> › ${esc(n.cat)}</div>`)+`<div class="w narrow"><article class="prose"><figure class="coverfig"><img src="{R}notes/${n.slug}/cover.png" alt="${esc(n.coverAlt)}" width="${n.w}" height="${n.h}"></figure>${n.body}<div class="warn">⚠️ 僅供教育參考，非投資建議。文中若有數字，皆為假設例子，請依自己的狀況調整。投資有風險，請自行評估。</div><p style="margin-top:18px"><a href="{R}notes/">← 回筆記</a></p></article></div>`}));});
+// 相關筆記只加在 /notes/<slug>/ 正文頁。候選＝build/notes.js（陣列前面＝較新）。
+// 先同 cat（維持陣列順序），不足 3 篇再依陣列順序補其他分類。排除自己與 NOTE_REDIRECTS。不讀手動 related 欄位。
+const redirectSlug=new Set(NOTE_REDIRECTS);
+function relatedNotes(n){
+  const pool=NOTES.filter(x=>x&&x.slug!==n.slug&&!redirectSlug.has(x.slug));
+  const picked=[...pool.filter(x=>x.cat===n.cat),...pool.filter(x=>x.cat!==n.cat)].slice(0,3);
+  const slugs=picked.map(x=>x.slug);
+  if(picked.length>3||slugs.includes(n.slug)||slugs.some(s=>redirectSlug.has(s))||new Set(slugs).size!==slugs.length||slugs.some(s=>!noteSlugOk.test(s)))throw new Error('相關筆記選取不合法：'+n.slug);
+  return picked;
+}
+function relatedNotesHtml(n){
+  const picked=relatedNotes(n);
+  if(!picked.length)return '';
+  const items=picked.map(x=>`<li><a href="{R}notes/${x.slug}/"><span class="relcat">${esc(x.cat)}</span>${esc(x.title)}</a></li>`).join('');
+  return `<section class="related-sec"><div class="w"><nav class="related-notes" aria-labelledby="related-notes-heading"><h2 id="related-notes-heading">相關筆記</h2><ul>${items}</ul></nav></div></section>`;
+}
+NOTES.forEach(n=>{const noteUrl=SITE_URL+'/notes/'+n.slug+'/';const noteImage=SITE_URL+'/notes/'+n.slug+'/cover.png';const related=relatedNotesHtml(n);out.push(page({p:`notes/${n.slug}/`,type:'article',title:n.title,desc:n.desc,image:`/notes/${n.slug}/cover.png`,cssVer:related?'7':'6',afterCta:related,jsonLd:articleLd({headline:n.title,description:n.desc,url:noteUrl,image:noteImage,crumbs:crumbLd('筆記',SITE_URL+'/notes/',n.title,noteUrl)}),body:head(esc(n.title),esc(n.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}notes/">筆記</a> › ${esc(n.cat)}</div>`)+`<div class="w narrow"><article class="prose"><figure class="coverfig"><img src="{R}notes/${n.slug}/cover.png" alt="${esc(n.coverAlt)}" width="${n.w}" height="${n.h}"></figure>${n.body}<div class="warn">⚠️ 僅供教育參考，非投資建議。文中若有數字，皆為假設例子，請依自己的狀況調整。投資有風險，請自行評估。</div><p style="margin-top:18px"><a href="{R}notes/">← 回筆記</a></p></article></div>`}));});
 // 舊 /notes/<slug>/：canonical 與 meta refresh 指向 /learn/<slug>/。不 push 進 out，因此不進 sitemap、也不出現在列表。
 for(const slug of NOTE_REDIRECTS){const a=artBySlug[slug];const target=SITE_URL+'/learn/'+slug+'/';
  page({p:`notes/${slug}/`,title:a.title,desc:'這篇已整理到新手入門。',canonical:target,ogUrl:target,noCta:true,extraHead:`<meta http-equiv="refresh" content="0;url=${target}">`,body:`<div class="w narrow"><article class="prose"><p>這篇已整理到新手入門：<a href="{R}learn/${slug}/">${esc(a.title)}</a>。</p></article></div>`});}
