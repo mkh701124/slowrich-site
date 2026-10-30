@@ -9,6 +9,21 @@
 // twd-fx-outflow。
 module.exports = [
 {
+  slug:'binance-hack-freeze',
+  cat:'新聞',
+  title:'史上最大級？幣安疑遭駭，CZ：用戶資金安全',
+  desc:'官方凍結約 30 億美元 vs 鏈上估算近 60 億——先分清事實與估算，再看 CZ 與幣安怎麼說。',
+  coverAlt:'史上最大級？幣安疑遭駭｜慢慢變有錢',
+  w:1080,h:1350,
+  body:`
+<p>刷到「幣安被駭」「暫停提款」別急著跟單或恐慌——先把數字分清楚：哪些是官方確認，哪些還是鏈上估算。</p>
+<p>約 2026-10-30（台北）清晨起，全球成交量最大的加密貨幣交易所 <strong>Binance</strong> 陸續公告：正在調查潛在安全事件，並暫停充值與提款。官方核實的凍結金額一度約 <strong>25.4 億美元</strong>，後更新約 <strong>30 億美元</strong>（約數，以官方最新為準）。Tether、Circle 等發行方也凍結了與事件相關的穩定幣資產（報導約數會變）。</p>
+<p>鏈上與媒體估算疑似被轉移規模約 <strong>57～59 億美元</strong>（Arkham、Chainalysis 等），若屬實可能是史上最大級——但這仍是估算，幣安未必已確認最終被盜淨額。創辦人 <strong>Changpeng Zhao（CZ）</strong> 在 X 寫道：用戶資金安全；看起來確實像對 Binance 的駭客攻擊；他已不管理 Binance.com，但以股東身分預期用戶資金會被全額補足。Binance／Yi He 亦表示會 cover all hacking losses。</p>
+<p>白話重點：穩定幣可被發行方「凍」住可疑地址，但 BTC、ETH 本身通常不能這樣凍；暫停出入金時，餘額可能「看得到、動不了」。官方承諾賠付重要，仍要以後續公告為準——不是叫你現在做什麼。</p>
+<p>想把基礎補齊，可先看 <a href="{R}learn/10-terms-for-financial-news/">看不懂財經新聞？先學這 10 個詞</a>，以及 <a href="{R}notes/ant-half-nvidia/">熱話題怎麼對照估值與敘事</a>。現金流怎麼排，可對照 <a href="{R}notes/salary-split/">月薪也能慢慢存起來</a>。準備好了再領 <a href="{R}lead/">《投資新手入門清單》</a>。</p>
+<p>僅供教育參考，非投資建議。數字為報導／鏈上約數，會變動；加密資產與平台風險高，可能損失本金。</p>`
+},
+{
   slug:'mortgage-secret-markup',
   cat:'新聞',
   title:'你的房貸，正在被偷偷加價',
