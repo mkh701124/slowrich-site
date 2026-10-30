@@ -9,6 +9,20 @@
 // twd-fx-outflow。
 module.exports = [
 {
+  slug:'druckenmiller-trade-xyz',
+  cat:'新聞',
+  title:'ICE 要接加密永續？先搞懂三個名字',
+  desc:'Stan Druckenmiller、ICE×Trade.xyz、Elon Interesting——先拆三個名字與 24/7 對散戶的影響，再談大戶管道 ≠ 跟單。',
+  coverAlt:'ICE 要接加密永續？先搞懂三個名字｜慢慢變有錢',
+  w:1080,h:1350,
+  body:`
+<p>刷到「今日大事」：Stan Druckenmiller 罕見發文投資 Trade.xyz、ICE（NYSE 母公司）官宣要把 Hyperliquid 的「24/7 永續合約」合規帶進美國、Elon Musk 回一句 Interesting——話題被放大。標題可以熱，答案可以冷靜。</p>
+<p><strong>先搞懂三個名字。</strong>Hyperliquid 是加密圈裡很紅的去中心化交易所；Trade.xyz 在上面做「真實世界資產」的永續合約（用合約交易漲跌，不是直接買那張股票）；ICE 則是傳統金融的交易所與清算巨頭。合作重點是把這類產品放進美國監管能接受的框架——還要過審批，不是明天就能上。</p>
+<p><strong>24/7 對散戶意味什麼？</strong>半夜也能交易＝方便，也更容易衝動；槓桿是放大器；新聞半夜跳出，醒來部位可能已大變。多了「隨時能動」，少了「等開盤再想」的緩衝。HYPE 報導當日約漲一成多、盤中約破 $95（約數，會變）。美國合規版還沒開張；敘事≠現金流，上次類似熱度也常會褪。</p>
+<p>帶回去一句：大戶投資「管道」≠ 跟單；名人一句話也不是進場指令。想把基礎補齊，可先看 <a href="{R}learn/10-terms-for-financial-news/">看不懂財經新聞？先學這 10 個詞</a>，以及同為「熱話題先拆事實」的 <a href="{R}notes/binance-hack-freeze/">幣安疑遭駭：凍結與估算怎麼分</a>、<a href="{R}notes/ant-half-nvidia/">ANT 估值怎麼對照</a>。現金流怎麼排，可對照 <a href="{R}notes/salary-split/">月薪也能慢慢存起來</a>。準備好了再領 <a href="{R}lead/">《投資新手入門清單》</a>。</p>
+<p>僅供教育參考，非投資建議。漲跌為約數；加密、槓桿與衍生品皆有高風險，可能損失本金；新聞與合作時程會變動。</p>`
+},
+{
   slug:'binance-hack-freeze',
   cat:'新聞',
   title:'史上最大級？幣安疑遭駭，CZ：用戶資金安全',
