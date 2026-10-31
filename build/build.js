@@ -6,6 +6,7 @@ const SITE_URL=(process.env.SITE_URL||'https://slowrichnotes.com').replace(/\/$/
 global.window={};require('./glossary-data.js');const G=window.GLOSSARY;
 const ARTS=require('./articles.js');
 const NOTES=require('./notes.js');
+const {termBilingual,termMetaDescription}=require('./term-bilingual.js');
 const noteSlugOk=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;const noteSeen=new Set();
 for(const n of NOTES){if(!noteSlugOk.test(n.slug)||noteSeen.has(n.slug))throw new Error('note slug 須為 ASCII kebab-case 且不可重複：'+n.slug);noteSeen.add(n.slug);if(!fs.existsSync(path.join(ROOT,'notes',n.slug,'cover.png')))throw new Error('缺少筆記封面：notes/'+n.slug+'/cover.png');}
 // 與 /learn/ 重複、已從 build/notes.js 移除的舊網址。GitHub Pages 沒有 301，只留 meta refresh 殘頁。
@@ -38,11 +39,13 @@ function articleLd({headline,description,url,image,crumbs}){
 function crumbLd(sectionName,sectionUrl,title,pageUrl){
   return [{name:'首頁',url:SITE_URL+'/'},{name:sectionName,url:sectionUrl},{name:title,url:pageUrl}];
 }
-function definedTermLd(t,url){
+function definedTermLd(t,url,bi){
   const def=t&&t.plain&&String(t.plain).trim();
   if(!def)return null;
-  return {'@context':'https://schema.org','@type':'DefinedTerm',name:t.name,description:def,url,
+  const ld={'@context':'https://schema.org','@type':'DefinedTerm',name:bi?bi.zh:t.name,description:def,url,
     inDefinedTermSet:{'@type':'DefinedTermSet',name:'股票新手翻譯器',url:SITE_URL+'/terms/'}};
+  if(bi&&bi.alternateName.length)ld.alternateName=bi.alternateName;
+  return ld;
 }
 function websiteLd(){
   return {'@context':'https://schema.org','@graph':[
@@ -128,7 +131,11 @@ out.push(page({p:'terms/',title:'股票新手翻譯器｜投資名詞白話查�
 <script>(function(){var q=document.getElementById('q'),cs=document.getElementById('cats'),cards=[].slice.call(document.querySelectorAll('#list .card')),cur='';function run(){var v=q.value.trim().toLowerCase(),n=0;cards.forEach(function(c){var ok=(!cur||c.dataset.c===cur)&&(!v||c.dataset.k.indexOf(v)>-1);c.hidden=!ok;if(ok)n++});document.getElementById('empty').hidden=n>0}q.addEventListener('input',run);cs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cur=b.dataset.c;[].forEach.call(cs.children,function(x){x.classList.toggle('on',x===b)});run()});var p=new URLSearchParams(location.search).get('q');if(p){q.value=p;run()}})();</script>`}));
 for(const t of G.terms){const c=C[t.category];const rel=(t.related||[]).filter(id=>T[id]);
  const termUrl=SITE_URL+'/terms/'+slug[t.id]+'/';
- out.push(page({p:`terms/${slug[t.id]}/`,type:'article',title:`${t.name} 是什麼？白話解釋`,desc:`${t.name}：${t.plain}`,jsonLd:definedTermLd(t,termUrl),body:head(`${esc(t.name)} <span style="font-size:.55em;opacity:.8">${esc(t.aliases.join('・'))}</span>`,esc(t.plain),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}terms/">股票新手翻譯器</a> › ${esc(c.name)}</div>`)+`<div class="w narrow"><article class="prose"><dl class="term">
+ const bi=termBilingual(t);
+ const title=bi?bi.title:`${t.name} 是什麼？白話解釋`;
+ const desc=bi?termMetaDescription(bi.line,t.plain):`${t.name}：${t.plain}`;
+ const lede=bi?`${esc(bi.line)}。${esc(t.plain)}`:esc(t.plain);
+ out.push(page({p:`terms/${slug[t.id]}/`,type:'article',title,desc,jsonLd:definedTermLd(t,termUrl,bi),body:head(`${esc(t.name)} <span style="font-size:.55em;opacity:.8">${esc(t.aliases.join('・'))}</span>`,lede,`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}terms/">股票新手翻譯器</a> › ${esc(c.name)}</div>`)+`<div class="w narrow"><article class="prose"><dl class="term">
 <dt>一句話白話</dt><dd>${esc(t.plain)}</dd><dt>舉個例子</dt><dd><div class="ex" style="margin:4px 0">${esc(t.example)}</div></dd><dt>怎麼算</dt><dd>${esc(t.formula)}</dd><dt>代表什麼</dt><dd>${esc(t.meaning)}</dd><dt>常見誤解</dt><dd>${esc(t.myth)}</dd><dt>怎麼判斷</dt><dd>${esc(t.judgement)}</dd></dl>
 ${rel.length?`<h2>相關名詞</h2><div class="chips">${rel.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:''}<div class="warn">⚠️ 名詞解釋為簡化說明，僅供教育參考，非投資建議。</div><p style="margin-top:18px"><a href="{R}terms/">← 回股票新手翻譯器</a></p></article></div>`}));}
 // ABOUT / PRIVACY / DISCLAIMER
@@ -201,6 +208,8 @@ function lastmodFor(p){
 const all=[...out.filter(p=>p!=='404/'),'lead/','lead/oneperson/'];
 fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(p=>`<url><loc>${SITE_URL}/${p}</loc><lastmod>${lastmodFor(p)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+const skippedBi=G.terms.filter(t=>!termBilingual(t));
 console.log('pages',all.length,'terms',G.terms.length,'articles',ARTS.length,'notes',NOTES.length);
+console.log('bilingual',G.terms.length-skippedBi.length,'skipped',skippedBi.map(t=>t.id+':'+t.name).join('、')||'none');
 // 404 可能在任何深度被顯示 → 改用絕對網址
 {const f=path.join(ROOT,'404.html');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/(href|src)="\.\.\/([^"]*)"/g,(m,a,b)=>`${a}="${SITE_URL}/${b}"`).replace(/href="\/"/g,`href="${SITE_URL}/"`).replace(`href="${SITE_URL}/">到股票`,`href="${SITE_URL}/terms/">到股票`));}
