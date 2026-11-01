@@ -72,7 +72,9 @@ footer{background:#14275e;color:#cbd5e1;padding:28px 0;font-size:14px;margin-top
 .related-notes a:focus-visible{outline:2px solid var(--g);outline-offset:2px}
 .related-notes .relcat{color:#b45309;font-weight:700;font-size:13px;line-height:1.4}
 @media(min-width:760px){.related-notes{padding:26px 28px 18px}}
-.ig-return-sec{padding-top:0;padding-bottom:8px}
+.ig-return-sec{padding-top:28px;padding-bottom:8px}
+.ig-return-sec + section{padding-top:20px}
+.related-sec + section{padding-top:0}
 .ig-return{display:flex;align-items:center;gap:16px;min-height:96px;padding:18px 20px;background:linear-gradient(135deg,#1E3A8A,#2c4fb0);color:#fff;text-decoration:none;border-radius:18px;border:2px solid #F59E0B;box-shadow:0 8px 24px rgba(30,58,138,.16)}
 .ig-return:hover{background:linear-gradient(135deg,#2448a8,#345cc4)}
 .ig-return:focus-visible{outline:3px solid #F59E0B;outline-offset:3px}
