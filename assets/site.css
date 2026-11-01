@@ -72,3 +72,16 @@ footer{background:#14275e;color:#cbd5e1;padding:28px 0;font-size:14px;margin-top
 .related-notes a:focus-visible{outline:2px solid var(--g);outline-offset:2px}
 .related-notes .relcat{color:#b45309;font-weight:700;font-size:13px;line-height:1.4}
 @media(min-width:760px){.related-notes{padding:26px 28px 18px}}
+.ig-return-sec{padding-top:0;padding-bottom:8px}
+.ig-return{display:flex;align-items:center;gap:16px;min-height:96px;padding:18px 20px;background:linear-gradient(135deg,#1E3A8A,#2c4fb0);color:#fff;text-decoration:none;border-radius:18px;border:2px solid #F59E0B;box-shadow:0 8px 24px rgba(30,58,138,.16)}
+.ig-return:hover{background:linear-gradient(135deg,#2448a8,#345cc4)}
+.ig-return:focus-visible{outline:3px solid #F59E0B;outline-offset:3px}
+.ig-return:active{filter:brightness(1.08)}
+.ig-return-mark{flex:none;width:56px;height:56px;border-radius:16px;background:#F59E0B;color:#1E3A8A;display:flex;align-items:center;justify-content:center}
+.ig-return-mark svg{display:block}
+.ig-return-copy{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.ig-return-kicker{font-size:13px;font-weight:700;letter-spacing:.04em;color:#FEF3C7;line-height:1.4}
+.ig-return-title{font-size:20px;font-weight:900;line-height:1.45;color:#fff}
+.ig-return-go{flex:none;font-size:22px;font-weight:900;color:#F59E0B;line-height:1}
+@media(max-width:600px){.ig-return{gap:12px;padding:16px;min-height:88px}.ig-return-mark{width:48px;height:48px;border-radius:14px}.ig-return-title{font-size:18px}}
+@media(min-width:760px){.ig-return{padding:22px 26px;min-height:104px}.ig-return-title{font-size:22px}}
