@@ -28,7 +28,7 @@ const ORG_EMAIL='slowrichnotes@gmail.com';
 const ORG_LOGO=SITE_URL+'/assets/og.png';
 const IG_URL='https://www.instagram.com/slow.rich.notes/';
 // 文末「導回 IG」整塊是一個連結。筆記／入門可選 igUrl 或 instagramUrl（https）；沒填就用帳號首頁。
-// 既有篇不填這兩個欄位，避免在這次發明單篇網址。
+// 有單篇網址：文案「看這篇的 IG 圖文版」；沒有：連帳號首頁，文案「到 IG 看更多」。
 // 位置：正文結束後，相關筆記與免費清單 CTA 之前。只在 /notes/<slug>/ 與 /learn/<slug>/ 各出現一次。
 const IG_MARK='<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.35" cy="6.7" r="1.05" fill="currentColor"/></svg>';
 function igReturnHref(entry){
@@ -39,8 +39,12 @@ function igReturnHref(entry){
   return IG_URL;
 }
 function igReturnBlock(entry){
+  const own=igReturnHref(entry)!==IG_URL;
   const href=esc(igReturnHref(entry));
-  return `<section class="ig-return-sec"><div class="w"><a class="ig-return" href="${href}" target="_blank" rel="noopener noreferrer" aria-label="導回 IG：這篇也有 IG 圖文版，前往 Instagram @slow.rich.notes（另開視窗）"><span class="ig-return-mark" aria-hidden="true">${IG_MARK}</span><span class="ig-return-copy"><span class="ig-return-kicker">導回 IG</span><span class="ig-return-title">這篇也有 IG 圖文版｜@slow.rich.notes</span></span><span class="ig-return-go" aria-hidden="true">↗</span></a></div></section>`;
+  const aria=own?'導回 IG：看這篇的 IG 圖文版（另開視窗）':'到 IG 看更多：前往 Instagram @slow.rich.notes（另開視窗）';
+  const kicker=own?'導回 IG':'到 IG 看更多';
+  const title=own?'看這篇的 IG 圖文版｜@slow.rich.notes':'更多白話投資圖文｜@slow.rich.notes';
+  return `<section class="ig-return-sec"><div class="w"><a class="ig-return" href="${href}" target="_blank" rel="noopener noreferrer" aria-label="${aria}"><span class="ig-return-mark" aria-hidden="true">${IG_MARK}</span><span class="ig-return-copy"><span class="ig-return-kicker">${kicker}</span><span class="ig-return-title">${title}</span></span><span class="ig-return-go" aria-hidden="true">↗</span></a></div></section>`;
 }
 // 文章與筆記資料沒有發布日，Article 不填 datePublished，也不做 FAQ。
 function articleLd({headline,description,url,image,crumbs}){
