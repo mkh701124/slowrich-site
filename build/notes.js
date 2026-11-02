@@ -27,7 +27,7 @@ module.exports = [
 <p>本篇為投資教育內容，非投資建議，亦不針對特定股票或商品。文中數字為假設例子，實際以公司公告與主管機關資訊為準。</p>`
 },
 {
-  slug:'pullback-correction-bear',
+  slug:'pullback-correction-bear',igUrl:'https://www.instagram.com/slow.rich.notes/p/DfLwPRVifuA/',
   cat:'新聞',
   title:'台股跌了 10%，這叫「回檔」還是熊市來了？',
   desc:'回檔、修正、熊市差在哪——先搞懂跌幅名詞，再決定要不要慌、要不要急著抄底。',
@@ -55,7 +55,7 @@ module.exports = [
 <p>僅供教育參考，非投資建議；數字為約數、會變動；借款與投資皆有風險，可能損失本金。</p>`
 },
 {
-  slug:'binance-hack-freeze',
+  slug:'binance-hack-freeze',igUrl:'https://www.instagram.com/slow.rich.notes/p/DfGdUqviQpC/',
   cat:'新聞',
   title:'史上最大級？幣安疑遭駭，CZ：用戶資金安全',
   desc:'官方凍結約 30 億美元 vs 鏈上估算近 60 億——先分清事實與估算，再看 CZ 與幣安怎麼說。',
@@ -70,7 +70,7 @@ module.exports = [
 <p>僅供教育參考，非投資建議。數字為報導／鏈上約數，會變動；加密資產與平台風險高，可能損失本金。</p>`
 },
 {
-  slug:'mortgage-secret-markup',
+  slug:'mortgage-secret-markup',igUrl:'https://www.instagram.com/slow.rich.notes/p/DfEQzdECYKn/',
   cat:'新聞',
   title:'你的房貸，正在被偷偷加價',
   desc:'央行沒升息，首購房貸卻有人開到 3% 起？搞懂基準利率＋銀行加碼，再決定要不要重算月付。',
@@ -85,7 +85,7 @@ module.exports = [
 <p>一句話：先搞懂加碼，再決定要不要重算自己的月付。利率與試算為約數／假設例子，會變動；僅供教育參考，非投資建議；借款與投資皆有風險。</p>`
 },
 {
-  slug:'ant-half-nvidia',
+  slug:'ant-half-nvidia',igUrl:'https://www.instagram.com/slow.rich.notes/p/De-vrN0iUwV/',
   cat:'新聞',
   title:'大家都在問：ANT 是不是半個輝達',
   desc:'Anthropic（ANT）上市估值常被說成半個輝達？用私募、路演預期與 Polymarket 首日收盤市值三個錨對齊，結論是還沒到——約三分之一到四成。',
@@ -102,7 +102,7 @@ module.exports = [
 <p>想先把基礎補齊？免費領《投資新手入門清單》：<a href="{R}lead/">慢慢變有錢｜投資新手入門清單</a></p>`
 },
 {
-  slug:'cash-10k-to-50k',
+  slug:'cash-10k-to-50k',igUrl:'https://www.instagram.com/slow.rich.notes/p/De8UeIdgQYD/',
   cat:'觀念',
   title:'把普發一萬變五萬？先算這筆帳',
   desc:'一萬變五萬要多久？用 7%／10%／15% 假設例子算年數；重點是從現在開始存股。預算三讀通過才會發。',
@@ -115,7 +115,7 @@ module.exports = [
 <p>想從第一步開始？免費領<a href="{R}lead/">《投資新手入門清單》</a>。文中年化與年數皆假設例子，不保證達成；普發相關以官方為準，預算三讀通過才會發。</p>`
 },
 {
-  slug:'line-phone-deadline',
+  slug:'line-phone-deadline',igUrl:'https://www.instagram.com/slow.rich.notes/p/De6BBlDCVAR/',
   cat:'觀念',
   title:'少做這個動作，LINE 年底可能被刪',
   desc:'只連 Facebook 且還沒設電話的 LINE，截止台灣時間 2026/12/31 23:59 前請對條件處理；通訊斷了，銀行／券商通知也可能收不到。',
@@ -125,7 +125,7 @@ module.exports = [
 <p>年底一忙，帳號設定最容易被丟到「之後再說」。可是有些通訊帳號一旦出狀況，銀行、券商、支付的通知也可能跟著斷——這跟理財有關，不是單純的 App 小設定。</p><p>最近常被提到的提醒是：若 LINE 帳號「只連結 Facebook，且尚未設定電話號碼」，請在台灣時間 2026/12/31 23:59 前完成設定。逾期「可能」被系統刪除，貼圖、代幣、聊天紀錄也可能無法恢復。重點是「可能」、也「不是所有人」——細節以 LINE 官方說明為準。</p><p>先對條件再動手。符合「只連 Facebook」＋「電話欄位還是空白」才需要趕；已經設過電話、或不是只靠 Facebook 登入的，通常不必被標題嚇到。一個門號通常只能綁一個帳號，別急著用家人朋友的手機去綁，以免影響原本那個帳號。</p><p>也請小心陌生簡訊或私訊裡的「官方／客服」連結。真正設定只在官方 App 裡完成，不必透過網頁認證；自己打開 App 檢查就好，不要被催著點連結登入。</p><p>通訊顧好之後，順便把會動到錢的路走一遍：券商 App 還登得進嗎？銀行簡訊與 Email 通知還收得到嗎？支付工具綁的門號與信箱還是現用的嗎？常用信箱的重要信會不會進垃圾匣？理財不是只有買賣，通知斷了也傷。</p><p>提醒不是嚇你——先檢查，再安心。年底前給自己十分鐘就夠。</p><p>想從投資的第一步開始，可以免費領<a href="{R}lead/">《投資新手入門清單》</a>，對著清單慢慢勾。</p>`
 },
 {
-  slug:'etf-split',
+  slug:'etf-split',igUrl:'https://www.instagram.com/slow.rich.notes/p/De5n1iUiXoy/',
   cat:'名詞',
   title:'ETF 1 拆 8：錢會變多嗎？',
   desc:'ETF「1 拆 8」是分割：份數變多、單價變低，總額差不多。倍數多半還是預估，要等會議與淨值。',
@@ -141,7 +141,7 @@ module.exports = [
 <p>想從投資的第一步開始，可以免費領<a href="{R}lead/">《投資新手入門清單》</a>，對著清單慢慢勾。</p>`
 },
 {
-  slug:'salary-split',
+  slug:'salary-split',igUrl:'https://www.instagram.com/slow.rich.notes/reel/De3xwNcpmUc/',
   cat:'現金流',
   title:'月薪 3 萬，也能慢慢存起來',
   desc:'發薪後餘額歸零，常常不是只差收入。用月薪 3 萬的假設例子，把錢分成生活、緊急預備、還債與保障、未來自己。',
@@ -159,7 +159,7 @@ module.exports = [
 <p>下次發薪，先試著把錢分家。想從投資的第一步開始，可以免費領<a href="{R}lead/">《投資新手入門清單》</a>，對著清單慢慢勾。</p>`
 },
 {
-  slug:'download-bots',
+  slug:'download-bots',igUrl:'https://www.instagram.com/slow.rich.notes/p/De3XmazCfhb/',
   cat:'一人公司',
   title:'不用面試，先把員工下載下來',
   desc:'一人公司也可以先把工作拆開。工具像一份可複製的工作說明書，不會替你負責；跟理財一樣，先把系統建起來。',
@@ -173,7 +173,7 @@ module.exports = [
 <p>想先把投資的第一步寫成清單，可以免費領<a href="{R}lead/">《投資新手入門清單》</a>。若你在意的是一人公司怎麼分工，也可以看<a href="{R}lead/oneperson/">《一人公司：下載員工清單》</a>。兩份都是教育整理，提到工具不代表合作或推薦。</p>`
 },
 {
-  slug:'oil-100',
+  slug:'oil-100',igUrl:'https://www.instagram.com/slow.rich.notes/p/De28lmVElMy/',
   cat:'新聞',
   title:'油價破 100，你的薪水正在縮水？',
   desc:'油價、通膨、利率、股與債常常連成一條線。看懂是為了少慌，不是為了猜下一根漲跌。便當價格是假設例子。',
