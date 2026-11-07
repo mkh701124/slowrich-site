@@ -6,7 +6,7 @@
 // 舊 /notes/<slug>/ 由 build/build.js 產生 meta refresh 殘頁，不進列表、不進 sitemap：
 // before-you-invest-3-things、10-terms-for-financial-news、dca-vs-lump-sum、what-is-a-stock、
 // compound-interest、5-beginner-mistakes、what-is-etf、open-brokerage-account、5-questions-before-investing、
-// twd-fx-outflow。
+// twd-fx-outflow、national-security-fund-what。
 module.exports = [
 {
   slug:'ai-ban-superintelligence',
