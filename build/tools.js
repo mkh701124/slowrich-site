@@ -23,7 +23,7 @@ function card(tool) {
 module.exports = function addTools(ctx) {
   const { page, head, out, SITE_URL } = ctx;
   out.push(page({
-    p: 'tools/',
+    p: 'calculators/',
     title: '試算工具',
     desc: INTRO,
     cssVer: '10',
@@ -32,7 +32,7 @@ module.exports = function addTools(ctx) {
       '@type': 'CollectionPage',
       name: '試算工具',
       description: INTRO,
-      url: SITE_URL + '/tools/',
+      url: SITE_URL + '/calculators/',
       inLanguage: 'zh-Hant-TW'
     },
     body: head('試算工具', INTRO) + `
@@ -47,10 +47,10 @@ ${TOOLS.map(card).join('\n')}
 };
 
 function verifyTools(SITE_URL) {
-  const rel = 'tools/index.html';
+  const rel = 'calculators/index.html';
   const html = fs.readFileSync(path.join(ROOT, rel), 'utf8');
   const title = '試算工具｜慢慢變有錢';
-  const canonical = SITE_URL + '/tools/';
+  const canonical = SITE_URL + '/calculators/';
   if (!html.includes('<title>' + title + '</title>')) throw new Error('title 不符：' + rel);
   if (!html.includes('<h1>試算工具</h1>')) throw new Error('h1 不符：' + rel);
   if (!html.includes('rel="canonical" href="' + canonical + '"')) throw new Error('canonical 不符：' + rel);
@@ -69,7 +69,15 @@ function verifyTools(SITE_URL) {
   const expect = ['新手入門', '筆記', '親子理財', '試算工具', '股票新手翻譯器', '慢慢推薦', '關於', '免費清單'];
   if (labels.join('|') !== expect.join('|')) throw new Error('筆記頁導覽順序不符：' + labels.join('、'));
   if (nav.includes('aria-current="page">試算工具</a>')) throw new Error('筆記頁不該把試算工具標成目前頁');
-  if (!notes.includes('>親子理財</a>・<a href="../tools/">試算工具</a>・<a href="../recommend/">慢慢推薦</a>')) throw new Error('頁尾順序不符');
+  if (!nav.includes('href="../calculators/">試算工具</a>')) throw new Error('筆記頁試算工具沒有連到 /calculators/');
+  if (!nav.includes('href="../tools/">慢慢推薦</a>')) throw new Error('筆記頁慢慢推薦沒有連回 /tools/');
+  if (!notes.includes('>親子理財</a>・<a href="../calculators/">試算工具</a>・<a href="../tools/">慢慢推薦</a>')) throw new Error('頁尾順序不符');
+  const course = fs.readFileSync(path.join(ROOT, 'tools/index.html'), 'utf8');
+  if (!course.includes('<title>慢慢推薦｜慢慢變有錢</title>')) throw new Error('慢慢推薦 title 被改掉');
+  if (!course.includes('<h1>慢慢推薦</h1>')) throw new Error('慢慢推薦 h1 被改掉');
+  if (!course.includes('rel="canonical" href="' + SITE_URL + '/tools/"')) throw new Error('慢慢推薦 canonical 被改掉');
+  if (course.includes('<h1>試算工具</h1>') || course.includes('aria-current="page">試算工具</a>')) throw new Error('/tools/ 不該變成試算工具');
+  if (fs.existsSync(path.join(ROOT, 'recommend'))) throw new Error('不該留下 /recommend/');
   checkLocalRefs(rel, html);
 }
 

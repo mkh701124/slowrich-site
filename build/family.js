@@ -239,7 +239,7 @@ function addFamily(ctx) {
 <li><a href="{R}learn/dca-vs-lump-sum/"><span class="relcat">新手入門</span>定期定額 vs 單筆投入，新手該怎麼想？</a></li>
 <li><a href="{R}family/open-child-account/"><span class="relcat">親子理財</span>幫小孩開證券戶，爸媽先準備這 5 樣</a></li>
 <li><a href="{R}family/"><span class="relcat">親子理財</span>回親子理財</a></li>
-<li><a href="{R}tools/"><span class="relcat">試算工具</span>更多試算工具</a></li>
+<li><a href="{R}calculators/"><span class="relcat">試算工具</span>更多試算工具</a></li>
 </ul>
 <p class="sub">想先弄懂開戶流程，看〈<a href="{R}family/open-child-account/">幫小孩開證券戶，爸媽先準備這 5 樣</a>〉。</p>
 </nav></div></section>
@@ -269,7 +269,7 @@ function verifyFamily(SITE_URL) {
     if (!html.includes('>親子理財</a>')) throw new Error('導覽沒有親子理財：' + rel);
     if (!html.includes('>試算工具</a>')) throw new Error('導覽沒有試算工具：' + rel);
     if (html.includes('aria-current="page">試算工具</a>')) throw new Error('親子理財頁不該把試算工具標成目前頁：' + rel);
-    if (rel === 'family/save-to-18/index.html' && !html.includes('href="../../tools/"><span class="relcat">試算工具</span>更多試算工具</a>')) throw new Error('試算頁沒有連回試算工具：' + rel);
+    if (rel === 'family/save-to-18/index.html' && !html.includes('href="../../calculators/"><span class="relcat">試算工具</span>更多試算工具</a>')) throw new Error('試算頁沒有連回試算工具：' + rel);
     if (html.includes('查核說明') || html.includes('法規一律禁止') || html.includes('本輪未獨立核')) throw new Error('不該上頁的查核說明混進：' + rel);
     checkLocalRefs(rel, html);
   }
