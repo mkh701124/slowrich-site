@@ -87,3 +87,50 @@ footer{background:#14275e;color:#cbd5e1;padding:28px 0;font-size:14px;margin-top
 .ig-return-go{flex:none;font-size:22px;font-weight:900;color:#F59E0B;line-height:1}
 @media(max-width:600px){.ig-return{gap:12px;padding:16px;min-height:88px}.ig-return-mark{width:48px;height:48px;border-radius:14px}.ig-return-title{font-size:18px}}
 @media(min-width:760px){.ig-return{padding:22px 26px;min-height:104px}.ig-return-title{font-size:22px}}
+.nav nav a[aria-current]{color:var(--b);font-weight:900}
+.card.soon{cursor:default}
+.calc-sec{padding-top:18px}
+.calc-head{padding:20px 0 18px}
+.calc-layout{display:flex;flex-direction:column;gap:16px}
+.calc-results{order:-1}
+.calc-panel,.calc-results,.calc-visual{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(30,58,138,.06)}
+.calc-visual{margin-top:16px}
+.calc-k{margin:0;font-size:13px;font-weight:700;color:var(--mut)}
+.calc-num{margin:0;font-size:28px;font-weight:900;line-height:1.2;color:var(--b);white-space:nowrap}
+.calc-num-sub{font-size:22px}
+.calc-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.calc-monthly-block{margin:0 0 12px}
+.calc-gap{margin:12px 0 0;font-size:18px;font-weight:900}
+.calc-cond{margin:8px 0 0;font-size:14px;color:#374151}
+.calc-hint{margin:6px 0 0;font-size:13px;color:var(--mut)}
+.calc-field{margin:0 0 14px}
+.calc-field label,.calc-label{display:block;font-weight:700;color:var(--b);font-size:14px;margin:0 0 6px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
+.seg button,.rates button,.stepper button{font:inherit;font-weight:700;color:var(--b);background:#fff;border:1px solid var(--line);border-radius:12px;cursor:pointer}
+.seg button{font-size:15px;line-height:1.35;min-height:48px;padding:8px}
+.rates{display:flex;flex-wrap:wrap;gap:8px}
+.rates button{font-size:16px;min-width:52px;min-height:44px;padding:8px 10px}
+.seg button.on,.rates button.on{background:var(--b);color:#fff;border-color:var(--b)}
+.stepper{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.stepper input{grid-column:1/-1;width:100%;font:inherit;font-size:20px;font-weight:700;text-align:center;padding:10px 8px;border:2px solid var(--line);border-radius:12px;color:var(--ink);background:#fff;min-height:48px}
+.stepper button{font-size:15px;min-height:44px;padding:8px 2px}
+.stepper.age{grid-template-columns:64px minmax(0,1fr) 64px}
+.stepper.age input{grid-column:auto}
+.rate-custom{display:flex;align-items:center;gap:8px;margin-top:8px}
+.rate-custom input{font:inherit;font-size:16px;width:8.5em;min-height:44px;padding:8px;border:2px solid var(--line);border-radius:12px;text-align:center;background:#fff}
+.rate-custom input.on{border-color:var(--b);background:#eef3fb}
+.calc-panel button:focus-visible,.calc-panel input:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+.calc-panel button:disabled{opacity:.45;cursor:not-allowed}
+.fv-up{color:#DC2626}.fv-down{color:#16A34A}.fv-flat{color:#1E3A8A}
+.calc-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 8px;font-size:14px;font-weight:700}
+.swatch::before{content:"";display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;background:currentColor;vertical-align:-1px}
+.calc-chart{width:100%;height:auto;display:block}
+.calc-scroll{max-height:420px;overflow:auto;border:1px solid var(--line);border-radius:12px;margin-top:12px}
+table.calc-table{width:100%;border-collapse:collapse;font-size:15px}
+table.calc-table caption{caption-side:top;text-align:left;font-weight:700;color:var(--b);padding:10px 10px 4px}
+table.calc-table th,table.calc-table td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+table.calc-table th:first-child,table.calc-table td:first-child{text-align:left;white-space:nowrap}
+table.calc-table th{position:sticky;top:0;background:#EEF3FB;color:var(--b);z-index:1}
+.calc-gaplab{font-size:12px;font-weight:700;line-height:1.3}
+@media(max-width:759px){.calc-stats{grid-template-columns:1fr;gap:10px}.calc-num{font-size:32px}}
+@media(min-width:760px){.calc-layout{display:grid;grid-template-columns:minmax(300px,400px) minmax(0,1fr);align-items:start}.calc-results{order:0}.calc-num{font-size:34px}}
