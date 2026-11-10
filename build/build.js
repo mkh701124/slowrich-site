@@ -91,9 +91,9 @@ function page({p,title,desc,body,type='website',noCta=false,extraHead='',image='
 <meta property="og:type" content="${type}"><meta property="og:site_name" content="慢慢變有錢"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(desc)}">${ogUrlTag}<meta property="og:image" content="${ogImage}"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${ogImage}">
 <meta name="theme-color" content="#1E3A8A"><link rel="icon" href="${R}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="${R}assets/site.css?v=${cssVer}">${extraHead}${ld}</head><body>
-<header class="top"><div class="w nav"><a class="logo" href="${R}">慢慢變有錢<span>.</span></a><input type="checkbox" id="navtoggle" class="navtoggle" aria-label="選單"><label class="navbtn" for="navtoggle" aria-hidden="true"><span></span></label><nav><a href="${R}learn/">新手入門</a><a href="${R}notes/">筆記</a><a href="${R}family/"${p==='family/'||p.startsWith('family/')?' aria-current="page"':''}>親子理財</a><a href="${R}terms/">股票新手翻譯器</a><a href="${R}tools/">慢慢推薦</a><a href="${R}about/">關於</a><a class="cta" href="${R}lead/">免費清單</a></nav></div></header>
+<header class="top"><div class="w nav"><a class="logo" href="${R}">慢慢變有錢<span>.</span></a><input type="checkbox" id="navtoggle" class="navtoggle" aria-label="選單"><label class="navbtn" for="navtoggle" aria-hidden="true"><span></span></label><nav><a href="${R}learn/">新手入門</a><a href="${R}notes/">筆記</a><a href="${R}family/"${p==='family/'||p.startsWith('family/')?' aria-current="page"':''}>親子理財</a><a href="${R}tools/"${p==='tools/'||p.startsWith('tools/')?' aria-current="page"':''}>試算工具</a><a href="${R}terms/">股票新手翻譯器</a><a href="${R}recommend/">慢慢推薦</a><a href="${R}about/">關於</a><a class="cta" href="${R}lead/">免費清單</a></nav></div></header>
 <main>${rel(body)}${igCta}${rel(afterCta)}${noCta?'':cta(R)}</main>
-<footer><div class="w"><b style="color:#fff">慢慢變有錢</b>｜IG <a href="https://www.instagram.com/slow.rich.notes/" rel="noopener">@slow.rich.notes</a>｜<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br><a href="${R}privacy/">隱私權政策</a>・<a href="${R}disclaimer/">免責聲明</a>・<a href="${R}family/">親子理財</a>・<a href="${R}tools/">慢慢推薦</a>・<a href="${R}about/">關於</a><br><span class="d">僅供教育參考，非投資建議</span>　© 2026 慢慢變有錢</div></footer></body></html>`;
+<footer><div class="w"><b style="color:#fff">慢慢變有錢</b>｜IG <a href="https://www.instagram.com/slow.rich.notes/" rel="noopener">@slow.rich.notes</a>｜<a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a><br><a href="${R}privacy/">隱私權政策</a>・<a href="${R}disclaimer/">免責聲明</a>・<a href="${R}family/">親子理財</a>・<a href="${R}tools/">試算工具</a>・<a href="${R}recommend/">慢慢推薦</a>・<a href="${R}about/">關於</a><br><span class="d">僅供教育參考，非投資建議</span>　© 2026 慢慢變有錢</div></footer></body></html>`;
   const dir=path.join(ROOT,p);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,p==='404/'?'../404.html':'index.html'),html);
   return p;
 }
@@ -202,12 +202,12 @@ out.push(page({p:'disclaimer/',title:'免責聲明',desc:'慢慢變有錢的所�
 <li>名詞解釋為簡化說明，實際定義與規則請以主管機關、交易所、發行機構或券商的官方資料為準。</li>
 <li>做任何投資決定前，請依自己的財務狀況、目標與風險承受度自行評估，必要時諮詢合格專業人士。</li></ul>
 <p>如有內容錯誤，歡迎來信 <a href="mailto:slowrichnotes@gmail.com">slowrichnotes@gmail.com</a> 告訴我們。</p>`)}));
-// TOOLS：新手理財課程推薦頁
+// 慢慢推薦：課程推薦頁。試算工具佔用 /tools/，這一頁改放 /recommend/，導覽文字不變。
 {const card=(n,r,b)=>`<div class="card tl"><span class="ex-badge">範例</span><b>${n}</b><p>${r}</p><a class="btn g tbtn" href="#" aria-disabled="true" rel="sponsored nofollow" onclick="return false">${b}</a></div>`;
 const rc=(n,by,r,pr,st,u)=>`<div class="card tl"><b>${n}</b><small class="meta">${by}</small><p>${r}</p><div class="price"><b>${pr}</b> <small>價格以平台為準</small></div><small class="meta">${st}（資料以平台為準）</small><a class="btn g tlive" href="${u}" target="_blank" rel="sponsored nofollow noopener">看課程介紹 ↗</a></div>`;
 const cat=(i,h,s,cs)=>`<section class="tsec"><div class="w"><h2>${i} ${h}</h2><p class="sub">${s}</p><div class="grid g3">${cs.join('')}</div></div></section>`;
 const css=`<style>.disc{background:#FEF3C7;border-bottom:2px solid #F59E0B;color:#1E3A8A;font-size:12px;line-height:1.5;padding:5px 12px;text-align:center}.tl{position:relative;display:flex;flex-direction:column;gap:6px}.tl p{flex:1}.ex-badge{position:absolute;top:12px;right:12px;background:#FEF3C7;color:#B45309;border:1px solid #F59E0B;border-radius:99px;font-size:12px;padding:1px 10px;font-weight:700}.meta{color:#64748b;font-size:12.5px}.price b{color:#1E3A8A;font-size:18px}.price small{color:#64748b;font-size:12px}.tlive{align-self:flex-start;margin-top:6px}.ex-badge.free{background:#DCFCE7;color:#166534;border-color:#22C55E}.g4c{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.tbtn{align-self:flex-start;opacity:.75;cursor:not-allowed}.tsec{padding-top:8px;padding-bottom:8px}.thead{display:flex;align-items:center;gap:18px}.thead img{width:90px;height:auto}.tcta{display:flex;align-items:center;gap:18px;background:#1E3A8A;color:#fff;border-radius:18px;padding:22px}.tcta h2{color:#fff;margin:0 0 6px}.tcta p{color:#dbe4f5;margin:0 0 12px}.tcta img{width:80px;height:auto;flex:none}@media(max-width:600px){.tcta{flex-direction:column;text-align:center}.tcta img{width:56px}.thead img{width:60px}}</style>`;
-out.push(page({p:'tools/',title:'慢慢推薦',desc:'慢慢整理給投資新手的理財入門線上課程，含免費的證交所投資通識課。',extraHead:css,body:`
+out.push(page({p:'recommend/',title:'慢慢推薦',desc:'慢慢整理給投資新手的理財入門線上課程，含免費的證交所投資通識課。',extraHead:css,body:`
 <div class="disc">📢 本頁含推薦連結，購買我們可能獲佣金，不影響你的價格</div>
 <div class="pagehead"><div class="w narrow thead"><picture><source srcset="{R}assets/img/manman-sign.webp" type="image/webp"><img src="{R}assets/img/manman-sign.png" width="265" height="720" alt="品牌大使慢慢舉著牌子打招呼"></picture><div><h1>慢慢推薦</h1><p>想有系統地學理財，可以從這幾堂入門課開始。慢慢會持續整理更新。</p></div></div></div>
 ${cat('🎓','線上課程','想要有系統地學，可以從課程開始。價格、評分與人數以平台為準。',[
@@ -217,6 +217,8 @@ rc('動盪時代的資產配置：王伯達人生財務規劃學','王伯達｜H
 `<div class="card tl"><span class="ex-badge free">免費</span><b>全民投資通識課</b><small class="meta">臺灣證券交易所｜PressPlay</small><p>由證交所推出的投資通識課，免費、適合打基礎。</p><small class="meta">此為免費資源，非推薦連結</small><a class="btn b tlive" href="https://www.pressplay.cc/project/04410BD69246CB371A74D26B9778E20D/about" target="_blank" rel="noopener">免費觀看 ↗</a></div>`])}
 <section class="tsec"><div class="w"><div class="tcta"><picture><source srcset="{R}assets/img/manman.webp" type="image/webp"><img src="{R}assets/img/manman.png" width="210" height="720" alt="品牌大使慢慢"></picture><div><h2>還不知道從哪開始？</h2><p>先領取免費的《投資新手入門清單》，跟著勾選，一次做一件事。</p><a class="btn g" href="{R}lead/">領取《投資新手入門清單》→</a><p style="margin:10px 0 0;font-size:14px"><a href="{R}lead/oneperson/" style="color:#F59E0B;font-weight:700">你要的是一人公司做事系統？</a></p></div></div></div></section>
 <section class="tsec"><div class="w narrow"><div class="warn">⚠️ 本頁為教育性質整理，不推薦任何個股、ETF 或特定投資標的；推薦連結內容請自行評估。僅供教育參考，非投資建議。</div></div></section>`,noCta:true}));}
+// TOOLS：試算工具。內容在 build/tools.js，頁殼仍由 page() 產生。要先寫出 /tools/，親子理財的「更多試算工具」才有得連。
+require('./tools.js')({page,head,out,SITE_URL});
 // FAMILY：親子理財。內容在 build/family.js，頁殼仍由 page() 產生。
 require('./family.js')({page,head,out,articleLd,crumbLd,SITE_URL});
 // 404 分支：不輸出指向 /404/ 的 canonical；noindex；og:url 為首頁；無 JSON-LD。檔案仍是根目錄 404.html。
@@ -245,7 +247,7 @@ function lastmodFor(p){
   return BUILD_DAY;
 }
 const all=[...out.filter(p=>p!=='404/'),'lead/','lead/oneperson/'];
-for(const fam of ['family/','family/open-child-account/','family/save-to-18/']){if(!all.includes(fam))throw new Error('sitemap 缺少 '+fam);}
+for(const must of ['family/','family/open-child-account/','family/save-to-18/','tools/']){if(!all.includes(must))throw new Error('sitemap 缺少 '+must);}
 fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(p=>`<url><loc>${SITE_URL}/${p}</loc><lastmod>${lastmodFor(p)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 const skippedBi=G.terms.filter(t=>!termBilingual(t));
