@@ -14,7 +14,7 @@ function crumb(tail) {
   return `<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}family/">親子理財</a> › ${tail}</div>`;
 }
 
-module.exports = function addFamily(ctx) {
+function addFamily(ctx) {
   const { page, head, out, articleLd, crumbLd, SITE_URL } = ctx;
   const guideUrl = SITE_URL + '/family/open-child-account/';
   const calcUrl = SITE_URL + '/family/save-to-18/';
@@ -239,6 +239,7 @@ module.exports = function addFamily(ctx) {
 <li><a href="{R}learn/dca-vs-lump-sum/"><span class="relcat">新手入門</span>定期定額 vs 單筆投入，新手該怎麼想？</a></li>
 <li><a href="{R}family/open-child-account/"><span class="relcat">親子理財</span>幫小孩開證券戶，爸媽先準備這 5 樣</a></li>
 <li><a href="{R}family/"><span class="relcat">親子理財</span>回親子理財</a></li>
+<li><a href="{R}calculators/"><span class="relcat">試算工具</span>更多試算工具</a></li>
 </ul>
 <p class="sub">想先弄懂開戶流程，看〈<a href="{R}family/open-child-account/">幫小孩開證券戶，爸媽先準備這 5 樣</a>〉。</p>
 </nav></div></section>
@@ -246,7 +247,11 @@ module.exports = function addFamily(ctx) {
   }));
 
   verifyFamily(SITE_URL);
-};
+}
+
+module.exports = addFamily;
+module.exports.CALC_TITLE = CALC_TITLE;
+module.exports.CALC_DESC = CALC_DESC;
 
 function verifyFamily(SITE_URL) {
   const pages = [
@@ -262,6 +267,9 @@ function verifyFamily(SITE_URL) {
     if ((html.match(/class="warn"/g) || []).length !== 1) throw new Error('免責框不是一個：' + rel);
     if (html.split('僅供教育參考，非投資建議').length - 1 !== 2) throw new Error('免責句應為內文一次、頁尾一次：' + rel);
     if (!html.includes('>親子理財</a>')) throw new Error('導覽沒有親子理財：' + rel);
+    if (!html.includes('>試算工具</a>')) throw new Error('導覽沒有試算工具：' + rel);
+    if (html.includes('aria-current="page">試算工具</a>')) throw new Error('親子理財頁不該把試算工具標成目前頁：' + rel);
+    if (rel === 'family/save-to-18/index.html' && !html.includes('href="../../calculators/"><span class="relcat">試算工具</span>更多試算工具</a>')) throw new Error('試算頁沒有連回試算工具：' + rel);
     if (html.includes('查核說明') || html.includes('法規一律禁止') || html.includes('本輪未獨立核')) throw new Error('不該上頁的查核說明混進：' + rel);
     checkLocalRefs(rel, html);
   }
