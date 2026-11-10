@@ -8,7 +8,44 @@ const GUIDE_TITLE = '幫小孩開證券戶，爸媽先準備這 5 樣';
 const GUIDE_DESC = '幫小孩開證券戶，法定代理人要準備哪些證件、印章和小孩名下的交割戶？這篇用 5 樣清單和 4 個步驟說明誰要到場、能不能線上開，以及贈與稅、股利合併申報要注意什麼。不推薦任何券商。';
 const CALC_TITLE = '每月存多少，存到 18 歲有多少';
 const CALC_DESC = '輸入每月金額、小孩現在幾歲，以及 0%、3%、5%、7% 或自訂的年報酬假設，試算存到 18 歲大概會有多少；也可以反過來，從目標金額倒推每月要存多少。報酬是假設，不是保證。';
+const ETF_TITLE = '幫小孩存股，市值型 vs 高股息 ETF 差在哪？先想清楚 3 個問題';
+const ETF_DESC = '幫小孩存股，市值型和高股息 ETF 差在哪？先想清楚目標是成長還是現金流、配息要不要再投入，以及費用、成分股和配息波動。文中代號僅為舉例，非推薦。';
+const ETF_NO_PICK = '本篇不推薦任何 ETF 或投資標的。';
 const WARN = '⚠️ 本內容僅供教育參考，非投資建議，投資有風險，請自行評估。';
+// 正文照稿，不改寫。標準免責框已含「僅供教育參考，非投資建議」，所以正文不重複那一句，只留不推薦句。
+const ETF_BLOCKS = [
+  ['p', '幫小孩存股，存的常是可能放到 18 歲才用的一筆錢。市值型和高股息 ETF 常被拿來比較，但沒有哪一種適合每個小孩。先想清楚下面 3 個問題，再去看個別商品。文中提到的 0050、006208、0056、00878，只是兩種類型的常見例子，不是推薦。'],
+  ['h2', '問題 1：目標是長期成長，還是要現金流？'],
+  ['p', '市值型 ETF（例如追蹤臺灣50指數的 0050、006208）依公司大小組籃子，買的是目前上市股票裡總市值最大的一批公司。高股息 ETF（例如 0056、00878）則會依股息率等條件篩選，較常把股利配出來。'],
+  ['p', '配息會從 ETF 淨值裡扣掉，不是額外多賺到的錢。高股息也不保證每次都配、更不保證配多少。若這筆錢是要存到小孩 18 歲才用，重點通常是期末總資產，不是現在帳上每年進多少現金。'],
+  ['h2', '問題 2：配息要拿出來，還是再投入？'],
+  ['p', '配息若拿去花，或放在不再投入的帳戶，這筆錢就不會再參與後面的成長。若選擇再投入，才比較接近「把配息留在投資裡」的效果。證交所也提醒：不配息的 ETF，股利會累積進淨值，等於自動再投資，有助長期複利；這是機制說明，不是叫你選哪一種。'],
+  ['p', '還有兩件稅務上的事。小孩名下的股利所得，要跟爸媽一起辦理綜合所得稅合併申報。另外，二代健保補充保險費是依「單次給付」的股利所得計算：一般保險對象單次股利所得達 2 萬元，就會按 2.11% 就源扣繳，而且達門檻是以全額計算，不是只算超過的部分。舉例來說，單次股利所得剛好 2 萬元，補充保費是 422 元。ETF 配息不一定全部都是股利所得，也可能包含利息、已實現資本利得或收益平準金；要不要扣、扣多少，看的是收益分配通知上的股利所得，不是配息總額。規定之後若有調整，以健保署公告為準。'],
+  ['h2', '問題 3：費用、成分股，還有配息會不會變？'],
+  ['p', '持有期間的經理費、保管費會從淨值內扣，不會另外寄帳單。以發行人官網揭露的契約費率來說（舉例，非推薦）：0050、006208 的經理費依規模分級加總，各級距為 0.15%、0.10%、0.08%、0.05%，保管費為 0.03% 或 0.025%；0056 經理費依規模為 0.40%、0.34% 或 0.30%，保管費 0.035%；00878 規模 50 億元（含）以下經理費 0.30%、超過則 0.25%，保管費 0.03%。實際還可能有交易成本等其他費用，請以公開說明書為準。時間拉到十幾年，費用差一點，影響會慢慢變大。'],
+  ['p', '成分也不一樣。市值型看的是公司大小，高股息看的是股息條件（00878 的指數還加上永續相關篩選），成分股會依指數規則定期調整，不是買了就永遠同一批公司。配息金額也會變，過去配多少不代表以後也一樣。'],
+  ['p', '沒有適合每個家庭的標準答案。先想清楚目標、配息要不要留在投資裡，以及費用和波動，比急著選一檔更重要。想先算每月存多少、存到 18 歲大概有多少，可以到試算頁試試看。']
+];
+const ETF_SOURCES = [
+  ['https://www.nhi.gov.tw/ch/cp-4516-74b0f-2613-1.html', '衛生福利部中央健康保險署：補充保險費計算公式', '費率 2.11%；股利所得單次給付達 20,000 元；達下限以全額計算'],
+  ['https://law.moj.gov.tw/LawClass/LawContent.aspx?PCODE=L0060027', '全民健康保險扣取及繳納補充保險費辦法', '全國法規資料庫'],
+  ['https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/file-procedure/3Jal5Nr', '財政部稅務入口網 1307：未成年子女有所得應依所得稅法第 15 條合併申報，不能單獨申報', ''],
+  ['https://law.moj.gov.tw/LawClass/LawContent.aspx?PCODE=G0340003', '所得稅法第 15 條', '全國法規資料庫'],
+  ['https://www.twse.com.tw/zh/ETFortune/invest/8a8216d697fc438f019918a1dbdc04bb', '臺灣證券交易所 ETF e添富：認識 ETF 收益分配', '配息從淨值扣除、不保證配息、可分配項目可含股利／利息／已實現資本利得／收益平準金、不配息型會累積進淨值等於自動再投資'],
+  ['https://www.yuantaetfs.com/product/detail/0050/Basic_information', '元大投信 0050 基本資訊', '臺灣50指數、經理費與保管費級距；2026/11/10 揭示當時經理費約 0.0681%'],
+  ['https://www.yuantaetfs.com/product/detail/0056/Basic_information', '元大投信 0056 基本資訊', '臺灣高股息指數編製規則、經理費與保管費級距'],
+  ['https://www.fubon.com/asset-management/fund/info/fund?Fd=40', '富邦投信基金總覽：富邦台灣釆吉50（006208）經理費與保管費級距、複製臺灣50指數', ''],
+  ['https://www.cathaysite.com.tw/proj/SPOCathayETF/00878/', '國泰投信 00878 產品頁', '經理費、保管費、追蹤 MSCI臺灣ESG永續高股息精選30指數']
+];
+
+function learnCard() {
+  return `<a class="card" href="{R}family/etf-types/"><small>親子理財</small><br><b>${ETF_TITLE}</b><p>${ETF_DESC}</p><span class="more">閱讀 →</span></a>`;
+}
+
+function sourceItem(href, label, note) {
+  const link = `<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+  return `<li>${link}${note ? `（${note}）` : ''}</li>`;
+}
 
 function crumb(tail) {
   return `<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}family/">親子理財</a> › ${tail}</div>`;
@@ -36,9 +73,10 @@ function addFamily(ctx) {
 <section><div class="w">
 <div class="hello"><picture><source srcset="{R}assets/img/manman-sign.webp" type="image/webp"><img src="{R}assets/img/manman-sign.png" width="265" height="720" alt="品牌大使慢慢舉著牌子向你打招呼"></picture><p class="bubble">幫小孩存、幫小孩開戶，先把觀念和工具放在一起。</p></div>
 <h2>入門必看</h2>
-<p class="sub">先看已經寫好的開戶清單。還沒寫完的只標即將推出，不放連結。</p>
+<p class="sub">開戶清單和存股比較已經寫好。還沒寫完的只標即將推出，不放連結。</p>
 <div class="grid g3">
 <a class="card" href="{R}family/open-child-account/"><small>開戶</small><br><b>幫小孩開證券戶，爸媽先準備這 5 樣</b><p>法定代理人要準備哪些證件、印章和小孩名下的交割戶。不推薦任何券商。</p><span class="more">閱讀 →</span></a>
+<a class="card" href="{R}family/etf-types/"><small>存股</small><br><b>${ETF_TITLE}</b><p>先想清楚目標是成長還是現金流、配息要不要再投入，以及費用和成分。代號僅為舉例，非推薦。</p><span class="more">閱讀 →</span></a>
 <div class="card soon"><small>即將推出</small><br><b>紅包怎麼處理</b><p>紅包要花、存，還是另作打算。這篇還沒上線。</p></div>
 <div class="card soon"><small>即將推出</small><br><b>幫小孩投資時的稅</b><p>贈與稅，還有小孩的所得怎麼跟爸媽一起申報。這篇還沒上線。</p></div>
 </div>
@@ -131,6 +169,39 @@ function addFamily(ctx) {
 <li><a href="{R}learn/what-is-etf/"><span class="relcat">新手入門</span>ETF 是什麼？一次看懂</a></li>
 <li><a href="{R}learn/dca-vs-lump-sum/"><span class="relcat">新手入門</span>定期定額 vs 單筆投入，新手該怎麼想？</a></li>
 <li><a href="{R}family/save-to-18/"><span class="relcat">親子理財</span>每月存多少，存到 18 歲有多少</a></li>
+<li><a href="{R}family/"><span class="relcat">親子理財</span>回親子理財</a></li>
+</ul></nav></div></section>`
+  }));
+
+  const etfUrl = SITE_URL + '/family/etf-types/';
+  out.push(page({
+    p: 'family/etf-types/',
+    type: 'article',
+    title: ETF_TITLE,
+    desc: ETF_DESC,
+    cssVer: '10',
+    jsonLd: articleLd({
+      headline: ETF_TITLE,
+      description: ETF_DESC,
+      url: etfUrl,
+      crumbs: crumbLd('親子理財', SITE_URL + '/family/', ETF_TITLE, etfUrl)
+    }),
+    body: head(ETF_TITLE, ETF_DESC, crumb('存股')) + `
+<div class="w narrow"><article class="prose">
+${ETF_BLOCKS.map(([tag, text]) => `<${tag}>${text}</${tag}>`).join('\n')}
+<p><a class="btn b" href="{R}family/save-to-18/">到試算頁試試看 →</a></p>
+<p>${ETF_NO_PICK}</p>
+<h2>參考資料</h2>
+<ul>
+${ETF_SOURCES.map(([href, label, note]) => sourceItem(href, label, note)).join('\n')}
+</ul>
+<div class="warn">${WARN}</div>
+</article></div>
+<section class="related-sec"><div class="w"><nav class="related-notes" aria-labelledby="family-etf-related"><h2 id="family-etf-related">接著可以看</h2><ul>
+<li><a href="{R}learn/what-is-etf/"><span class="relcat">新手入門</span>ETF 是什麼？一次看懂</a></li>
+<li><a href="{R}family/save-to-18/"><span class="relcat">親子理財</span>每月存多少，存到 18 歲有多少</a></li>
+<li><a href="{R}family/open-child-account/"><span class="relcat">親子理財</span>幫小孩開證券戶，爸媽先準備這 5 樣</a></li>
+<li><a href="{R}learn/compound-interest/"><span class="relcat">新手入門</span>複利：時間是新手最大的優勢</a></li>
 <li><a href="{R}family/"><span class="relcat">親子理財</span>回親子理財</a></li>
 </ul></nav></div></section>`
   }));
@@ -252,11 +323,15 @@ function addFamily(ctx) {
 module.exports = addFamily;
 module.exports.CALC_TITLE = CALC_TITLE;
 module.exports.CALC_DESC = CALC_DESC;
+module.exports.ETF_TITLE = ETF_TITLE;
+module.exports.ETF_DESC = ETF_DESC;
+module.exports.learnCard = learnCard;
 
 function verifyFamily(SITE_URL) {
   const pages = [
     ['family/index.html', '親子理財｜慢慢變有錢', '親子理財', SITE_URL + '/family/'],
     ['family/open-child-account/index.html', GUIDE_TITLE + '｜慢慢變有錢', GUIDE_TITLE, SITE_URL + '/family/open-child-account/'],
+    ['family/etf-types/index.html', ETF_TITLE + '｜慢慢變有錢', ETF_TITLE, SITE_URL + '/family/etf-types/'],
     ['family/save-to-18/index.html', CALC_TITLE + '｜慢慢變有錢', CALC_TITLE, SITE_URL + '/family/save-to-18/']
   ];
   for (const [rel, title, h1, canonical] of pages) {
@@ -271,10 +346,62 @@ function verifyFamily(SITE_URL) {
     if (html.includes('aria-current="page">試算工具</a>')) throw new Error('親子理財頁不該把試算工具標成目前頁：' + rel);
     if (rel === 'family/save-to-18/index.html' && !html.includes('href="../../calculators/"><span class="relcat">試算工具</span>更多試算工具</a>')) throw new Error('試算頁沒有連回試算工具：' + rel);
     if (html.includes('查核說明') || html.includes('法規一律禁止') || html.includes('本輪未獨立核')) throw new Error('不該上頁的查核說明混進：' + rel);
+    if (rel === 'family/etf-types/index.html') verifyEtfArticle(html, SITE_URL);
     checkLocalRefs(rel, html);
   }
+  verifyLearnListing();
   const home = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
   if (!home.includes('>親子理財</a>')) throw new Error('首頁導覽沒有親子理財');
+  if (home.includes('etf-types')) throw new Error('這篇不該出現在首頁最新筆記');
+}
+
+function verifyEtfArticle(html, SITE_URL) {
+  const article = html.split('<article class="prose">')[1].split('</article>')[0];
+  let cursor = 0;
+  for (const [tag, text] of ETF_BLOCKS) {
+    const needle = `<${tag}>${text}</${tag}>`;
+    const rest = article.slice(cursor).trimStart();
+    if (!rest.startsWith(needle)) throw new Error('正文與稿不符：' + text.slice(0, 24));
+    cursor += article.slice(cursor).length - rest.length + needle.length;
+  }
+  const button = '<p><a class="btn b" href="../../family/save-to-18/">到試算頁試試看 →</a></p>';
+  const buttonAt = article.indexOf(button, cursor);
+  if (buttonAt < 0) throw new Error('試算按鈕不在最後一段旁邊');
+  if (!article.includes(`<p>${ETF_NO_PICK}</p>`, buttonAt)) throw new Error('缺少文末不推薦句');
+  if (article.includes('僅供教育參考，非投資建議。' + ETF_NO_PICK)) throw new Error('免責句不該與不推薦句合成同一行');
+  if ((article.match(/class="warn"/g) || []).length !== 1) throw new Error('正文免責框不是一個');
+  if (!article.includes(`<div class="warn">${WARN}</div>`)) throw new Error('免責框文字不符');
+  const beforeSources = article.split('<h2>參考資料</h2>')[0];
+  if (beforeSources.includes('0.0681%') || beforeSources.includes('查核說明')) throw new Error('不該上正文的查核內容混進');
+  for (const [href] of ETF_SOURCES) {
+    if (!article.includes('href="' + href + '"')) throw new Error('參考資料缺連結：' + href);
+  }
+  if (html.includes('class="ig-return"')) throw new Error('沒有 igUrl，不該有 IG 導回塊');
+  if (!html.includes('<meta property="og:type" content="article">')) throw new Error('og:type 不符');
+  if (!html.includes('<meta property="og:description" content="' + ETF_DESC + '">')) throw new Error('og:description 不符');
+  if (!html.includes('<meta property="og:url" content="' + SITE_URL + '/family/etf-types/">')) throw new Error('og:url 不符');
+  let relAt = html.indexOf('id="family-etf-related"');
+  if (relAt < 0) throw new Error('沒有接著可以看');
+  for (const href of ['../../learn/what-is-etf/', '../../family/save-to-18/', '../../family/open-child-account/', '../../learn/compound-interest/', '../../family/']) {
+    const at = html.indexOf('href="' + href + '"', relAt);
+    if (at < 0) throw new Error('接著可以看缺：' + href);
+    relAt = at + 1;
+  }
+}
+
+function verifyLearnListing() {
+  const learn = fs.readFileSync(path.join(ROOT, 'learn/index.html'), 'utf8');
+  const card = learnCard().replaceAll('{R}', '../');
+  if (!learn.includes(card)) throw new Error('新手入門列表沒有連到 /family/etf-types/ 的卡');
+  if (learn.includes('learn/etf-types')) throw new Error('新手入門不該連到 /learn/etf-types/');
+  if ((learn.match(/family\/etf-types\//g) || []).length !== 1) throw new Error('新手入門這張卡應該只出現一次');
+  if (fs.existsSync(path.join(ROOT, 'learn/etf-types'))) throw new Error('不該有 /learn/etf-types/');
+  const calcIndex = fs.readFileSync(path.join(ROOT, 'calculators/index.html'), 'utf8');
+  if (calcIndex.includes('etf-types')) throw new Error('不該放進試算工具');
+  const articlesSrc = fs.readFileSync(path.join(__dirname, 'articles.js'), 'utf8');
+  if (articlesSrc.includes('etf-types') || articlesSrc.includes(ETF_TITLE)) throw new Error('不該寫進 articles.js');
+  const notesSrc = fs.readFileSync(path.join(__dirname, 'notes.js'), 'utf8');
+  if (notesSrc.includes('etf-types')) throw new Error('不該寫進 notes.js');
 }
 
 function checkLocalRefs(rel, html) {
