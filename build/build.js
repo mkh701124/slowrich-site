@@ -115,7 +115,9 @@ out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'
 <section style="padding-top:0"><div class="w"><h2>筆記</h2><p class="sub">同一則 IG，寫成可以慢慢讀的短文。</p><div class="grid g3">${NOTES.slice(0,3).map(noteCard).join('')}</div><p style="text-align:center;margin-top:18px"><a class="btn b" href="{R}notes/">看全部 ${NOTES.length} 篇筆記 →</a></p></div></section>
 <section style="padding-top:0;padding-bottom:0"><div class="w"><div class="card" style="text-align:center"><h2>我們的承諾</h2><p>不報明牌・不帶單・不給買賣建議。只用白話，陪你慢慢建立自己的投資習慣。</p><a class="more" href="{R}about/">關於慢慢變有錢 →</a></div></div></section>`}));
 // LEARN
-out.push(page({p:'learn/',title:'新手入門筆記',desc:'給投資新手的白話文章：起步準備、觀念、工具與心態。',body:head('新手入門筆記','從零開始，一篇一篇慢慢讀。')+`<section><div class="w"><div class="grid g3">${ARTS.map(artCard).join('')}</div></div></section>`}));
+// 親子理財「市值型 vs 高股息」的正規頁在 /family/etf-types/。這裡只在列表加一張卡，不進 articles.js，也不做 /learn/etf-types/ 轉址頁（列表不要求每張卡都有同名頁）。
+const familyApi=require('./family.js');
+out.push(page({p:'learn/',title:'新手入門筆記',desc:'給投資新手的白話文章：起步準備、觀念、工具與心態。',body:head('新手入門筆記','從零開始，一篇一篇慢慢讀。')+`<section><div class="w"><div class="grid g3">${ARTS.map(artCard).join('')}${familyApi.learnCard()}</div></div></section>`}));
 ARTS.forEach((a,i)=>{const rel=a.terms.length?`<h2>相關名詞</h2><div class="chips">${a.terms.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:'';
  const nav=`<p style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:24px">${i>0?`<a href="{R}learn/${ARTS[i-1].slug}/">← ${esc(ARTS[i-1].title)}</a>`:'<span></span>'}${i<ARTS.length-1?`<a href="{R}learn/${ARTS[i+1].slug}/">${esc(ARTS[i+1].title)} →</a>`:''}</p>`;
  const learnUrl=SITE_URL+'/learn/'+a.slug+'/';
@@ -220,7 +222,7 @@ rc('動盪時代的資產配置：王伯達人生財務規劃學','王伯達｜H
 // 試算工具。內容在 build/tools.js，頁殼仍由 page() 產生。要先寫出 /calculators/，存到 18 歲的「更多試算工具」才有得連。
 require('./tools.js')({page,head,out,SITE_URL});
 // FAMILY：親子理財。內容在 build/family.js，頁殼仍由 page() 產生。
-require('./family.js')({page,head,out,articleLd,crumbLd,SITE_URL});
+familyApi({page,head,out,articleLd,crumbLd,SITE_URL});
 // 404 分支：不輸出指向 /404/ 的 canonical；noindex；og:url 為首頁；無 JSON-LD。檔案仍是根目錄 404.html。
 page({p:'404/',title:'找不到這一頁',desc:'找不到這一頁。',canonical:false,ogUrl:SITE_URL+'/',robots:'noindex',body:prose('找不到這一頁','網址可能打錯了，或這一頁已經搬家。',`<p>你可以：</p><ul><li><a href="/">回首頁</a></li><li><a href="/">到股票新手翻譯器查名詞</a></li></ul>`),noCta:true});
 fs.rmSync(path.join(ROOT,'404'),{recursive:true,force:true});
@@ -247,7 +249,8 @@ function lastmodFor(p){
   return BUILD_DAY;
 }
 const all=[...out.filter(p=>p!=='404/'),'lead/','lead/oneperson/'];
-for(const must of ['family/','family/open-child-account/','family/save-to-18/','tools/','calculators/']){if(!all.includes(must))throw new Error('sitemap 缺少 '+must);}
+for(const must of ['family/','family/open-child-account/','family/etf-types/','family/save-to-18/','tools/','calculators/']){if(!all.includes(must))throw new Error('sitemap 缺少 '+must);}
+if(all.includes('learn/etf-types/'))throw new Error('sitemap 不該有 learn/etf-types/');
 if(all.includes('recommend/'))throw new Error('sitemap 不該有 recommend/');
 fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(p=>`<url><loc>${SITE_URL}/${p}</loc><lastmod>${lastmodFor(p)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
