@@ -139,10 +139,26 @@ function relatedNotesHtml(n){
   const items=picked.map(x=>`<li><a href="{R}notes/${x.slug}/"><span class="relcat">${esc(x.cat)}</span>${esc(x.title)}</a></li>`).join('');
   return `<section class="related-sec"><div class="w"><nav class="related-notes" aria-labelledby="related-notes-heading"><h2 id="related-notes-heading">相關筆記</h2><ul>${items}</ul></nav></div></section>`;
 }
-NOTES.forEach(n=>{const noteUrl=SITE_URL+'/notes/'+n.slug+'/';const noteImage=SITE_URL+'/notes/'+n.slug+'/cover.png';const related=relatedNotesHtml(n);out.push(page({p:`notes/${n.slug}/`,type:'article',title:n.title,desc:n.desc,image:`/notes/${n.slug}/cover.png`,cssVer:'9',afterCta:related,igCta:igReturnBlock(n),jsonLd:articleLd({headline:n.title,description:n.desc,url:noteUrl,image:noteImage,crumbs:crumbLd('筆記',SITE_URL+'/notes/',n.title,noteUrl)}),body:head(esc(n.title),esc(n.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}notes/">筆記</a> › ${esc(n.cat)}</div>`)+`<div class="w narrow"><article class="prose"><figure class="coverfig"><img src="{R}notes/${n.slug}/cover.png" alt="${esc(n.coverAlt)}" width="${n.w}" height="${n.h}"></figure>${n.body}<div class="warn">⚠️ 僅供教育參考，非投資建議。文中若有數字，皆為假設例子，請依自己的狀況調整。投資有風險，請自行評估。</div><p style="margin-top:18px"><a href="{R}notes/">← 回筆記</a></p></article></div>`}));});
+NOTES.forEach(n=>{const noteUrl=SITE_URL+'/notes/'+n.slug+'/';const noteImage=SITE_URL+'/notes/'+n.slug+'/cover.png';const related=relatedNotesHtml(n);out.push(page({p:`notes/${n.slug}/`,type:'article',title:noteHeadTitle(n),desc:noteHeadDesc(n),image:`/notes/${n.slug}/cover.png`,cssVer:'9',afterCta:related,igCta:igReturnBlock(n),jsonLd:articleLd({headline:n.title,description:n.desc,url:noteUrl,image:noteImage,crumbs:crumbLd('筆記',SITE_URL+'/notes/',n.title,noteUrl)}),body:head(esc(n.title),esc(n.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}notes/">筆記</a> › ${esc(n.cat)}</div>`)+`<div class="w narrow"><article class="prose"><figure class="coverfig"><img src="{R}notes/${n.slug}/cover.png" alt="${esc(n.coverAlt)}" width="${n.w}" height="${n.h}"></figure>${n.body}<div class="warn">⚠️ 僅供教育參考，非投資建議。文中若有數字，皆為假設例子，請依自己的狀況調整。投資有風險，請自行評估。</div><p style="margin-top:18px"><a href="{R}notes/">← 回筆記</a></p></article></div>`}));});
 // 舊 /notes/<slug>/：canonical 與 meta refresh 指向 /learn/<slug>/。不 push 進 out，因此不進 sitemap、也不出現在列表。
 for(const slug of NOTE_REDIRECTS){const a=artBySlug[slug];const target=SITE_URL+'/learn/'+slug+'/';
  page({p:`notes/${slug}/`,title:a.title,desc:'這篇已整理到新手入門。',canonical:target,ogUrl:target,noCta:true,extraHead:`<meta http-equiv="refresh" content="0;url=${target}">`,body:`<div class="w narrow"><article class="prose"><p>這篇已整理到新手入門：<a href="{R}learn/${slug}/">${esc(a.title)}</a>。</p></article></div>`});}
+// 筆記可選 seoTitle／seoDesc：只進 <title>、meta description、og:title、og:description。
+// H1、頁首說明、JSON-LD、列表卡仍用 title／desc。沒填就與原本相同。
+function noteHeadTitle(n){const v=n&&n.seoTitle!=null?String(n.seoTitle).trim():'';return v||n.title;}
+function noteHeadDesc(n){const v=n&&n.seoDesc!=null?String(n.seoDesc).trim():'';return v||n.desc;}
+// 詞條可選 seoTitle／seoDesc：覆寫這一則的文件標題與 meta（雙語慣例仍是預設）。不改 H1、導言、JSON-LD。
+function termSeoTitle(t,bi){const v=t&&t.seoTitle!=null?String(t.seoTitle).trim():'';if(v)return v;return bi?bi.title:`${t.name} 是什麼？白話解釋`;}
+function termSeoDesc(t,bi){const v=t&&t.seoDesc!=null?String(t.seoDesc).trim():'';if(v)return v;return bi?termMetaDescription(bi.line,t.plain):`${t.name}：${t.plain}`;}
+// 詞條可選 note（筆記 slug）＋ noteAnchor。有填才在定義區塊後輸出一則延伸閱讀；沒填則不輸出任何字元。
+function termFurtherReading(t){
+  if(!t||t.note==null||String(t.note).trim()==='')return '';
+  const noteSlug=String(t.note).trim();
+  const anchor=t.noteAnchor==null?'':String(t.noteAnchor).trim();
+  if(!noteSlugOk.test(noteSlug)||!noteSeen.has(noteSlug))throw new Error('詞條延伸閱讀的筆記不存在：'+(t.id||'')+' → '+noteSlug);
+  if(!anchor)throw new Error('詞條延伸閱讀缺少 noteAnchor：'+(t.id||noteSlug));
+  return `<h2>延伸閱讀</h2><div class="chips"><a href="{R}notes/${noteSlug}/">${esc(anchor)}</a></div>\n`;
+}
 // TERMS index
 const cats=G.categories.map(c=>`<button data-c="${c.id}">${esc(c.name)}</button>`).join('');
 const list=G.terms.map(t=>`<a class="card tcard" data-c="${t.category}" data-k="${esc([t.name,...t.aliases,t.plain].join(' ').toLowerCase())}" href="{R}terms/${slug[t.id]}/"><b>${esc(t.name)}</b> <span class="alias">${esc(t.aliases.join('・'))}</span><p>${esc(t.plain)}</p></a>`).join('');
@@ -151,12 +167,13 @@ out.push(page({p:'terms/',title:'股票新手翻譯器｜投資名詞白話查�
 for(const t of G.terms){const c=C[t.category];const rel=(t.related||[]).filter(id=>T[id]);
  const termUrl=SITE_URL+'/terms/'+slug[t.id]+'/';
  const bi=termBilingual(t);
- const title=bi?bi.title:`${t.name} 是什麼？白話解釋`;
- const desc=bi?termMetaDescription(bi.line,t.plain):`${t.name}：${t.plain}`;
+ const title=termSeoTitle(t,bi);
+ const desc=termSeoDesc(t,bi);
  const lede=bi?`${esc(bi.line)}。${esc(t.plain)}`:esc(t.plain);
+ const noteHtml=termFurtherReading(t);
  out.push(page({p:`terms/${slug[t.id]}/`,type:'article',title,desc,jsonLd:definedTermLd(t,termUrl,bi),body:head(`${esc(t.name)} <span style="font-size:.55em;opacity:.8">${esc(t.aliases.join('・'))}</span>`,lede,`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}terms/">股票新手翻譯器</a> › ${esc(c.name)}</div>`)+`<div class="w narrow"><article class="prose"><dl class="term">
 <dt>一句話白話</dt><dd>${esc(t.plain)}</dd><dt>舉個例子</dt><dd><div class="ex" style="margin:4px 0">${esc(t.example)}</div></dd><dt>怎麼算</dt><dd>${esc(t.formula)}</dd><dt>代表什麼</dt><dd>${esc(t.meaning)}</dd><dt>常見誤解</dt><dd>${esc(t.myth)}</dd><dt>怎麼判斷</dt><dd>${esc(t.judgement)}</dd></dl>
-${rel.length?`<h2>相關名詞</h2><div class="chips">${rel.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:''}<div class="warn">⚠️ 名詞解釋為簡化說明，僅供教育參考，非投資建議。</div><p style="margin-top:18px"><a href="{R}terms/">← 回股票新手翻譯器</a></p></article></div>`}));}
+${noteHtml}${rel.length?`<h2>相關名詞</h2><div class="chips">${rel.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:''}<div class="warn">⚠️ 名詞解釋為簡化說明，僅供教育參考，非投資建議。</div><p style="margin-top:18px"><a href="{R}terms/">← 回股票新手翻譯器</a></p></article></div>`}));}
 // ABOUT / PRIVACY / DISCLAIMER
 const prose=(h,s,b)=>head(h,s)+`<div class="w narrow"><article class="prose">${b}</article></div>`;
 out.push(page({p:'about/',title:'關於慢慢變有錢',desc:'慢慢變有錢是給投資新手的白話筆記，不報明牌、不帶單、不給買賣建議。',body:prose('關於慢慢變有錢','投資不用急，慢慢變有錢就好。',`

@@ -179,6 +179,8 @@ module.exports = [
   cat:'名詞',
   title:'法說會英文是什麼？Investor Conference 白話一次懂',
   desc:'法說會英文是 Investor Conference（法人說明會）。公司向投資人說明營運、財報與展望；預估不是保證，怎麼聽比較不易被標題帶走。',
+  seoTitle:'法說會英文怎麼說？Investor Conference 意思＋怎麼聽',
+  seoDesc:'法說會英文是 Investor Conference（法人說明會）。白話說明公司在法說會講什麼、財報和展望怎麼聽，以及為什麼預估不等於保證。',
   coverAlt:'封面：法說會英文是什麼？Investor Conference 白話一次懂。',
   w:1080,h:1350,
   body:`
