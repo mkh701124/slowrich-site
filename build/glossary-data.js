@@ -353,7 +353,9 @@ window.GLOSSARY = {
         "t14",
         "t16",
         "t17"
-      ]
+      ],
+      "note": "dividend-yield-english",
+      "noteAnchor": "殖利率怎麼算、高殖利率要注意什麼"
     },
     {
       "id": "t16",
@@ -652,7 +654,9 @@ window.GLOSSARY = {
         "t27",
         "t28",
         "t29"
-      ]
+      ],
+      "note": "margin-balance-english",
+      "noteAnchor": "融資餘額是什麼？白話一次懂"
     },
     {
       "id": "t31",
@@ -939,7 +943,9 @@ window.GLOSSARY = {
         "t41",
         "t42",
         "t43"
-      ]
+      ],
+      "note": "constituents-english",
+      "noteAnchor": "成分股英文與權重怎麼看"
     },
     {
       "id": "t45",
@@ -1197,7 +1203,11 @@ window.GLOSSARY = {
         "t58",
         "t59",
         "t60"
-      ]
+      ],
+      "seoTitle": "法說會英文：Investor Conference 是什麼？白話解釋",
+      "seoDesc": "法說會英文是 Investor Conference（法人說明會），指公司向投資人說明營運、財務與未來展望的場合。想知道怎麼聽法說會，看延伸長文。",
+      "note": "investor-conference-english",
+      "noteAnchor": "法說會英文怎麼說、怎麼聽"
     },
     {
       "id": "t57",
