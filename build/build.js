@@ -381,8 +381,11 @@ fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap:
   ]){
     if(!home.includes(needle))throw new Error('首頁試算缺：'+needle);
   }
-  if(home.includes('投資不用急'))throw new Error('舊的首頁開頭還在');
-  if(home.includes('一人公司'))throw new Error('舊的首頁開頭還在');
+  if(home.includes('投資不用急')||home.includes('一人公司'))throw new Error('舊的首頁開頭還在');
+  const latest=home.slice(home.indexOf('<h2>最新筆記</h2>'),home.indexOf('<h2>筆記</h2>'));
+  const a56=artBySlug['0056-intro'];
+  if(!a56||!latest.includes('href="./learn/0056-intro/"')||!latest.includes(a56.title))throw new Error('首頁最新筆記應保留 0056');
+  if(latest.includes('etf-types'))throw new Error('這篇不該出現在首頁最新筆記');
   const tableBody=home.split('id="goal-compare-body">')[1].split('</tbody>')[0];
   if(tableBody.trim())throw new Error('對照表不該寫死數字');
 }
