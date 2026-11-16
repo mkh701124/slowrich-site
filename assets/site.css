@@ -186,3 +186,28 @@ table.calc-table th{position:sticky;top:0;background:#EEF3FB;color:var(--b);z-in
 .flow .arrow{align-self:center;color:var(--g);display:flex}
 .flow .arrow svg{width:28px;height:28px}
 .flow .same{margin:8px 0 0;text-align:center;font-weight:700;color:var(--b);font-size:14px;line-height:1.45;overflow-wrap:anywhere}
+
+/* 首頁 100 萬目標試算。沿用試算卡的深藍／金色；紅色只留給 .fv-up。 */
+.goal-hero{padding:28px 0 20px}
+.goal-hero h1{font-size:28px;overflow-wrap:anywhere}
+.goal-hero .goal-lead{margin:0 0 8px;font-size:18px;font-weight:700;line-height:1.5;opacity:1}
+.goal-hero p{margin:0;font-size:16px;line-height:1.7}
+#goal-calc{max-width:100%}
+#goal-calc .w,#goal-calc .calc-layout,#goal-calc .calc-panel,#goal-calc .calc-results,#goal-calc .calc-visual{min-width:0;max-width:100%}
+#goal-calc .calc-num{white-space:normal;overflow-wrap:anywhere}
+.goal-disclaimer{margin:14px 0 0;color:var(--b);font-weight:700;font-size:14px;line-height:1.6}
+.goal-reads{margin-top:16px}
+.goal-tablewrap{max-width:100%;overflow-x:clip}
+table.goal-compare{width:100%;table-layout:fixed;border-collapse:collapse;font-size:14px;color:var(--ink)}
+table.goal-compare caption{caption-side:top;text-align:left;font-weight:700;color:var(--b);padding:0 0 8px;overflow-wrap:anywhere}
+table.goal-compare th,table.goal-compare td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top;overflow-wrap:anywhere}
+table.goal-compare th:first-child,table.goal-compare td:first-child{text-align:left;width:28%}
+table.goal-compare th{background:#EEF3FB;color:var(--b)}
+@media(min-width:760px){
+  .goal-hero{padding:48px 0 28px}
+  .goal-hero h1{font-size:40px}
+  .goal-hero h1 br{display:none}
+  .goal-hero .goal-lead{font-size:22px}
+  table.goal-compare{font-size:16px}
+  table.goal-compare th,table.goal-compare td{padding:10px 12px}
+}
