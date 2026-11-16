@@ -115,7 +115,7 @@ function homeGoalSection(){
   const demo=goalApi.reachTarget({monthly:10000,target:1000000,annualRate:0.05});
   if(!demo.ok||demo.months!==84||demo.value!==1003287||demo.contributed!==840000||demo.gap!==163287)throw new Error('首頁預設試算結果不符');
   const relItem=(href,cat,title)=>`<li><a href="{R}${href}"><span class="relcat">${esc(cat)}</span>${esc(title)}</a></li>`;
-  return `<div class="hero goal-hero"><div class="w"><div class="tag">100 萬目標試算</div><h1>資產要翻到 <em>100 萬</em>，<br>每月該投入多少、該投多久？</h1><p>從 0 開始，沒有本金。每月月底投入、按月複利。年報酬可選 0%、3%、5%、7%，或自己填。</p></div></div>
+  return `<div class="hero goal-hero"><div class="w"><div class="tag">100 萬目標試算</div><h1>你的第一個 <em>100 萬</em>，<br>比你想的還近</h1><p class="goal-lead">每月該投入多少、該投多久？</p><p>從 0 開始，沒有本金。每月月底投入、按月複利。年報酬可選 0%、3%、5%、7%，或自己填。</p></div></div>
 <section class="calc-sec" id="goal-calc"><div class="w">
 <div class="calc-layout">
 <div class="calc-panel" id="goal-panel">
@@ -211,7 +211,7 @@ ${relItem('family/etf-types/','親子理財',familyApi.ETF_TITLE)}
 <script src="{R}assets/save-to-18.js"></script>`;
 }
 // HOME
-out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'資產要翻到 100 萬，每月該投入多少、該投多久？從 0 開始的教育試算，報酬是假設、不是保證。也有給投資新手的白話筆記。',jsonLd:websiteLd(),cssVer:'11',body:`
+out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'你的第一個 100 萬，比你想的還近。每月該投入多少、該投多久？從 0 開始的教育試算，報酬是假設、不是保證。也有給投資新手的白話筆記。',jsonLd:websiteLd(),cssVer:'12',body:`
 ${homeGoalSection()}
 <section><div class="w"><h2>第一次投資？從這三步開始</h2><p class="sub">照順序讀，先把基本觀念建立起來。</p><div class="grid g3">
 <a class="card" href="{R}learn/before-you-invest-3-things/"><div class="i">①</div><b>先顧好地基</b><p>緊急預備金、高利率負債、寫下目標，投資前先做好。</p><span class="more">閱讀 →</span></a>
@@ -366,7 +366,8 @@ fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap:
   const a50=artBySlug['0050-intro'];
   const aEtf=artBySlug['what-is-etf'];
   for(const needle of [
-    '資產要翻到 <em>100 萬</em>，<br>每月該投入多少、該投多久？',
+    '你的第一個 <em>100 萬</em>，<br>比你想的還近',
+    '每月該投入多少、該投多久？',
     '報酬是假設，不是保證；僅供教育參考，非投資建議。',
     'href="./learn/0050-intro/"',
     'href="./learn/what-is-etf/"',
@@ -381,7 +382,7 @@ fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap:
   ]){
     if(!home.includes(needle))throw new Error('首頁試算缺：'+needle);
   }
-  if(home.includes('投資不用急')||home.includes('一人公司'))throw new Error('舊的首頁開頭還在');
+  if(home.includes('投資不用急')||home.includes('一人公司')||home.includes('資產要翻到'))throw new Error('舊的首頁開頭還在');
   const latest=home.slice(home.indexOf('<h2>最新筆記</h2>'),home.indexOf('<h2>筆記</h2>'));
   const a56=artBySlug['0056-intro'];
   if(!a56||!latest.includes('href="./learn/0056-intro/"')||!latest.includes(a56.title))throw new Error('首頁最新筆記應保留 0056');

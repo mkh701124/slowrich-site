@@ -190,6 +190,7 @@ table.calc-table th{position:sticky;top:0;background:#EEF3FB;color:var(--b);z-in
 /* 首頁 100 萬目標試算。沿用試算卡的深藍／金色；紅色只留給 .fv-up。 */
 .goal-hero{padding:28px 0 20px}
 .goal-hero h1{font-size:28px;overflow-wrap:anywhere}
+.goal-hero .goal-lead{margin:0 0 8px;font-size:18px;font-weight:700;line-height:1.5;opacity:1}
 .goal-hero p{margin:0;font-size:16px;line-height:1.7}
 #goal-calc{max-width:100%}
 #goal-calc .w,#goal-calc .calc-layout,#goal-calc .calc-panel,#goal-calc .calc-results,#goal-calc .calc-visual{min-width:0;max-width:100%}
@@ -205,6 +206,8 @@ table.goal-compare th{background:#EEF3FB;color:var(--b)}
 @media(min-width:760px){
   .goal-hero{padding:48px 0 28px}
   .goal-hero h1{font-size:40px}
+  .goal-hero h1 br{display:none}
+  .goal-hero .goal-lead{font-size:22px}
   table.goal-compare{font-size:16px}
   table.goal-compare th,table.goal-compare td{padding:10px 12px}
 }
