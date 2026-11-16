@@ -134,3 +134,55 @@ table.calc-table th{position:sticky;top:0;background:#EEF3FB;color:var(--b);z-in
 .calc-gaplab{font-size:12px;font-weight:700;line-height:1.3}
 @media(max-width:759px){.calc-stats{grid-template-columns:1fr;gap:10px}.calc-num{font-size:32px}}
 @media(min-width:760px){.calc-layout{display:grid;grid-template-columns:minmax(300px,400px) minmax(0,1fr);align-items:start}.calc-results{order:0}.calc-num{font-size:34px}}
+
+/* 文章圖表：深藍＋金色，不用紅／綠。寬度用百分比，手機不橫向溢出。 */
+.fig{margin:16px 0;padding:12px;background:var(--bg);border:1px solid var(--line);border-radius:14px;max-width:100%;overflow-x:clip}
+.fig figcaption{margin:10px 0 0;font-size:12px;line-height:1.55;color:var(--mut);overflow-wrap:anywhere}
+.fig svg{display:block;max-width:100%}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0}
+.facts .fact{min-width:0;background:#fff;border-radius:12px;padding:10px;border-top:3px solid var(--b)}
+.facts .fact:nth-child(even){border-top-color:var(--g)}
+.facts .ico{display:flex;width:28px;height:28px;color:var(--b);margin-bottom:6px}
+.facts .ico svg{width:28px;height:28px}
+.facts .k{display:block;font-size:12px;line-height:1.35;color:var(--mut);font-weight:700}
+.facts .v{display:block;margin-top:2px;font-size:16px;line-height:1.35;font-weight:900;color:var(--b);overflow-wrap:anywhere}
+@media(min-width:760px){.facts{grid-template-columns:repeat(auto-fit,minmax(104px,1fr))}}
+.bars{display:grid;gap:8px;margin:0}
+.bars .row{display:grid;grid-template-columns:minmax(0,6.6em) minmax(0,1fr) auto;gap:6px 8px;align-items:center;min-width:0}
+.bars .name,.bars .num{font-size:13px;line-height:1.3;font-weight:700;color:var(--b);min-width:0;overflow-wrap:anywhere}
+.bars .num{color:var(--ink);font-variant-numeric:tabular-nums}
+.bars .track{height:12px;background:#fff;border:1px solid var(--line);border-radius:999px;overflow:hidden;min-width:0}
+.bars .fill{display:block;height:100%;background:var(--b);border-radius:999px;max-width:100%}
+.bars .row.is-ref .fill{background:var(--g)}
+.bars .row.is-ref .name{color:var(--b)}
+.stack{margin:0}
+.stack-bar{display:flex;width:100%;height:22px;border-radius:999px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.stack-bar i{display:block;height:100%;min-width:0}
+.stack-bar .a{background:var(--b)}
+.stack-bar .b{background:var(--g)}
+.stack-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;list-style:none;margin:8px 0 0;padding:0}
+.stack-key li{min-width:0;font-size:13px;line-height:1.4;font-weight:700;color:var(--b);overflow-wrap:anywhere}
+.stack-key li::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;background:var(--b);vertical-align:-1px}
+.stack-key li.b{color:var(--b)}
+.stack-key li.b::before{background:var(--g)}
+.timeline{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.timeline li{position:relative;margin:0;padding:0 0 14px 16px;border-left:3px solid var(--b);min-width:0}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:-7px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--g);box-shadow:0 0 0 2px var(--b)}
+.timeline b{display:block;color:var(--b);font-size:14px;line-height:1.4}
+.timeline span{display:block;font-size:14px;line-height:1.45;overflow-wrap:anywhere}
+@media(min-width:760px){
+  .timeline{grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px;padding-top:12px}
+  .timeline li{border-left:0;border-top:3px solid var(--b);padding:12px 2px 0}
+  .timeline li::before{left:0;top:-7px}
+}
+.flow{margin:0}
+.flow-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:stretch}
+.flow .step{min-width:0;background:#fff;border:2px solid var(--b);border-radius:14px;padding:10px 8px;text-align:center}
+.flow .step.after{border-color:var(--g);background:var(--gbg)}
+.flow .step small{display:block;font-size:12px;font-weight:700;color:var(--mut)}
+.flow .step b{display:block;margin-top:2px;font-size:18px;line-height:1.3;color:var(--b);overflow-wrap:anywhere}
+.flow .step span{display:block;font-size:14px;line-height:1.35;color:var(--ink);overflow-wrap:anywhere}
+.flow .arrow{align-self:center;color:var(--g);display:flex}
+.flow .arrow svg{width:28px;height:28px}
+.flow .same{margin:8px 0 0;text-align:center;font-weight:700;color:var(--b);font-size:14px;line-height:1.45;overflow-wrap:anywhere}

@@ -399,7 +399,8 @@ function verifyLearnListing() {
   const calcIndex = fs.readFileSync(path.join(ROOT, 'calculators/index.html'), 'utf8');
   if (calcIndex.includes('etf-types')) throw new Error('不該放進試算工具');
   const articlesSrc = fs.readFileSync(path.join(__dirname, 'articles.js'), 'utf8');
-  if (articlesSrc.includes('etf-types') || articlesSrc.includes(ETF_TITLE)) throw new Error('不該寫進 articles.js');
+  // 別的入門文可以連到 /family/etf-types/。擋的是把這篇本身寫進 articles.js。
+  if (/\{slug:'etf-types'/.test(articlesSrc) || articlesSrc.includes(ETF_TITLE)) throw new Error('不該寫進 articles.js');
   const notesSrc = fs.readFileSync(path.join(__dirname, 'notes.js'), 'utf8');
   if (notesSrc.includes('etf-types')) throw new Error('不該寫進 notes.js');
 }
