@@ -64,5 +64,62 @@ node build/add-note.js \
 
 先開預覽 PR，讓 Mike 看預覽。只有 Mike 說「可以合併上線」之後才合併。在那之前不要合併、不要自動合併。
 
+## 文章圖表元件
+
+正文裡的圖表寫在 `build/articles.js`（或筆記 body）的 HTML，樣式在 `assets/site.css`。只用站上的深藍 `--b` 和金色 `--g`，不要用紅或綠，也不要接外部圖庫或 JavaScript 圖表套件。圖示用 inline SVG 或 emoji。每個圖包在 `<figure class="fig">`，並寫 `figcaption`（含資料日與來源簡寫）。圖本身加 `role="img"` 和 `aria-label`；表格用可讀的 `table.t` 即可。長條寬度用百分比。`.facts` 手機 2 欄、桌面約 4 到 5 欄；`.timeline` 手機直式。
+
+```html
+<figure class="fig">
+  <div class="facts" role="img" aria-label="成分 50 檔，規模約 2.56 兆元">
+    <div class="fact"><span class="k">成分</span><span class="v">50 檔</span></div>
+    <div class="fact"><span class="k">規模約</span><span class="v">2.56 兆元</span></div>
+  </div>
+  <figcaption>資料日 2026/11/13，元大投信。</figcaption>
+</figure>
+
+<figure class="fig">
+  <div class="bars" role="img" aria-label="台積電 58.46%，平均分每家 2%">
+    <div class="row"><span class="name">台積電</span><span class="track"><span class="fill" style="width:58.46%"></span></span><span class="num">58.46%</span></div>
+    <div class="row is-ref"><span class="name">平均分每家</span><span class="track"><span class="fill" style="width:2%"></span></span><span class="num">2%</span></div>
+  </div>
+  <figcaption>資料日 2026/11/13，元大投信持股比重；權重每天變動。</figcaption>
+</figure>
+
+<figure class="fig">
+  <div class="stack" role="img" aria-label="台積電 58.46%，其餘 49 檔 41.54%">
+    <div class="stack-bar"><i class="a" style="width:58.46%"></i><i class="b" style="width:41.54%"></i></div>
+    <ul class="stack-key"><li>台積電 58.46%</li><li class="b">其餘 49 檔 41.54%</li></ul>
+  </div>
+  <figcaption>資料日 2026/11/13，元大投信持股比重；權重每天變動。</figcaption>
+</figure>
+
+<figure class="fig">
+  <ol class="timeline" role="img" aria-label="2003/6/30 上市">
+    <li><b>2003/6/30</b><span>上市，台灣第一檔上市 ETF</span></li>
+  </ol>
+  <figcaption>資料日見各節點。來源：元大投信、證交所 ETF e添富。</figcaption>
+</figure>
+
+<figure class="fig">
+  <div class="flow" role="img" aria-label="分割前 1 單位乘 188.65 元，分割後 4 單位乘 47.16 元，總價值不變">
+    <div class="flow-row">
+      <div class="step"><small>分割前</small><b>1 單位</b><span>× 188.65 元</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step after"><small>分割後</small><b>4 單位</b><span>× 47.16 元</span></div>
+    </div>
+    <p class="same">總價值不變（188.65÷4＝47.16）</p>
+  </div>
+  <figcaption>2025/6/18 恢復交易。來源：元大 0050 分割公告（證交所 e添富轉載）。</figcaption>
+</figure>
+
+<figure class="fig">
+  <table class="t">
+    <thead><tr><th>費用</th><th>級距</th><th>費率</th></tr></thead>
+    <tbody><tr><td>經理費</td><td>1,000 億元以內</td><td>0.15%</td></tr></tbody>
+  </table>
+  <figcaption>依規模分段加總；以公開說明書為準。</figcaption>
+</figure>
+```
+
 ## 自訂網域（之後）
 網域確定後：1) 新增 `CNAME` 檔，內容只放網域（例如 `slowrichnotes.com`）；2) 以新網域重跑 build；3) 更新 lead/index.html 的 canonical/OG；4) DNS 設定依 GitHub Pages 文件。**目前刻意不放 CNAME 檔。**
