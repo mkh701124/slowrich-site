@@ -8,11 +8,13 @@ const ARTS=require('./articles.js');
 const NOTES=require('./notes.js');
 const {termBilingual,termMetaDescription}=require('./term-bilingual.js');
 require('./save-to-18.test.js');
+require('./goal-1m.test.js');
 const noteSlugOk=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;const noteSeen=new Set();
 for(const n of NOTES){if(!noteSlugOk.test(n.slug)||noteSeen.has(n.slug))throw new Error('note slug 須為 ASCII kebab-case 且不可重複：'+n.slug);noteSeen.add(n.slug);if(!fs.existsSync(path.join(ROOT,'notes',n.slug,'cover.png')))throw new Error('缺少筆記封面：notes/'+n.slug+'/cover.png');}
 // 與 /learn/ 重複、已從 build/notes.js 移除的舊網址。GitHub Pages 沒有 301，只留 meta refresh 殘頁。
 const NOTE_REDIRECTS=['before-you-invest-3-things','10-terms-for-financial-news','dca-vs-lump-sum','what-is-a-stock','compound-interest','5-beginner-mistakes','what-is-etf','open-brokerage-account','5-questions-before-investing','twd-fx-outflow','national-security-fund-what','berkshire-q3-buyback','0050-intro','0056-intro'];
 const artBySlug=Object.fromEntries(ARTS.map(a=>[a.slug,a]));
+const familyApi=require('./family.js');
 for(const s of NOTE_REDIRECTS){
   if(!artBySlug[s])throw new Error('轉址目標不存在：/learn/'+s+'/');
   if(NOTES.some(n=>n.slug===s))throw new Error('與 /learn/ 重複的筆記仍在 build/notes.js：'+s);
@@ -102,9 +104,115 @@ const artCard=a=>`<a class="card" href="{R}learn/${a.slug}/"><small>${a.cat}</sm
 const noteCard=n=>`<a class="card" href="{R}notes/${n.slug}/"><small>${esc(n.cat)}</small><br><b>${esc(n.title)}</b><p>${esc(n.desc)}</p><span class="more">閱讀 →</span></a>`;
 const noteTile=n=>`<a class="card notecard" href="{R}notes/${n.slug}/"><img src="{R}notes/${n.slug}/cover.png" alt="${esc(n.coverAlt)}" width="${n.w}" height="${n.h}"><span class="pad"><small>${esc(n.cat)}</small><br><b>${esc(n.title)}</b><p>${esc(n.desc)}</p><span class="more">閱讀 →</span></span></a>`;
 const termCard=t=>`<a class="card tcard" href="{R}terms/${slug[t.id]}/"><b>${esc(t.name)}</b><p>${esc(t.plain)}</p></a>`;
+function yuanText(n){
+  return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,',')+' 元';
+}
+function homeGoalSection(){
+  const a50=artBySlug['0050-intro'];
+  const aEtf=artBySlug['what-is-etf'];
+  if(!a50||!aEtf||!familyApi.ETF_TITLE)throw new Error('首頁試算推薦文章不存在');
+  const goalApi=require('../assets/save-to-18.js');
+  const demo=goalApi.reachTarget({monthly:10000,target:1000000,annualRate:0.05});
+  if(!demo.ok||demo.months!==84||demo.value!==1003287||demo.contributed!==840000||demo.gap!==163287)throw new Error('首頁預設試算結果不符');
+  const relItem=(href,cat,title)=>`<li><a href="{R}${href}"><span class="relcat">${esc(cat)}</span>${esc(title)}</a></li>`;
+  return `<div class="hero goal-hero"><div class="w"><div class="tag">100 萬目標試算</div><h1>資產要翻到 <em>100 萬</em>，<br>每月該投入多少、該投多久？</h1><p>從 0 開始，沒有本金。每月月底投入、按月複利。年報酬可選 0%、3%、5%、7%，或自己填。</p></div></div>
+<section class="calc-sec" id="goal-calc"><div class="w">
+<div class="calc-layout">
+<div class="calc-panel" id="goal-panel">
+<div class="seg" role="group" aria-label="試算模式">
+<button type="button" id="goal-mode-time" class="on" aria-pressed="true">算要多久</button>
+<button type="button" id="goal-mode-pay" aria-pressed="false">算每月要投多少</button>
+</div>
+<div class="calc-field" id="goal-field-target">
+<label for="goal-target">目標金額（新台幣）</label>
+<div class="stepper">
+<input id="goal-target" inputmode="numeric" autocomplete="off" maxlength="9" aria-describedby="goal-hint-target" value="1000000">
+<button type="button" data-step="goal-target" data-d="-100000" aria-label="目標金額減少 10 萬">−10萬</button>
+<button type="button" data-step="goal-target" data-d="-10000" aria-label="目標金額減少 1 萬">−1萬</button>
+<button type="button" data-step="goal-target" data-d="10000" aria-label="目標金額增加 1 萬">+1萬</button>
+<button type="button" data-step="goal-target" data-d="100000" aria-label="目標金額增加 10 萬">+10萬</button>
+</div>
+<p class="calc-hint" id="goal-hint-target" hidden></p>
+</div>
+<div class="calc-field" id="goal-field-amount">
+<label for="goal-amount">每月金額（新台幣）</label>
+<div class="stepper">
+<input id="goal-amount" inputmode="numeric" autocomplete="off" maxlength="9" aria-describedby="goal-hint-amount" value="10000">
+<button type="button" data-step="goal-amount" data-d="-1000" aria-label="每月金額減少 1000">−1,000</button>
+<button type="button" data-step="goal-amount" data-d="-100" aria-label="每月金額減少 100">−100</button>
+<button type="button" data-step="goal-amount" data-d="100" aria-label="每月金額增加 100">+100</button>
+<button type="button" data-step="goal-amount" data-d="1000" aria-label="每月金額增加 1000">+1,000</button>
+</div>
+<p class="calc-hint" id="goal-hint-amount" hidden></p>
+</div>
+<div class="calc-field" id="goal-field-years" hidden>
+<label for="goal-years">目標年數</label>
+<div class="stepper age">
+<button type="button" id="goal-year-dec" aria-label="目標年數減少 1">−1</button>
+<input id="goal-years" inputmode="numeric" autocomplete="off" maxlength="2" aria-describedby="goal-hint-years" value="10">
+<button type="button" id="goal-year-inc" aria-label="目標年數增加 1">+1</button>
+</div>
+<p class="calc-hint" id="goal-hint-years">1–40 年。按月複利、每月月底投入。</p>
+</div>
+<div class="calc-field">
+<span class="calc-label" id="goal-rate-label">年報酬假設</span>
+<div class="rates" role="group" aria-labelledby="goal-rate-label">
+<button type="button" data-rate="0" aria-pressed="false">0%</button>
+<button type="button" data-rate="3" aria-pressed="false">3%</button>
+<button type="button" data-rate="5" class="on" aria-pressed="true">5%</button>
+<button type="button" data-rate="7" aria-pressed="false">7%</button>
+</div>
+<div class="rate-custom">
+<label for="goal-rate">自訂</label>
+<input id="goal-rate" inputmode="decimal" autocomplete="off" placeholder="例如 4.5" aria-describedby="goal-hint-rate">
+<span aria-hidden="true">%</span>
+</div>
+<p class="calc-hint" id="goal-hint-rate">建議範圍 −10%～15%。0% 表示只累積本金、沒有報酬。</p>
+</div>
+</div>
+<div class="calc-results" id="goal-out" aria-live="polite">
+<div id="goal-time-block">
+<p class="calc-k">大約需要</p>
+<p class="calc-num" id="goal-time">${esc(goalApi.formatDuration(demo.months))}</p>
+</div>
+<div id="goal-pay-block" hidden>
+<p class="calc-k">每月需投</p>
+<p class="calc-num" id="goal-monthly">—</p>
+</div>
+<div class="calc-stats">
+<div>
+<p class="calc-k" id="goal-value-label">達標時估值</p>
+<p class="calc-num" id="goal-fv">${esc(yuanText(demo.value))}</p>
+</div>
+<div>
+<p class="calc-k">投入合計</p>
+<p class="calc-num calc-num-sub" id="goal-contrib">${esc(yuanText(demo.contributed))}</p>
+</div>
+</div>
+<p class="calc-gap fv-up" id="goal-gap">高出投入 ${esc(yuanText(demo.gap))}</p>
+<p class="calc-cond" id="goal-cond">從 0 開始，每月月底投入 10,000 元，年報酬 5%、按月複利。約 ${esc(goalApi.formatDuration(demo.months))}（${demo.months} 個月）達標。</p>
+<p class="calc-hint" id="goal-round" hidden></p>
+<p class="calc-hint" id="goal-result-hint" hidden></p>
+<noscript><p class="calc-hint">瀏覽器沒開 JavaScript，不能改數字，下面的對照表也不會列出。畫面上這組是預設例子：目標 100 萬、每月 10,000 元、年報酬 5%。</p></noscript>
+</div>
+</div>
+<div class="calc-visual">
+<h2>每月這些金額，大約要多久</h2>
+<p class="sub">目標金額一改，下面就跟著重算。年報酬 3%、5%、7%，一樣是從 0 開始、按月複利、每月月底投入。</p>
+<div class="goal-tablewrap"><table class="goal-compare" id="goal-compare"><caption>依目標金額，看不同每月投入與年報酬大約要多久</caption><thead><tr><th scope="col">每月投入</th><th scope="col">3%</th><th scope="col">5%</th><th scope="col">7%</th></tr></thead><tbody id="goal-compare-body"></tbody></table></div>
+</div>
+<p class="goal-disclaimer">報酬是假設，不是保證；僅供教育參考，非投資建議。</p>
+<nav class="related-notes goal-reads" aria-labelledby="goal-related"><h2 id="goal-related">接著可以看</h2><ul>
+${relItem('learn/0050-intro/',a50.cat,a50.title)}
+${relItem('learn/what-is-etf/',aEtf.cat,aEtf.title)}
+${relItem('family/etf-types/','親子理財',familyApi.ETF_TITLE)}
+</ul></nav>
+</div></section>
+<script src="{R}assets/save-to-18.js"></script>`;
+}
 // HOME
-out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。不報明牌，只講你真的用得到的事。',jsonLd:websiteLd(),body:`
-<div class="hero"><div class="w herogrid"><div class="herotxt"><div class="tag">IG @slow.rich.notes</div><h1>投資不用急，<br><em>慢慢變有錢</em>就好。</h1><p>給投資新手的白話筆記：看懂名詞、建立觀念、找到自己的步調。<br>不報明牌，只講你真的用得到的事。</p><div class="btns"><a class="btn g" href="{R}lead/">免費領《投資新手入門清單》</a><a class="btn o" href="{R}learn/">從這裡開始</a></div><p style="margin:12px 0 0;font-size:15px">一人公司做事系統？<a href="{R}lead/oneperson/" style="color:#F59E0B;font-weight:700">領《一人公司：下載員工清單》</a></p></div><div class="mascot"><picture><source srcset="{R}assets/img/manman.webp" type="image/webp"><img src="{R}assets/img/manman.png" width="210" height="720" alt="品牌大使慢慢：綁馬尾、穿藍色上衣的女孩，微笑站著" fetchpriority="high" decoding="async"></picture></div></div></div>
+out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'資產要翻到 100 萬，每月該投入多少、該投多久？從 0 開始的教育試算，報酬是假設、不是保證。也有給投資新手的白話筆記。',jsonLd:websiteLd(),cssVer:'11',body:`
+${homeGoalSection()}
 <section><div class="w"><h2>第一次投資？從這三步開始</h2><p class="sub">照順序讀，先把基本觀念建立起來。</p><div class="grid g3">
 <a class="card" href="{R}learn/before-you-invest-3-things/"><div class="i">①</div><b>先顧好地基</b><p>緊急預備金、高利率負債、寫下目標，投資前先做好。</p><span class="more">閱讀 →</span></a>
 <a class="card" href="{R}terms/"><div class="i">②</div><b>看懂基本名詞</b><p>ETF、殖利率、本益比……用一句白話講清楚。</p><span class="more">打開股票新手翻譯器 →</span></a>
@@ -116,7 +224,6 @@ out.push(page({p:'',title:'慢慢變有錢｜投資新手的白話筆記',desc:'
 <section style="padding-top:0;padding-bottom:0"><div class="w"><div class="card" style="text-align:center"><h2>我們的承諾</h2><p>不報明牌・不帶單・不給買賣建議。只用白話，陪你慢慢建立自己的投資習慣。</p><a class="more" href="{R}about/">關於慢慢變有錢 →</a></div></div></section>`}));
 // LEARN
 // 親子理財「市值型 vs 高股息」的正規頁在 /family/etf-types/。這裡只在列表加一張卡，不進 articles.js，也不做 /learn/etf-types/ 轉址頁（列表不要求每張卡都有同名頁）。
-const familyApi=require('./family.js');
 out.push(page({p:'learn/',title:'新手入門筆記',desc:'給投資新手的白話文章：起步準備、觀念、工具與心態。',body:head('新手入門筆記','從零開始，一篇一篇慢慢讀。')+`<section><div class="w"><div class="grid g3">${ARTS.map(artCard).join('')}${familyApi.learnCard()}</div></div></section>`}));
 ARTS.forEach((a,i)=>{const rel=a.terms.length?`<h2>相關名詞</h2><div class="chips">${a.terms.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:'';
  const nav=`<p style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:24px">${i>0?`<a href="{R}learn/${ARTS[i-1].slug}/">← ${esc(ARTS[i-1].title)}</a>`:'<span></span>'}${i<ARTS.length-1?`<a href="{R}learn/${ARTS[i+1].slug}/">${esc(ARTS[i+1].title)} →</a>`:''}</p>`;
@@ -254,6 +361,31 @@ if(all.includes('learn/etf-types/'))throw new Error('sitemap 不該有 learn/etf
 if(all.includes('recommend/'))throw new Error('sitemap 不該有 recommend/');
 fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(p=>`<url><loc>${SITE_URL}/${p}</loc><lastmod>${lastmodFor(p)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+{
+  const home=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
+  const a50=artBySlug['0050-intro'];
+  const aEtf=artBySlug['what-is-etf'];
+  for(const needle of [
+    '資產要翻到 <em>100 萬</em>，<br>每月該投入多少、該投多久？',
+    '報酬是假設，不是保證；僅供教育參考，非投資建議。',
+    'href="./learn/0050-intro/"',
+    'href="./learn/what-is-etf/"',
+    'href="./family/etf-types/"',
+    a50.title,
+    aEtf.title,
+    familyApi.ETF_TITLE,
+    '第一次投資？從這三步開始',
+    '我們的承諾',
+    'src="./assets/save-to-18.js"',
+    'id="goal-compare-body"></tbody>'
+  ]){
+    if(!home.includes(needle))throw new Error('首頁試算缺：'+needle);
+  }
+  if(home.includes('投資不用急'))throw new Error('舊的首頁開頭還在');
+  if(home.includes('一人公司'))throw new Error('舊的首頁開頭還在');
+  const tableBody=home.split('id="goal-compare-body">')[1].split('</tbody>')[0];
+  if(tableBody.trim())throw new Error('對照表不該寫死數字');
+}
 const skippedBi=G.terms.filter(t=>!termBilingual(t));
 console.log('pages',all.length,'terms',G.terms.length,'articles',ARTS.length,'notes',NOTES.length);
 console.log('bilingual',G.terms.length-skippedBi.length,'skipped',skippedBi.map(t=>t.id+':'+t.name).join('、')||'none');

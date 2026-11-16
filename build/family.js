@@ -352,7 +352,10 @@ function verifyFamily(SITE_URL) {
   verifyLearnListing();
   const home = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
   if (!home.includes('>親子理財</a>')) throw new Error('首頁導覽沒有親子理財');
-  if (home.includes('etf-types')) throw new Error('這篇不該出現在首頁最新筆記');
+  const latestStart = home.indexOf('<h2>最新筆記</h2>');
+  const notesStart = home.indexOf('<h2>筆記</h2>');
+  if (latestStart < 0 || notesStart < latestStart) throw new Error('首頁最新筆記區塊不見了');
+  if (home.slice(latestStart, notesStart).includes('etf-types')) throw new Error('這篇不該出現在首頁最新筆記');
 }
 
 function verifyEtfArticle(html, SITE_URL) {
