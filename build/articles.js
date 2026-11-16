@@ -194,4 +194,126 @@ ${'EX2'}
 </div>
 <figcaption>重點整理，不是推薦。持股比重資料日 2026/11/13，元大投信。</figcaption>
 </figure>`},
+{slug:'0056-intro',n:14,cat:'名詞',title:'0056 裡面，權重最高的不是台積電，是南亞約 10%',desc:'0056 是台灣規模第 2 大 ETF，追蹤臺灣高股息指數。白話看懂它怎麼選股、為什麼最大持股是南亞、和 0050 的權重差在哪，以及季配和費用怎麼算。',coverAlt:'0056 裡面，權重最高的不是台積電，是南亞約 10%（台灣 ETF 規模排名 ②）',terms:['t40','t15'],body:`
+<figure class="fig">
+<div class="facts" role="img" aria-label="規模約 8,057 億元，資料日 2026/11/13。上市 2007/12/26。成分股 50 檔。2023/7/18 起季配。">
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="7" ry="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span><span class="k">規模約</span><span class="v">8,057 億</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3.5v3M16 3.5v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="k">上市</span><span class="v">2007/12/26</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.4" fill="currentColor"/></svg></span><span class="k">成分股</span><span class="v">50 檔</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 4a8 8 0 0 1 8 8h-8z" fill="currentColor"/></svg></span><span class="k">季配</span><span class="v">2023/7/18 起</span></div>
+</div>
+<figcaption>規模資料日 2026/11/13。來源：元大投信、證交所 ETF e添富。</figcaption>
+</figure>
+<h2>規模第 2，先搞懂它買了什麼</h2>
+<p>0056 的全名是「元大台灣高股息」，2007 年 12 月 13 日成立、12 月 26 日上市，成立價 25 元，上市價 25.33 元。截至 2026 年 11 月 13 日，規模約 8,056.99 億元，是目前台灣上市櫃 ETF 裡第 2 大；同一天證交所揭露的受益人次是 179.39 萬人。</p>
+<p>規模第 2 只說明很多人把錢放在這裡，不代表它適合每一個人，也不是推薦。如果還不太確定 ETF 是什麼，可以先看<a href="{R}learn/what-is-etf/">ETF 是什麼？一次看懂</a>。</p>
+<h2>幾個關鍵節點</h2>
+<ul>
+<li>2007/12/26：0056 上市，追蹤臺灣高股息指數。</li>
+<li>2022/12/19：指數成分股從 30 檔增加到 50 檔（有 5 個交易日的過渡期）。</li>
+<li>2023/7/18：由一年配一次改成每季收益分配（金管會 2023/5/26 同意）。</li>
+<li>2025/12 審查起：指數新增一些資格條件，例如須在臺灣註冊、要能取得未來股利預估；選股主軸仍是預測現金股利殖利率，沒有改成看歷史殖利率。</li>
+<li>2026/11/13：規模約 8,057 億元。</li>
+</ul>
+<figure class="fig">
+<ol class="timeline" role="img" aria-label="2007/12/26 上市。2022/12/19 成分股從 30 檔增加到 50 檔。2023/7/18 改成每季收益分配。2025/12 審查起新增資格條件。2026/11/13 規模約 8,057 億元。">
+<li><b>2007/12/26</b><span>上市</span></li>
+<li><b>2022/12/19</b><span>成分股 30→50 檔</span></li>
+<li><b>2023/7/18</b><span>改季配</span></li>
+<li><b>2025/12</b><span>審查起新增<br>資格條件</span></li>
+<li><b>2026/11/13</b><span>規模約 8,057 億</span></li>
+</ol>
+<figcaption>資料日見各節點。來源：元大投信、證交所 ETF e添富、臺灣指數公司。</figcaption>
+</figure>
+<p>這些是產品史上的節點，不是進出場訊號。</p>
+<h2>這 50 家公司怎麼選、多久換一次</h2>
+<p>臺灣高股息指數由證交所和富時一起編製。母體是臺灣50加上臺灣中型100，大約是上市股票裡總市值最大的 150 家；再從裡面選出未來 12 個月預測現金股利殖利率較高的 50 檔，權重也依這項殖利率分配，不是誰市值大就占越多。預測數字來自指數公司採用的分析師平均預估，不是 0056 經理人自己猜。</p>
+<p>成分股半年調整一次，在每年 6 月、12 月，該月第 3 個星期五收盤後生效，再用 5 個交易日把權重調整到位。最近一次半年定審自 2026 年 6 月 22 日起生效，新增 5 檔、刪除 4 檔。誰進誰出，要以指數公司公告為準。</p>
+<figure class="fig">
+<div class="flow" role="img" aria-label="臺灣50加臺灣中型100，約 150 家，依未來 12 個月預測現金股利殖利率排序，選出 50 檔，依殖利率加權，每年 6、12 月定審。">
+<div class="flow-row">
+<div class="step"><small>母體</small><b>約 150 家</b><span>臺灣50＋<br>臺灣中型100</span></div>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="step"><small>排序</small><b>未來<br>12 個月</b><span>預測現金股利<br>殖利率</span></div>
+</div>
+<div class="flow-row" style="margin-top:8px">
+<div class="step"><small>選出</small><b>50 檔</b></div>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="step after"><small>加權</small><b>依殖利率</b></div>
+</div>
+<p class="same">每年 6、12 月定審</p>
+</div>
+<figcaption>來源：臺灣指數公司臺灣高股息指數。誰進誰出，以指數公司公告為準。</figcaption>
+</figure>
+<h2>最新前 10 大持股</h2>
+<p>2026 年 11 月 13 日元大官網持股：</p>
+<ol>
+<li>南亞 10.25%</li>
+<li>華南金 4.82%</li>
+<li>中信金 4.52%</li>
+<li>永豐金 4.39%</li>
+<li>華碩 4.00%</li>
+<li>兆豐金 3.96%</li>
+<li>緯創 3.50%</li>
+<li>長榮 3.31%</li>
+<li>南亞科 3.29%</li>
+<li>廣達 3.07%</li>
+</ol>
+<figure class="fig">
+<div class="bars" role="img" aria-label="持股比重：南亞 10.25%，華南金 4.82%，中信金 4.52%，永豐金 4.39%，華碩 4.00%，兆豐金 3.96%，緯創 3.50%，長榮 3.31%，南亞科 3.29%，廣達 3.07%。">
+<div class="row"><span class="name">南亞</span><span class="track"><span class="fill" style="width:10.25%"></span></span><span class="num">10.25%</span></div>
+<div class="row"><span class="name">華南金</span><span class="track"><span class="fill" style="width:4.82%"></span></span><span class="num">4.82%</span></div>
+<div class="row"><span class="name">中信金</span><span class="track"><span class="fill" style="width:4.52%"></span></span><span class="num">4.52%</span></div>
+<div class="row"><span class="name">永豐金</span><span class="track"><span class="fill" style="width:4.39%"></span></span><span class="num">4.39%</span></div>
+<div class="row"><span class="name">華碩</span><span class="track"><span class="fill" style="width:4%"></span></span><span class="num">4.00%</span></div>
+<div class="row"><span class="name">兆豐金</span><span class="track"><span class="fill" style="width:3.96%"></span></span><span class="num">3.96%</span></div>
+<div class="row"><span class="name">緯創</span><span class="track"><span class="fill" style="width:3.5%"></span></span><span class="num">3.50%</span></div>
+<div class="row"><span class="name">長榮</span><span class="track"><span class="fill" style="width:3.31%"></span></span><span class="num">3.31%</span></div>
+<div class="row"><span class="name">南亞科</span><span class="track"><span class="fill" style="width:3.29%"></span></span><span class="num">3.29%</span></div>
+<div class="row"><span class="name">廣達</span><span class="track"><span class="fill" style="width:3.07%"></span></span><span class="num">3.07%</span></div>
+</div>
+<figcaption>資料日 2026/11/13，元大投信持股比重；權重每天變動。</figcaption>
+</figure>
+<p>前 5 大合計約 28%，前 10 大合計約 45%，前 10 名裡就有 4 家金融控股公司。權重每天都可能變，看的時候請回到元大官網對最新的表。</p>
+<h2>不是比較會配息的 0050</h2>
+<p>0050 追蹤臺灣50，是市值加權：公司越大，通常占越多。同一天 0050 光是台積電就占約 58.46%，前 5 大合計約 72%（詳見<a href="{R}learn/0050-intro/">台灣第一檔 ETF：0050 從 2003 走到今天</a>）。0056 則是殖利率加權，最大持股南亞約 10.25%，前 5 大合計約 28%。</p>
+<figure class="fig">
+<div class="stack" role="img" aria-label="0056 南亞 10.25%，其餘 89.75%">
+<div class="stack-bar"><i class="a" style="width:10.25%"></i><i class="b" style="width:89.75%"></i></div>
+<ul class="stack-key"><li>0056 南亞 10.25%</li><li class="b">其餘 89.75%</li></ul>
+</div>
+<div class="stack" role="img" aria-label="0050 台積電 58.46%，其餘 41.54%" style="margin-top:14px">
+<div class="stack-bar"><i class="a" style="width:58.46%"></i><i class="b" style="width:41.54%"></i></div>
+<ul class="stack-key"><li>0050 台積電 58.46%</li><li class="b">其餘 41.54%</li></ul>
+</div>
+<figcaption>資料日 2026/11/13，元大投信持股比重；權重每天變動。</figcaption>
+</figure>
+<p>所以 0056 比較接近「用一個籃子持有預測殖利率較高的中大型股」，不是 50 家各買一份，也不是同一批大公司只是比較會配息。官方也提醒，這種 Smart Beta 指數在某些市場環境下可能落後市值加權指數，且情況可能持續很長一段時間，也可能持有較多市值較小的公司。兩種類型的差別，可以看<a href="{R}family/etf-types/">市值型 vs 高股息 ETF 差在哪</a>。</p>
+<h2>現在是季配，息從淨值扣</h2>
+<p>2026 年四次發放日是 2/11、5/14、8/10、11/11；最近一次除息交易日是 10/22。配息金額會從 ETF 淨值扣除，不是額外多出來的錢，來源也可能包含收益平準金。要不要配、配多少，都以投信公告為準，並無保證。看高股息 ETF，除了看配息次數，也要一起看淨值怎麼變。</p>
+<h2>費用從淨值裡扣</h2>
+<p>經理費分段計算：規模 100 億元以內的部分 0.40%，100 億到 300 億的部分 0.34%，超過 300 億的部分 0.30%。保管費固定 0.035%。官網沒有另外揭示「合計約多少％」的單一數字，實際以公開說明書和發行人公告為準。</p>
+<figure class="fig">
+<table class="t">
+<thead><tr><th>費用</th><th>級距</th><th>費率</th></tr></thead>
+<tbody>
+<tr><td>經理費</td><td>100 億元以內</td><td>0.40%</td></tr>
+<tr><td>經理費</td><td>100 億到 300 億</td><td>0.34%</td></tr>
+<tr><td>經理費</td><td>超過 300 億</td><td>0.30%</td></tr>
+<tr><td>保管費</td><td>固定</td><td>0.035%</td></tr>
+</tbody>
+</table>
+<figcaption>依規模分段加總；保管費固定。以公開說明書和發行人公告為準。</figcaption>
+</figure>
+<h2>一句話記住</h2>
+<p>這是「台灣 ETF 規模排名」第 2 集，下一集是 00878 國泰永續高股息。名次會變，數字請以當日官方揭露為準。搞懂 0056，先看它追蹤誰、權重怎麼分配：你買到的是「預測現金股利殖利率較高的 50 家」這套規則，不是 50 張平均的高息股清單。</p>
+<figure class="fig">
+<div class="facts" role="img" aria-label="一，殖利率加權，預測現金股利殖利率較高的 50 家。二，最大持股是南亞約 10%，不是台積電。三，規模第 2 只是現況，不是推薦。">
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V8l5-3v15M9 20V5l6 3v12M15 20V9l5 2v9M3 20h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="v">① 殖利率加權，預測現金股利殖利率較高的 50 家</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 14a7 7 0 1 1 12.4-4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 12l6.2-3.2A7 7 0 0 1 12 19z" fill="currentColor"/></svg></span><span class="v">② 最大持股是南亞約 10%，不是台積電</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v6M12 8h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="v">③ 規模第 2 只是現況，不是推薦</span></div>
+</div>
+<figcaption>重點整理，不是推薦。持股比重資料日 2026/11/13，元大投信。</figcaption>
+</figure>
+<p>來源：元大投信 0056 基本資訊與持股比重（資料日 2026/11/13）、證交所 ETF e添富 0056 商品頁、臺灣指數公司臺灣高股息指數基本規則 V4.1 與定審公告（2022/12/02、2026/06/05）、證交所 2025/10/01 基本規則更新說明、證交所 e添富〈收益平準金對ETF之功用〉。</p>`},
 ];
