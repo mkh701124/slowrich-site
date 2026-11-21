@@ -7,6 +7,7 @@
 // before-you-invest-3-things、10-terms-for-financial-news、dca-vs-lump-sum、what-is-a-stock、
 // compound-interest、5-beginner-mistakes、what-is-etf、open-brokerage-account、5-questions-before-investing、
 // twd-fx-outflow、national-security-fund-what、berkshire-q3-buyback、0050-intro、0056-intro。
+// ai-ban-skynet-1122 從一開始就只在 /learn/，/notes/ 同名網址只做轉址，不要寫進本檔。
 module.exports = [
 {
   slug:'tw-drop-1120',
@@ -290,6 +291,7 @@ module.exports = [
 <p>市場更在意的往往是「州」這一層。數據公司 Cleanview 估計，約 158.6 GW、占全美規劃容量約 41% 的資料中心，落在 9 個州長已暫停或承諾暫停的州；其中德州約 88.4 GW。他們也強調：這是暴露在政策風險下，不是預測全部會取消；全國約 56.7 GW 已在興建中的，受影響較小。換句話說，41% 不是「已經蓋不成」。</p>
 <p>台灣新手讀這則新聞時，常會看到供應鏈被一起討論，例如 AI 晶片代工、伺服器組裝多和台灣有關。這只是在說明新聞為什麼提到台灣，不是進出場建議。比較實用的分法是：聯邦「20 年刑責」仍在委員會；但部分州對尚未接電、還在等許可的新建資料中心，已經先踩煞車。還沒成聯邦法，不等於州層級完全沒變。</p>
 <p>聽新聞時先分兩層：國會草案還在走程序；州對資料中心的暫停，已經在部分地方發生。一次波動不代表長期結論，也別因為單一標題就追高殺低。想理解科技股消息為什麼常牽動台股，可以再看<a href="{R}notes/tw-stocks-7th-biggest-drop/">台股史上第 7 大跌點</a>那篇；如果是公司財報數字和市場預期對不上，可以對照<a href="{R}notes/intel-guidance-earnings/">英特爾財測</a>那篇。跌了多少才叫回檔或修正，也有一篇說明<a href="{R}notes/pullback-correction-bear/">回檔、修正和熊市差在哪</a>。</p>
+<p>想看 ANI、AGI、ASI 分級與條文拆解的加深版，可以看<a href="{R}learn/ai-ban-skynet-1122/">美國要立法禁天網？先分清 ANI、AGI、ASI</a>。</p>
 <p>剛開始接觸投資的話，可以先<a href="{R}lead/">免費領取《投資新手入門清單》</a>。</p>`
 },
 {

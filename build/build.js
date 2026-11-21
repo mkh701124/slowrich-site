@@ -12,7 +12,7 @@ require('./goal-1m.test.js');
 const noteSlugOk=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;const noteSeen=new Set();
 for(const n of NOTES){if(!noteSlugOk.test(n.slug)||noteSeen.has(n.slug))throw new Error('note slug 須為 ASCII kebab-case 且不可重複：'+n.slug);noteSeen.add(n.slug);if(!fs.existsSync(path.join(ROOT,'notes',n.slug,'cover.png')))throw new Error('缺少筆記封面：notes/'+n.slug+'/cover.png');}
 // 與 /learn/ 重複、已從 build/notes.js 移除的舊網址。GitHub Pages 沒有 301，只留 meta refresh 殘頁。
-const NOTE_REDIRECTS=['before-you-invest-3-things','10-terms-for-financial-news','dca-vs-lump-sum','what-is-a-stock','compound-interest','5-beginner-mistakes','what-is-etf','open-brokerage-account','5-questions-before-investing','twd-fx-outflow','national-security-fund-what','berkshire-q3-buyback','0050-intro','0056-intro'];
+const NOTE_REDIRECTS=['before-you-invest-3-things','10-terms-for-financial-news','dca-vs-lump-sum','what-is-a-stock','compound-interest','5-beginner-mistakes','what-is-etf','open-brokerage-account','5-questions-before-investing','twd-fx-outflow','national-security-fund-what','berkshire-q3-buyback','0050-intro','0056-intro','ai-ban-skynet-1122'];
 const artBySlug=Object.fromEntries(ARTS.map(a=>[a.slug,a]));
 const familyApi=require('./family.js');
 for(const s of NOTE_REDIRECTS){
@@ -228,7 +228,7 @@ out.push(page({p:'learn/',title:'新手入門筆記',desc:'給投資新手的白
 ARTS.forEach((a,i)=>{const rel=a.terms.length?`<h2>相關名詞</h2><div class="chips">${a.terms.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:'';
  const nav=`<p style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:24px">${i>0?`<a href="{R}learn/${ARTS[i-1].slug}/">← ${esc(ARTS[i-1].title)}</a>`:'<span></span>'}${i<ARTS.length-1?`<a href="{R}learn/${ARTS[i+1].slug}/">${esc(ARTS[i+1].title)} →</a>`:''}</p>`;
  const learnUrl=SITE_URL+'/learn/'+a.slug+'/';
- out.push(page({p:`learn/${a.slug}/`,type:'article',title:a.title,desc:a.desc,cssVer:'10',igCta:igReturnBlock(a),jsonLd:articleLd({headline:a.title,description:a.desc,url:learnUrl,crumbs:crumbLd('新手入門',SITE_URL+'/learn/',a.title,learnUrl)}),body:head(esc(a.title),esc(a.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}learn/">新手入門</a> › ${a.cat}</div>`)+`<div class="w narrow"><article class="prose">${a.body}${rel}<div class="warn">⚠️ 本內容僅供教育參考，非投資建議，投資有風險，請自行評估。</div>${nav}</article></div>`}));});
+ out.push(page({p:`learn/${a.slug}/`,type:'article',title:a.title,desc:a.desc,cssVer:a.cssVer||'10',igCta:igReturnBlock(a),jsonLd:articleLd({headline:a.title,description:a.desc,url:learnUrl,crumbs:crumbLd('新手入門',SITE_URL+'/learn/',a.title,learnUrl)}),body:head(esc(a.title),esc(a.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}learn/">新手入門</a> › ${a.cat}</div>`)+`<div class="w narrow"><article class="prose">${a.body}${rel}<div class="warn">⚠️ 本內容僅供教育參考，非投資建議，投資有風險，請自行評估。</div>${nav}</article></div>`}));});
 // NOTES（IG 短文；/learn/ 課程文保持不變）
 // 筆記列表只交叉連結既有 /learn/ 文章（NOTE_REDIRECTS），不寫回 build/notes.js、也不當權威筆記頁。
 const learnCrossLinks=NOTE_REDIRECTS.map(s=>artCard(artBySlug[s])).join('');
