@@ -9,6 +9,102 @@
 // twd-fx-outflow、national-security-fund-what、berkshire-q3-buyback、0050-intro、0056-intro。
 module.exports = [
 {
+  slug:'tw-drop-1120',
+  cat:'新聞',
+  title:'一周蒸發 17.5%、7,641 點！限空令擋不住，大跌日最不該做的事',
+  desc:'11/20 加權收 36,033.29 點，跌 2,393.60 點、跌幅 6.23%；本周跌 7,641.83 點、約 17.5%。白話分清跌點和跌幅、算跌了要漲多少才回本，以及大跌日先看預備金、定期定額和部位，而不是恐慌賣光或融資攤平。',
+  coverAlt:'封面綠色大字 17.5%，標題寫一周蒸發 17.5%、7,641 點，副標是限空令擋不住、大跌日最不該做的事',
+  w:1080,h:1350,
+  body:`
+<p>如果你現在看著帳戶，胸口有點緊，這很正常。一天少了兩千多點、一周少了約一成七，很容易想立刻做點什麼。先停一下：這篇不猜明天漲跌，也不叫你買或賣。只把 11/20 收盤的數字拆開，看大跌日最不該做的事。</p>
+<h2>今天收盤發生了什麼</h2>
+<p>加權指數收 36,033.29 點，跌 2,393.60 點、跌幅 6.23%。開盤 37,646.13 就是當天最高，最低 35,738.68。從昨收 38,426.89 算到這個低點，盤中最多跌過 2,688.21 點，尾盤回到 3 萬 6 附近。證交所市場成交總計 9,323.21 億元。這是收盤數字，不是盤中暫值。</p>
+<figure class="fig">
+<div class="facts" role="img" aria-label="11/20 加權收 36,033.29 點，跌 2,393.60 點，跌幅 6.23%，成交總計 9,323.21 億元">
+<div class="fact"><span class="k">收盤</span><span class="v">36,033.29</span></div>
+<div class="fact"><span class="k">跌點</span><span class="v"><span class="fv-down">−2,393.60</span></span></div>
+<div class="fact"><span class="k">跌幅</span><span class="v"><span class="fv-down">−6.23%</span></span></div>
+<div class="fact"><span class="k">成交總計</span><span class="v">9,323.21 億</span></div>
+</div>
+<figcaption>2026/11/20 收盤，證交所。綠字是下跌。</figcaption>
+</figure>
+<h2>跌點很大，不等於跌幅創紀錄</h2>
+<p>跌點是少了幾點，跌幅是少了百分之幾。指數已在三、四萬點，同樣的百分比換成點數就會很大。依證交所收盤跌點，前三名是 7/17 的 2,953.71 點（收 42,671.27）、11/16 的 2,635.04 點（收 41,040.08）、以及今天的 2,393.60 點。多家媒體因此寫「史上第三大收盤跌點」。點數排第三，跌幅仍是 6.23%，兩件事不要混在一起。跌多少才叫回檔、修正或熊市，可看<a href="{R}notes/pullback-correction-bear/">回檔、修正和熊市差在哪</a>。</p>
+<figure class="fig">
+<div class="bars" role="img" aria-label="收盤跌點：7/17 為 2,953.71 點，11/16 為 2,635.04 點，11/20 為 2,393.60 點">
+<div class="row"><span class="name">7/17</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="num"><span class="fv-down">−2,953.71</span></span></div>
+<div class="row"><span class="name">11/16</span><span class="track"><span class="fill" style="width:89.2%"></span></span><span class="num"><span class="fv-down">−2,635.04</span></span></div>
+<div class="row"><span class="name">11/20</span><span class="track"><span class="fill" style="width:81%"></span></span><span class="num"><span class="fv-down">−2,393.60</span></span></div>
+</div>
+<figcaption>證交所收盤跌點。長條只比較點數，不是跌幅。</figcaption>
+</figure>
+<h2>這一周：五天跌了四天</h2>
+<p>跟上週五（11/13）收盤 43,675.12 比，一周少了 7,641.83 點，精確 17.50%。五個交易日跌四天，只有週三漲 102.80 點。單日點數很刺眼，這一周的百分比才看得出深度。</p>
+<figure class="fig">
+<ol class="timeline" role="img" aria-label="11/16 收 41,040.08 跌 2,635.04；11/17 收 40,092.11 跌 947.97；11/18 收 40,194.91 漲 102.80；11/19 收 38,426.89 跌 1,768.02；11/20 收 36,033.29 跌 2,393.60">
+<li><b>11/16</b><span>41,040.08</span><span class="fv-down">−2,635.04</span></li>
+<li><b>11/17</b><span>40,092.11</span><span class="fv-down">−947.97</span></li>
+<li><b>11/18</b><span>40,194.91</span><span class="fv-up">+102.80</span></li>
+<li><b>11/19</b><span>38,426.89</span><span class="fv-down">−1,768.02</span></li>
+<li><b>11/20</b><span>36,033.29</span><span class="fv-down">−2,393.60</span></li>
+</ol>
+<figcaption>本周收盤，證交所。紅漲、綠跌。</figcaption>
+</figure>
+<figure class="fig">
+<div class="stack" role="img" aria-label="五個交易日裡四天收跌、一天收漲">
+<div class="stack-bar"><i class="a" style="width:80%"></i><i class="b" style="width:20%"></i></div>
+<ul class="stack-key"><li><span class="fv-down">四天收跌</span></li><li class="b"><span class="fv-up">一天收漲</span></li></ul>
+</div>
+<figcaption>只算這五天的漲跌天數，不是後市預測。</figcaption>
+</figure>
+<p>上市股票 16 家上漲（漲停 4 家）、1,058 家下跌（跌停 179 家）、11 家持平。櫃買指數收 263.31，跌 22.02 點、跌幅 7.72%，成交 860.11 億元，比加權的 6.23% 更深。成交較薄的股票，急著賣時往往跌更重。權值最大的台積電收 2,000 元，跌 100 元、跌幅 4.76%，盤中最低 1,970；這裡只當指數背景，不是談這檔怎麼做。</p>
+<figure class="fig">
+<div class="facts" role="img" aria-label="上市上漲 16 家、下跌 1,058 家、跌停 179 家，櫃買跌幅 7.72%">
+<div class="fact"><span class="k">上漲</span><span class="v"><span class="fv-up">16 家</span></span></div>
+<div class="fact"><span class="k">下跌</span><span class="v"><span class="fv-down">1,058 家</span></span></div>
+<div class="fact"><span class="k">跌停</span><span class="v"><span class="fv-down">179 家</span></span></div>
+<div class="fact"><span class="k">櫃買</span><span class="v"><span class="fv-down">−7.72%</span></span></div>
+</div>
+<figcaption>證交所上市股票家數；櫃買中心 2026/11/20。</figcaption>
+</figure>
+<h2>跌了 X%，要漲 X÷(100−X) 才回本</h2>
+<p>報酬不是對稱的。跌了 X%，要回到原點，得再漲 X ÷ (100 − X)，不是再漲同一個 X%。今天跌 6.23%，2,393.60 ÷ 36,033.29 約 6.64%，要漲約 6.6% 才回到開跌前。本周跌 17.50%，7,641.83 ÷ 36,033.29 約 21.2%。從 10/6 收盤高點 49,822.55（盤中最高 49,968.92）算到今天，累跌 13,789.26 點、約 27.7%，漲回該收盤大約要 38.3%。這是數學，不是預測何時會漲回來，也不是叫你現在動作。</p>
+<figure class="fig">
+<table class="t">
+<thead><tr><th>已經跌了</th><th>要漲回</th></tr></thead>
+<tbody>
+<tr><td>今天 6.23%</td><td>約 6.6%</td></tr>
+<tr><td>本周 17.50%</td><td>約 21.2%</td></tr>
+<tr><td>自 10/6 的 27.7%</td><td>約 38.3%</td></tr>
+</tbody>
+</table>
+<figcaption>公式 X÷(100−X)，以 11/20 收盤覆核。不是預測。</figcaption>
+</figure>
+<figure class="fig">
+<div class="flow" role="img" aria-label="本周跌 17.50%，要漲約 21.2% 才回到上週五收盤，不是再漲 17.5%">
+<div class="flow-row">
+<div class="step"><small>本周跌了</small><b><span class="fv-down">17.50%</span></b><span>7,641.83 點</span></div>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="step after"><small>打平要漲</small><b>約 21.2%</b><span>不是 17.5%</span></div>
+</div>
+<p class="same">跌 X%，要漲 X ÷ (100 − X)</p>
+</div>
+<figcaption>21.2% 是 7,641.83÷36,033.29。數學，不是預測。</figcaption>
+</figure>
+<h2>限空令不是安全網</h2>
+<p>11/19 美股四大指數都跌超過 2%：道瓊 49,097.06（−1,101.11、−2.19%）、標普 7,175.83（−147.80、−2.02%）、那斯達克 23,879.20（−550.69、−2.25%）、費半 9,419.72（−233.07、約 −2.42%），台積電 ADR −2.90%。台股跳空開低，和隔夜走弱是同一天看到的事，不能單一一句定論，也不能保證明天。</p>
+<p>金管會 11/19 宣布、11/20 上路的限空措施：個股收盤跌幅達 3.5% 以上，次一交易日不得低於前收盤放空；盤中借券賣出上限由前 30 日均量的 3% 降到 1%。規則當天有效，加權仍跌 2,393.60 點。政策改的是部分交易規則，不是保證指數不跌。</p>
+<p>國安基金今天買了沒有、買多少，沒有官方當日明細，這裡不猜。先前談過<a href="{R}learn/national-security-fund-what/">國安基金是什麼</a>：授權也不等於你的部位有人托住。不要把「有人護盤」或「不能隨便放空」當成自己的安全網。</p>
+<h2>大跌日先看這三件，另外三件別做</h2>
+<ul>
+<li>緊急預備金還在不在。生活和短期要用的錢，不要拿去跟市場對賭。</li>
+<li>定期定額若本來就有計畫，照紀律走：不要因一天新聞停扣，也不要一次砸進很多個月的錢。可以看<a href="{R}learn/dca-vs-lump-sum/">定期定額和單筆投入</a>。</li>
+<li>部位集中度。太壓在單一題材或少數幾檔，指數跌一截，帳戶會更有感。</li>
+</ul>
+<p>不要因為恐慌一次賣光。不要借錢，也不要用融資攤平：跌愈多愈補，虧損被放大，補不出錢時股票可能被券商賣掉，可看<a href="{R}notes/margin-call-what/">融資斷頭是什麼</a>。不要把「第三大跌點」當成明天一定反彈或一定再崩。</p>
+<p>先分清跌了幾點、跌了幾 %，再用跌 X% 要漲 X÷(100−X) 算打平需要的漲幅。搞懂數字，比猜明天紅綠更重要。還在補基本功的話，可以<a href="{R}lead/">免費領取《投資新手入門清單》</a>。</p>`
+},
+{
   slug:'nvda-earnings',
   cat:'新聞',
   title:'一周少了約 5,730 億美元：輝達要交出沒有黃仁勳的成績單',
