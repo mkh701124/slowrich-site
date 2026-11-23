@@ -9,6 +9,128 @@
 // twd-fx-outflow、national-security-fund-what、berkshire-q3-buyback、0050-intro、0056-intro。
 module.exports = [
 {
+  slug:'bottom-signals-1123',
+  igUrl:'',
+  cat:'新聞',
+  title:'大跌之後，止跌訊號可以看哪些？',
+  desc:'11/23 收盤的止跌觀察儀表板。今天收紅 778 點，但早盤已跌破上週低點。用 8 盞燈看融資、外資、量能、恐慌指數、K 線、海外股市、新台幣和國安基金：這是觀察清單，不是買進訊號。',
+  coverAlt:'封面主標「大跌之後，止跌訊號可以看哪些？」，小字「今天 +778，早盤已破前低」。8 盞燈多數是空心，量能與新台幣標問號，長下影半亮，國安基金標在場不等於見底。',
+  w:1080,h:1350,
+  body:`
+<p>今天收盤看到紅字，心情會鬆一點，這很正常。今天收紅 778 點：加權收在 36,811.89，漲 778.60 點、漲幅 2.16%。可是早盤最低 35,442.41，已經跌破<a href="{R}notes/tw-drop-1120/">上週五大跌</a>那天的低點 35,738.68。反彈這麼大，就是止跌了嗎？先不要急。這是觀察清單，不是買進訊號。</p>
+<figure class="fig">
+<div class="facts" role="img" aria-label="11/23 加權收 36,811.89，漲 778.60 點、漲幅 2.16%，最低 35,442.41，外資賣超 289 億，台指 VIX 55.36，新台幣 32.895">
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 16l5-5 3 3 8-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="k">加權收盤</span><span class="v">36,811.89</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V6M7 10l5-5 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="k">漲跌</span><span class="v"><span class="fv-up">+778.60</span></span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="k">漲幅</span><span class="v"><span class="fv-up">+2.16%</span></span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 17h16M7 17V9M12 17V6M17 17v-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="k">最低</span><span class="v">35,442.41</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 12h8M13 8l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="k">外資賣超</span><span class="v"><span class="fv-down">289 億</span></span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 16a7 7 0 0 1 14 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 16l4-6" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="k">台指 VIX</span><span class="v">55.36</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 12h6" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="k">新台幣</span><span class="v">32.895</span></div>
+</div>
+<figcaption>11/23 收盤。紅字是上漲，綠字是賣超。台指 VIX 升高不塗成紅。</figcaption>
+</figure>
+<p>用 8 盞燈一起看。狀態分成空心、問號、半亮，還有「在場≠見底」。問號只代表有一點跡象，還不能算亮。不要把任何一盞當成買進訊號。</p>
+<figure class="fig">
+<div class="facts" role="img" aria-label="8 盞燈：融資、外資、恐慌指數、費半美股韓股是空心；量能與新台幣是問號；長下影與跳空回補是半亮；國安基金是在場不等於見底">
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#fff" stroke="currentColor" stroke-width="1.8"/></svg></span><span class="k">1 融資／維持率</span><span class="v">空心</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#fff" stroke="currentColor" stroke-width="1.8"/></svg></span><span class="k">2 外資動向</span><span class="v">空心</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.8"/><text x="12" y="16.4" text-anchor="middle" font-size="13" font-weight="700" fill="#1E3A8A">?</text></svg></span><span class="k">3 量能</span><span class="v">問號</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#fff" stroke="currentColor" stroke-width="1.8"/></svg></span><span class="k">4 恐慌指數</span><span class="v">空心</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#fff" stroke="currentColor" stroke-width="1.8"/><path fill="#F59E0B" d="M4 12a8 8 0 0 0 16 0z"/></svg></span><span class="k">5 長下影與回補</span><span class="v">半亮</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#fff" stroke="currentColor" stroke-width="1.8"/></svg></span><span class="k">6 費半／美股／韓股</span><span class="v">空心</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.8"/><text x="12" y="16.4" text-anchor="middle" font-size="13" font-weight="700" fill="#1E3A8A">?</text></svg></span><span class="k">7 新台幣</span><span class="v">問號</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#F59E0B"/><path d="M7.5 12h9" stroke="#1E3A8A" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="k">8 國安基金／限空</span><span class="v">在場≠見底</span></div>
+</div>
+<figcaption>空心是還沒出現，問號是只有一點跡象，半亮是有但不完整。金色只標狀態，不代表可以買。</figcaption>
+</figure>
+<h2>融資／維持率：空心</h2>
+<p>這盞看借錢買股的賣壓有沒有減輕，維持率有沒有從低檔回升。上週五上市融資一天少 491 億，6,462 戶被追繳，還不能說見底回升。11/23 融資餘額官方尚未公布，所以是空心。被追繳時股票為什麼會被賣掉，可以看<a href="{R}notes/margin-call-what/">融資追繳</a>。</p>
+<h2>外資動向：空心</h2>
+<p>這盞看賣超有沒有縮小，或轉成連續買超。指數漲，外資卻賣超 289 億，比上週五的 95.11 億還多。指數紅、外資還在賣，這盞沒亮。</p>
+<figure class="fig">
+<div class="bars" role="img" aria-label="11/23 外資賣超 289 億，11/20 外資賣超 95.11 億">
+<div class="row"><span class="name">11/23</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="num"><span class="fv-down">289 億</span></span></div>
+<div class="row is-ref"><span class="name">11/20</span><span class="track"><span class="fill" style="width:32.9%"></span></span><span class="num"><span class="fv-down">95.11 億</span></span></div>
+</div>
+<figcaption>外資賣超，證交所。金色長條是上週五對照。綠字是賣超，不是股價下跌。</figcaption>
+</figure>
+<h2>量能：問號</h2>
+<p>這盞看上漲時成交有沒有放大。今天上漲，成交 1兆1,066.77 億，大於上週五的 9,353.10 億，反彈有人參與，但只有一天，所以只標問號。</p>
+<figure class="fig">
+<div class="bars" role="img" aria-label="11/23 成交 1兆1,066.77 億，11/20 成交 9,353.10 億">
+<div class="row"><span class="name">11/23</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="num">1兆1,066.77 億</span></div>
+<div class="row is-ref"><span class="name">11/20</span><span class="track"><span class="fill" style="width:84.5%"></span></span><span class="num">9,353.10 億</span></div>
+</div>
+<figcaption>證交所成交金額，含一般、零股、盤後定價。金色是上週五。只比一天，不能叫止跌。</figcaption>
+</figure>
+<h2>恐慌指數：空心</h2>
+<p>這盞看波動預期有沒有從高檔回落。台指 VIX 不降反升，收 55.36，比上週五的 52.13 更高。數字高，是覺得未來波動大，不是已經跌完。美股 VIX 最新收盤仍是上週五的 35.89，美股今天尚未開盤。這盞是空心。</p>
+<figure class="fig">
+<div class="bars" role="img" aria-label="台指 VIX 11/23 收 55.36，11/20 收 52.13，不降反升">
+<div class="row"><span class="name">11/23</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="num">55.36</span></div>
+<div class="row is-ref"><span class="name">11/20</span><span class="track"><span class="fill" style="width:94.2%"></span></span><span class="num">52.13</span></div>
+</div>
+<figcaption>期交所台指選擇權波動率指數。升高用海軍藍，不塗成上漲的紅。</figcaption>
+</figure>
+<h2>長下影與跳空回補：半亮</h2>
+<p>這盞看盤中殺低後有沒有被買回，跳空有沒有填上。今天有下影，開盤跳空也回補了，但早盤先破前低，實體又比下影長，只算半亮。</p>
+<figure class="fig">
+<ol class="timeline" role="img" aria-label="11/23 開 35,899.48，低 35,442.41，高 37,108.20，收 36,811.89，漲 778.60 點">
+<li><b>開盤</b><span>35,899.48</span></li>
+<li><b>最低</b><span>35,442.41</span><span>跌破上週低點 35,738.68</span></li>
+<li><b>最高</b><span>37,108.20</span></li>
+<li><b>收盤</b><span>36,811.89</span><span class="fv-up">+778.60（+2.16%）</span></li>
+</ol>
+<figcaption>證交所開高低收。有下影、跳空後來填上，但早盤先破前低，只算半亮。</figcaption>
+</figure>
+<h2>費半／美股／韓股：空心</h2>
+<p>這盞看海外有沒有先止穩。費半上週五跌 10.73%；韓股今天還收跌 3.31%；美股今天尚未開盤。海外沒亮，這盞是空心。</p>
+<h2>新台幣：問號</h2>
+<p>這盞看匯率有沒有止貶。銀行間收盤 32.895，比前收 32.936 升 4.1 分，短線有止貶，還不是趨勢翻轉，所以只標問號。</p>
+<figure class="fig">
+<div class="flow" role="img" aria-label="新台幣前收 32.936，11/23 收 32.895，升 4.1 分，短線止貶還不是趨勢翻轉">
+<div class="flow-row">
+<div class="step"><small>前收</small><b>32.936</b><span>11/20</span></div>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="step after"><small>今天收</small><b>32.895</b><span>升 4.1 分</span></div>
+</div>
+<p class="same">短線止貶，還不是趨勢翻轉</p>
+</div>
+<figcaption>央行銀行間收盤。一天升值只標問號。</figcaption>
+</figure>
+<h2>國安基金與限空令：在場≠見底</h2>
+<p>這盞看政策在不在場，不是底部到了沒有。<a href="{R}learn/national-security-fund-what/">國安基金</a>已經進場，今天起禁止平盤以下放空。過去 9 次，有 6 次宣布後還再跌超過 5%。標成「在場≠見底」。</p>
+<h2>燈要一起看</h2>
+<p>一盞亮了不夠。今天收紅，也不代表止跌完成。就算往後多數燈都亮了，仍然只是觀察清單，不是買進訊號。</p>
+<figure class="fig">
+<div class="flow" role="img" aria-label="今天收紅 778 點，仍是觀察清單，不是買進訊號">
+<div class="flow-row">
+<div class="step"><small>今天</small><b><span class="fv-up">收紅 778 點</span></b><span>早盤已破前低</span></div>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="step after"><small>請把它當成</small><b>觀察清單</b><span>不是買進訊號</span></div>
+</div>
+</div>
+<figcaption>燈要一起看。一盞亮了不夠，收紅也不代表止跌完成。</figcaption>
+</figure>
+<p>先顧<a href="{R}learn/before-you-invest-3-things/">緊急預備金</a>，不借錢，不 All in。生活和短期要用的錢留在旁邊，不要拿去跟這一根紅 K 對賭。</p>
+<h2>來源</h2>
+<ul>
+<li>證交所 <a href="https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20261101&amp;response=html">FMTQIK</a>：收盤指數、成交金額。MI_INDEX 為同日收盤來源，討論稿未另附網址。</li>
+<li>證交所 MI_5MINS_HIST：開、高、低。討論稿未另附網址。</li>
+<li>證交所 <a href="https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261120&amp;selectType=MS&amp;response=html">MI_MARGN（11/20）</a>：上市融資餘額。11/23 官方尚未公布。</li>
+<li>證交所 BFI82U：外資賣超。討論稿未附檔案網址，同日數字見中央社。</li>
+<li>期交所 <a href="https://www.taifex.com.tw/file/taifex/Dailydownload/vix/log2data/202611new.txt">台指選擇權波動率指數檔</a>：台指 VIX。</li>
+<li>美股 VIX：Yahoo Finance 日線，最新收盤為 11/20。討論稿未附網址。</li>
+<li><a href="https://www.cbc.gov.tw/tw/lp-645-1-1-60.html">央行</a>：新台幣銀行間收盤。</li>
+<li><a href="https://www.fsc.gov.tw/ch/home.jsp?dataserno=202611210001&amp;dtable=News&amp;id=96&amp;mcustomize=news_view.jsp&amp;parentpath=0">金管會新聞稿（2026-11-21）</a>：限空令。</li>
+<li><a href="https://www.cna.com.tw/news/afe/202611230015.aspx">中央社（2026-11-23）</a>：費半、法人、國安基金。</li>
+<li><a href="https://www.cna.com.tw/news/afe/202611095002.aspx">中央社（2026-11-09）</a>：國安基金前 9 次。</li>
+<li><a href="https://money.udn.com/money/story/5612/9895871">經濟日報（2026-11-23）</a>：盤勢報導。</li>
+<li><a href="https://en.yna.co.kr/view/AEN20261123001900320">韓聯社（賣方側車）</a>、<a href="https://cn.yna.co.kr/view/ACK20261123000900881">韓聯社（開盤）</a>。收盤跌幅取自韓聯社收盤稿，討論稿未附該則網址。</li>
+</ul>`
+},
+{
   slug:'tw-drop-1120',
   cat:'新聞',
   title:'一周蒸發 17.5%、7,641 點！限空令擋不住，大跌日最不該做的事',
