@@ -9,6 +9,102 @@
 // twd-fx-outflow、national-security-fund-what、berkshire-q3-buyback、0050-intro、0056-intro。
 module.exports = [
 {
+  slug:'ai-cds-1127',
+  igUrl:'',
+  cat:'新聞',
+  title:'這 3 個指標先存起來，別等危機爆發才看到',
+  desc:'Michael Burry 在 11/27 轉發 Groundbreaker，問的是蓋資料中心的錢怎麼借。白話說明承租、擔保與殘值支持，以及債務違約保險（CDS）在量什麼；公開事實和作者估算分開看。先存 3 個觀察指標。這是風險路徑，不是已經崩盤。',
+  coverAlt:'封面主標「這 3 個指標先存起來，別等危機爆發才看到」，上方小字「慢慢變有錢｜大賣空主角」，副標「大賣空主角警告｜AI 機房借錢結構亮黃燈」。左側灰衣插畫人物，右側三張卡：CDS 違約保險費、官方信評降評風險、債市利差。底部「僅供教育參考，非投資建議」。',
+  w:1080,h:1350,
+  body:`
+<p>《大賣空》的原型 Michael Burry，2026 年 11 月 27 日在 X 轉發 Groundbreaker 的〈Mark to Swap〉。大意是：必讀。這不是我寫的，但一定要讀。他沒有在貼文裡自己算數字，也沒有背書每一個估算。</p>
+<p>重點不是先唱空「AI 沒人用」，而是問：蓋資料中心的錢怎麼借來的。原文在 11 月 20 日，講的是園區多半靠大公司的租約或擔保，才借得到比較好的條件。</p>
+<h2>像買房，請富豪作保</h2>
+<p>信用不夠時，銀行不太願意把成數拉很高；請富豪作保，就比較容易談到大約九成。新創或專案公司也常這樣，請大公司當承租人、擔保人，或提供設備殘值支持。</p>
+<figure class="fig">
+<div class="flow" role="img" aria-label="融資結構：AI 新創或資料中心，靠大公司承租、擔保或殘值支持，再向銀行、私募信貸或債券融資；CDS 反映市場有多擔心，不是已經違約。">
+<div class="flow-row">
+<div class="step"><small>誰要借</small><b>AI 新創／資料中心</b><span>自己的信用常常不夠</span></div>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="step"><small>誰出面</small><b>大公司</b><span>承租、擔保或殘值支持</span></div>
+</div>
+<div class="flow-row" style="margin-top:8px">
+<div class="step"><small>錢從哪來</small><b>再去融資</b><span>銀行、私募信貸、債券</span></div>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="step after"><small>市場在看什麼</small><b>CDS 保險費</b><span>越貴代表越擔心</span></div>
+</div>
+<p class="same">有公開安排，不等於無限擔保</p>
+</div>
+<figcaption>結構比喻。細節與條件以各公司公告為準。</figcaption>
+</figure>
+<p>公開可查的有四個，細節以公告為準，不是無限擔保。甲骨文是 Stargate 的名義承租人、雲端營運方，OpenAI 是使用者。輝達為俄亥俄州 SB Energy 的 PORTS-Pike 園區提供有條件信用支持，供 OpenAI 長約使用，有上限和生效條件。谷歌經 Fluidstack、TeraWulf 提供租約信用支持，例如出問題時代付租金或付終止費，有的在承租人達到投資級後結束。博通是特殊目的公司買設備再租給 Anthropic，並做與第一優先債相關的殘值支持，不是替所有債務作保。</p>
+<p>這種約定可以很大，卻不一定先出現在帳上。可以接著看<a href="{R}notes/ai-offbalance-compute/">表外算力承諾</a>。</p>
+<h2>債務違約保險在量什麼</h2>
+<p>CDS（信用違約交換）是怕公司還不出錢時買的保險。1 基點是 0.01%。保險費越貴，市場越擔心，但不等於已經違約，也不等於評等被調降。</p>
+<h2>公開事實，和作者的估算</h2>
+<p>可以獨立查到的放在第一張卡。316 基點大約等於一年保險費是債務的 3.16%，對的是 11 月中旬，不是 11 月 25 日以後的價格。輝達那一格是升評。</p>
+<figure class="fig">
+<div class="facts" role="img" aria-label="公開事實：Burry 11 月 27 日轉發，原文 11 月 20 日，輝達官方 AA，甲骨文官方 BBB-，甲骨文 CDS 11 月中約 316 基點，11 月 25 日約 367.5 基點。">
+<div class="fact"><span class="k">Burry 轉發</span><span class="v">11/27</span></div>
+<div class="fact"><span class="k">原文日期</span><span class="v">11/20</span></div>
+<div class="fact"><span class="k">輝達官方</span><span class="v">AA（6/11 升）</span></div>
+<div class="fact"><span class="k">甲骨文官方</span><span class="v">BBB-（7/9 降）</span></div>
+<div class="fact"><span class="k">甲骨文 CDS・11 月中</span><span class="v">約 316 基點</span></div>
+<div class="fact"><span class="k">11/25 收盤</span><span class="v">約 367.5 基點</span></div>
+</div>
+<figcaption>公開事實。評等是標普 2026/6/11、2026/7/9 的行動；CDS 是公開行情頁。</figcaption>
+</figure>
+<p>下面的漲幅是作者引用、約 11 月中的數據，本站沒有重算。換成市場隱含評等、85%–95% 的貸款成數、園區可能少值 20%–50%，都是作者估算或模型，不是官方已降評，也不是已成交的跌價。</p>
+<figure class="fig">
+<div class="bars" role="img" aria-label="作者引用、約 11 月中：六月底以來 CDS 漲幅，博通約 155%，輝達約 130%，甲骨文約 80%，Meta 約 60%。">
+<div class="row"><span class="name">博通</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="num">約 +155%</span></div>
+<div class="row"><span class="name">輝達</span><span class="track"><span class="fill" style="width:84%"></span></span><span class="num">約 +130%</span></div>
+<div class="row"><span class="name">甲骨文</span><span class="track"><span class="fill" style="width:52%"></span></span><span class="num">約 +80%</span></div>
+<div class="row"><span class="name">Meta</span><span class="track"><span class="fill" style="width:39%"></span></span><span class="num">約 +60%</span></div>
+</div>
+<figcaption>作者引用，截點約 11 月中。不是官方降評。</figcaption>
+</figure>
+<figure class="fig">
+<div class="facts" role="img" aria-label="作者估算：輝達像 BBB-，部分名字像垃圾級，貸款成數 85% 到 95%，園區可能少值 20% 到 50%。">
+<div class="fact"><span class="k">輝達的市場看法</span><span class="v">像 BBB-・作者估算</span></div>
+<div class="fact"><span class="k">部分名字</span><span class="v">像垃圾級・作者估算</span></div>
+<div class="fact"><span class="k">貸款成數</span><span class="v">85%–95%・作者整理</span></div>
+<div class="fact"><span class="k">園區估值</span><span class="v">可能少 20%–50%・作者模型</span></div>
+</div>
+<figcaption>作者估算或模型。評等機構沒有改成這些等級。</figcaption>
+</figure>
+<p>講整體時要說投資級信用違約交換指數（CDX），不要說成投資級債券指數。它的升幅比個股小，但不是完全沒動。也不要記成「這一年評等機構只動過一次」：標普降了甲骨文，也把輝達升到 AA；11 月初 Moody's、Fitch 仍維持甲骨文投資級。</p>
+<h2>兩種路徑，都還不是崩盤</h2>
+<p>溫和：融資變貴、變慢，新機房和晶片、建設支出的成長放慢。嚴重：擔保人信用被看壞時，估價可能先縮水；若還不出錢，虧損才可能傳到銀行、私募信貸和債券持有人。這是風險路徑，不是已經崩盤。</p>
+<p>作者自己寫了證偽條件：保險費若回落並維持住，論點就不成立。</p>
+<h2>先存這 3 個指標</h2>
+<figure class="fig">
+<div class="facts" role="img" aria-label="三個觀察指標：CDS 保險費是維持高檔還是回落，評等機構有沒有真的降評，壓力有沒有擴散到 AI 以外。">
+<div class="fact"><span class="k">① 保險費</span><span class="v">高檔，還是回落</span></div>
+<div class="fact"><span class="k">② 官方評等</span><span class="v">有沒有真的降</span></div>
+<div class="fact"><span class="k">③ 有沒有擴散</span><span class="v">會不會超出 AI</span></div>
+</div>
+<figcaption>觀察清單，不是買賣訊號。回落並維持住，作者認為論點就不成立。</figcaption>
+</figure>
+<p>控制風險只記兩句：不要過度集中，也不要借太多錢來投資。大跌時先分清這是<a href="{R}notes/pullback-correction-bear/">回檔、修正還是空頭</a>。還沒開始投資，先處理<a href="{R}learn/before-you-invest-3-things/">緊急預備金和高利率負債</a>；想對著清單做，可以<a href="{R}lead/">免費領取《投資新手入門清單》</a>。</p>
+<h2>來源</h2>
+<ul>
+<li><a href="https://x.com/michaeljburry/status/2126150924955521043">Michael Burry 於 X 的轉發</a>（2026/11/27）</li>
+<li><a href="https://www.groundbrkr.com/p/mark-to-swap-how-the-market-is-mispricing">Groundbreaker〈Mark to Swap〉</a>（2026/11/20）</li>
+<li><a href="https://openai.com/index/stargate-advances-with-partnership-with-oracle/">OpenAI：Stargate 與甲骨文</a></li>
+<li><a href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Guarantees-SB-Energys-PORTS-Pike-Technology-Campus-in-Ohio-to-Exclusively-Host-NVIDIA-AI-Compute/default.aspx">輝達新聞稿：俄亥俄園區信用支持</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1045810/000104581026000069/nvda-20260817.htm">輝達 Form 8-K</a>（2026/8/17）</li>
+<li><a href="https://investors.terawulf.com/news-events/press-releases/detail/148/terawulf-secures-google-credit-backstop-for-project-financing-in-support-of-19-billion-anthropic-lease-executes-definitive-fluor-epc-agreement">TeraWulf：谷歌信用支持</a>（2026/11/4）</li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1083301/000162828026069810/wulf-20261104.htm">TeraWulf Form 8-K</a>（2026/11/4）</li>
+<li><a href="https://investors.broadcom.com/news-releases/news-release-details/bank-america-blackstone-citi-and-morgan-stanley-announce">博通新聞稿：Anthropic 相關融資</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1730168/000119312526434271/d148323d8k.htm">博通 Form 8-K</a>（2026/10/27）</li>
+<li><a href="https://www.spglobal.com/ratings/en/regulatory/article/-/view/type/HTML/id/3596281">標普：甲骨文降至 BBB-</a>（2026/7/9）</li>
+<li><a href="https://www.investing.com/rates-bonds/oracle-corporation-cds-5-year-usd-historical-data">甲骨文五年期 CDS 歷史行情</a></li>
+<li><a href="https://irates.today/credit.html">irates.today：投資級 CDX</a>（2026/11/25）</li>
+</ul>
+`
+},
+{
   slug:'bottom-signals-1123',
   igUrl:'',
   cat:'新聞',
