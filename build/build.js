@@ -12,7 +12,7 @@ require('./goal-1m.test.js');
 const noteSlugOk=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;const noteSeen=new Set();
 for(const n of NOTES){if(!noteSlugOk.test(n.slug)||noteSeen.has(n.slug))throw new Error('note slug 須為 ASCII kebab-case 且不可重複：'+n.slug);noteSeen.add(n.slug);if(!fs.existsSync(path.join(ROOT,'notes',n.slug,'cover.png')))throw new Error('缺少筆記封面：notes/'+n.slug+'/cover.png');}
 // 與 /learn/ 重複、已從 build/notes.js 移除的舊網址。GitHub Pages 沒有 301，只留 meta refresh 殘頁。
-const NOTE_REDIRECTS=['before-you-invest-3-things','10-terms-for-financial-news','dca-vs-lump-sum','what-is-a-stock','compound-interest','5-beginner-mistakes','what-is-etf','open-brokerage-account','5-questions-before-investing','twd-fx-outflow','national-security-fund-what','berkshire-q3-buyback','0050-intro','0056-intro'];
+const NOTE_REDIRECTS=['before-you-invest-3-things','10-terms-for-financial-news','dca-vs-lump-sum','what-is-a-stock','compound-interest','5-beginner-mistakes','what-is-etf','open-brokerage-account','5-questions-before-investing','twd-fx-outflow','national-security-fund-what','berkshire-q3-buyback','0050-intro','0056-intro','pe-english'];
 const artBySlug=Object.fromEntries(ARTS.map(a=>[a.slug,a]));
 const familyApi=require('./family.js');
 for(const s of NOTE_REDIRECTS){
@@ -228,10 +228,14 @@ out.push(page({p:'learn/',title:'新手入門筆記',desc:'給投資新手的白
 ARTS.forEach((a,i)=>{const rel=a.terms.length?`<h2>相關名詞</h2><div class="chips">${a.terms.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:'';
  const nav=`<p style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:24px">${i>0?`<a href="{R}learn/${ARTS[i-1].slug}/">← ${esc(ARTS[i-1].title)}</a>`:'<span></span>'}${i<ARTS.length-1?`<a href="{R}learn/${ARTS[i+1].slug}/">${esc(ARTS[i+1].title)} →</a>`:''}</p>`;
  const learnUrl=SITE_URL+'/learn/'+a.slug+'/';
- out.push(page({p:`learn/${a.slug}/`,type:'article',title:a.title,desc:a.desc,cssVer:'10',igCta:igReturnBlock(a),jsonLd:articleLd({headline:a.title,description:a.desc,url:learnUrl,crumbs:crumbLd('新手入門',SITE_URL+'/learn/',a.title,learnUrl)}),body:head(esc(a.title),esc(a.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}learn/">新手入門</a> › ${a.cat}</div>`)+`<div class="w narrow"><article class="prose">${a.body}${rel}<div class="warn">⚠️ 本內容僅供教育參考，非投資建議，投資有風險，請自行評估。</div>${nav}</article></div>`}));});
+ const cover=learnCover(a);
+ const coverHtml=cover?`<figure class="coverfig"><img src="{R}${cover.src}" alt="${esc(cover.alt)}" width="${cover.w}" height="${cover.h}"></figure>`:'';
+ const coverImage=cover?'/'+cover.src:'';
+ out.push(page({p:`learn/${a.slug}/`,type:'article',title:a.title,desc:articleHeadDesc(a),image:coverImage,cssVer:'10',igCta:igReturnBlock(a),jsonLd:articleLd({headline:a.title,description:a.desc,url:learnUrl,image:cover?SITE_URL+coverImage:'',crumbs:crumbLd('新手入門',SITE_URL+'/learn/',a.title,learnUrl)}),body:head(esc(a.title),esc(a.desc),`<div class="crumb"><a href="{R}">首頁</a> › <a href="{R}learn/">新手入門</a> › ${a.cat}</div>`)+`<div class="w narrow"><article class="prose">${coverHtml}${a.body}${rel}<div class="warn">⚠️ 本內容僅供教育參考，非投資建議，投資有風險，請自行評估。</div>${nav}</article></div>`}));});
 // NOTES（IG 短文；/learn/ 課程文保持不變）
 // 筆記列表只交叉連結既有 /learn/ 文章（NOTE_REDIRECTS），不寫回 build/notes.js、也不當權威筆記頁。
-const learnCrossLinks=NOTE_REDIRECTS.map(s=>artCard(artBySlug[s])).join('');
+// pe-english 只轉址、不進這個區塊，所以「新手入門也有這些」的卡片維持原樣。
+const learnCrossLinks=NOTE_REDIRECTS.filter(s=>s!=='pe-english').map(s=>artCard(artBySlug[s])).join('');
 out.push(page({p:'notes/',title:'投資新手筆記｜ETF、存錢與財經新聞白話',desc:'把 IG 圖文寫成可以慢慢讀的短文。數字若出現，都是假設例子，僅供教育參考，非投資建議。',body:head('投資新手筆記','把 IG 圖文寫成可以慢慢讀的短文。觀念為主，不報明牌。')+`<section><div class="w"><div class="grid g3">${NOTES.map(noteTile).join('')}</div></div></section>`+`<section style="padding-top:0"><div class="w"><h2>新手入門也有這些</h2><p class="sub">這幾篇完整版在新手入門，點進去讀——避免與筆記重複。</p><div class="grid g3">${learnCrossLinks}</div><p style="text-align:center;margin-top:18px"><a class="btn b" href="{R}learn/">看全部新手入門 →</a></p></div></section>`}));
 // 相關筆記只加在 /notes/<slug>/ 正文頁。候選＝build/notes.js（陣列前面＝較新）。
 // 先同 cat（維持陣列順序），不足 3 篇再依陣列順序補其他分類。排除自己與 NOTE_REDIRECTS。不讀手動 related 欄位。
@@ -257,17 +261,33 @@ for(const slug of NOTE_REDIRECTS){const a=artBySlug[slug];const target=SITE_URL+
 // H1、頁首說明、JSON-LD、列表卡仍用 title／desc。沒填就與原本相同。
 function noteHeadTitle(n){const v=n&&n.seoTitle!=null?String(n.seoTitle).trim():'';return v||n.title;}
 function noteHeadDesc(n){const v=n&&n.seoDesc!=null?String(n.seoDesc).trim():'';return v||n.desc;}
+// 入門文章可選 seoDesc，規則與筆記相同：只進 meta／og description。
+function articleHeadDesc(a){const v=a&&a.seoDesc!=null?String(a.seoDesc).trim():'';return v||a.desc;}
+// 有 w、h 的入門文沿用同一張 notes/<slug>/cover.png（搬家後檔案留在原網址）。頁首封面與 og:image 都指這張。
+function learnCover(a){
+  if(!a||a.w==null||a.h==null)return null;
+  const alt=a.coverAlt==null?'':String(a.coverAlt).trim();
+  if(!alt)throw new Error('入門封面缺少 coverAlt：'+a.slug);
+  const src='notes/'+a.slug+'/cover.png';
+  if(!fs.existsSync(path.join(ROOT,src)))throw new Error('缺少入門封面：'+src);
+  return {src,alt,w:a.w,h:a.h};
+}
 // 詞條可選 seoTitle／seoDesc：覆寫這一則的文件標題與 meta（雙語慣例仍是預設）。不改 H1、導言、JSON-LD。
 function termSeoTitle(t,bi){const v=t&&t.seoTitle!=null?String(t.seoTitle).trim():'';if(v)return v;return bi?bi.title:`${t.name} 是什麼？白話解釋`;}
 function termSeoDesc(t,bi){const v=t&&t.seoDesc!=null?String(t.seoDesc).trim():'';if(v)return v;return bi?termMetaDescription(bi.line,t.plain):`${t.name}：${t.plain}`;}
-// 詞條可選 note（筆記 slug）＋ noteAnchor。有填才在定義區塊後輸出一則延伸閱讀；沒填則不輸出任何字元。
+// 詞條可選 note（slug）＋ noteAnchor。有填才在定義區塊後輸出一則延伸閱讀；沒填則不輸出任何字元。
+// 仍在 build/notes.js 的連 /notes/；已收進 /learn/ 的連權威頁，不連轉址殘頁。
 function termFurtherReading(t){
   if(!t||t.note==null||String(t.note).trim()==='')return '';
   const noteSlug=String(t.note).trim();
   const anchor=t.noteAnchor==null?'':String(t.noteAnchor).trim();
-  if(!noteSlugOk.test(noteSlug)||!noteSeen.has(noteSlug))throw new Error('詞條延伸閱讀的筆記不存在：'+(t.id||'')+' → '+noteSlug);
+  if(!noteSlugOk.test(noteSlug))throw new Error('詞條延伸閱讀的 slug 不合法：'+(t.id||'')+' → '+noteSlug);
   if(!anchor)throw new Error('詞條延伸閱讀缺少 noteAnchor：'+(t.id||noteSlug));
-  return `<h2>延伸閱讀</h2><div class="chips"><a href="{R}notes/${noteSlug}/">${esc(anchor)}</a></div>\n`;
+  const inNotes=noteSeen.has(noteSlug);
+  const inLearn=!!artBySlug[noteSlug];
+  if(!inNotes&&!inLearn)throw new Error('詞條延伸閱讀的文章不存在：'+(t.id||'')+' → '+noteSlug);
+  const href=inLearn&&!inNotes?`{R}learn/${noteSlug}/`:`{R}notes/${noteSlug}/`;
+  return `<h2>延伸閱讀</h2><div class="chips"><a href="${href}">${esc(anchor)}</a></div>\n`;
 }
 // TERMS index
 const cats=G.categories.map(c=>`<button data-c="${c.id}">${esc(c.name)}</button>`).join('');
