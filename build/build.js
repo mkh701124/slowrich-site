@@ -224,7 +224,14 @@ ${homeGoalSection()}
 <section style="padding-top:0;padding-bottom:0"><div class="w"><div class="card" style="text-align:center"><h2>我們的承諾</h2><p>不報明牌・不帶單・不給買賣建議。只用白話，陪你慢慢建立自己的投資習慣。</p><a class="more" href="{R}about/">關於慢慢變有錢 →</a></div></div></section>`}));
 // LEARN
 // 親子理財「市值型 vs 高股息」的正規頁在 /family/etf-types/。這裡只在列表加一張卡，不進 articles.js，也不做 /learn/etf-types/ 轉址頁（列表不要求每張卡都有同名頁）。
-out.push(page({p:'learn/',title:'新手入門筆記',desc:'給投資新手的白話文章：起步準備、觀念、工具與心態。',body:head('新手入門筆記','從零開始，一篇一篇慢慢讀。')+`<section><div class="w"><div class="grid g3">${ARTS.map(artCard).join('')}${familyApi.learnCard()}</div></div></section>`}));
+// 列表最後一張連到既有 /notes/ 筆記：不進 articles.js、不建 /learn/ 頁、不轉址。
+function learnNoteCard(slug,label){
+  const n=NOTES.find(x=>x.slug===slug);
+  if(!n)throw new Error('新手入門列表缺筆記：'+slug);
+  return `<a class="card" href="{R}notes/${n.slug}/"><small>${esc(n.cat)}</small><br><b>${esc(label)}</b><p>${esc(n.desc)}</p><span class="more">閱讀 →</span></a>`;
+}
+const peLearnCard=learnNoteCard('pe-english','本益比英文怎麼說、怎麼看');
+out.push(page({p:'learn/',title:'新手入門筆記',desc:'給投資新手的白話文章：起步準備、觀念、工具與心態。',body:head('新手入門筆記','從零開始，一篇一篇慢慢讀。')+`<section><div class="w"><div class="grid g3">${ARTS.map(artCard).join('')}${familyApi.learnCard()}${peLearnCard}</div></div></section>`}));
 ARTS.forEach((a,i)=>{const rel=a.terms.length?`<h2>相關名詞</h2><div class="chips">${a.terms.map(id=>`<a href="{R}terms/${slug[id]}/">${esc(T[id].name)}</a>`).join('')}</div>`:'';
  const nav=`<p style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:24px">${i>0?`<a href="{R}learn/${ARTS[i-1].slug}/">← ${esc(ARTS[i-1].title)}</a>`:'<span></span>'}${i<ARTS.length-1?`<a href="{R}learn/${ARTS[i+1].slug}/">${esc(ARTS[i+1].title)} →</a>`:''}</p>`;
  const learnUrl=SITE_URL+'/learn/'+a.slug+'/';
@@ -389,6 +396,23 @@ fs.writeFileSync(path.join(ROOT,'robots.txt'),`User-agent: *\nAllow: /\nSitemap:
   if(latest.includes('etf-types'))throw new Error('這篇不該出現在首頁最新筆記');
   const tableBody=home.split('id="goal-compare-body">')[1].split('</tbody>')[0];
   if(tableBody.trim())throw new Error('對照表不該寫死數字');
+  const learn=fs.readFileSync(path.join(ROOT,'learn/index.html'),'utf8');
+  const peCard='href="../notes/pe-english/"';
+  if(!learn.includes(peCard)||!learn.includes('本益比英文怎麼說、怎麼看'))throw new Error('新手入門列表缺本益比筆記卡');
+  if((learn.match(/notes\/pe-english\//g)||[]).length!==1)throw new Error('本益比筆記卡應只出現一次');
+  if(learn.includes('learn/pe-english'))throw new Error('不該有 /learn/pe-english/');
+  const grid=learn.split('<div class="grid g3">')[1].split('</div></div></section>')[0];
+  if(!grid.endsWith(peLearnCard.replaceAll('{R}','../')))throw new Error('本益比筆記卡應在列表最後');
+  const notePage=fs.readFileSync(path.join(ROOT,'notes/pe-english/index.html'),'utf8');
+  if(!notePage.includes('<link rel="canonical" href="'+SITE_URL+'/notes/pe-english/">'))throw new Error('筆記 canonical 被改掉');
+  if(notePage.includes('http-equiv="refresh"'))throw new Error('筆記不該是轉址頁');
+  const term=fs.readFileSync(path.join(ROOT,'terms/pe/index.html'),'utf8');
+  if(!term.includes('href="../../notes/pe-english/"'))throw new Error('/terms/pe/ 應連到筆記');
+  if(term.includes('learn/pe-english'))throw new Error('/terms/pe/ 不該連到 /learn/pe-english/');
+  if(!all.includes('notes/pe-english/')||all.includes('learn/pe-english/'))throw new Error('sitemap 的本益比網址不對');
+  const notesIdx=fs.readFileSync(path.join(ROOT,'notes/index.html'),'utf8');
+  const cross=notesIdx.split('新手入門也有這些')[1]||'';
+  if(cross.includes('pe-english'))throw new Error('新手入門也有這些不該出現 pe-english');
 }
 const skippedBi=G.terms.filter(t=>!termBilingual(t));
 console.log('pages',all.length,'terms',G.terms.length,'articles',ARTS.length,'notes',NOTES.length);
