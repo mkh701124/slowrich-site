@@ -316,4 +316,132 @@ ${'EX2'}
 <figcaption>重點整理，不是推薦。持股比重資料日 2026/11/13，元大投信。</figcaption>
 </figure>
 <p>來源：元大投信 0056 基本資訊與持股比重（資料日 2026/11/13）、證交所 ETF e添富 0056 商品頁、臺灣指數公司臺灣高股息指數基本規則 V4.1 與定審公告（2022/12/02、2026/06/05）、證交所 2025/10/01 基本規則更新說明、證交所 e添富〈收益平準金對ETF之功用〉。</p>`},
+{slug:'foreign-selling-1128',igUrl:'',n:15,cat:'新聞',title:'外資連賣的時候，先搞懂這三件事再緊張',desc:'11 月外資賣超約 1.12 兆，是證交所統計至 11/27 的單月金額新高。白話看三件事：占市值比例是估算、賣超的可能原因，以及買賣超是結果不是預言。',coverAlt:'封面主標「外資連賣的時候，先搞懂這三件事再緊張」，副標「11月外資賣超破兆」。三件事：看比例，不只看金額；看外資為什麼賣；買賣超是結果，不是預言。右下是托腮想事情的插畫。底部「僅供教育參考，非投資建議」。',terms:[],body:`
+<figure class="coverfig"><img src="{R}notes/foreign-selling-1128/cover.png" alt="封面主標「外資連賣的時候，先搞懂這三件事再緊張」，副標「11月外資賣超破兆」。三件事：看比例，不只看金額；看外資為什麼賣；買賣超是結果，不是預言。右下是托腮想事情的插畫。底部「僅供教育參考，非投資建議」。" width="1080" height="1350"></figure>
+<p>看到「外資連賣」「單月賣超破兆」，心裡緊一下，很正常。帳戶在縮、標題又很大，會想立刻做點什麼。先停一下。這篇不猜明天漲跌，也不叫你買或賣。只把 11 月這波拆開，先搞懂三件事，再決定要不要緊張。</p>
+<p>11 月外資賣超台股約 1.12 兆，金額是史上單月最高。這 1.12 兆是證交所統計至 11/27，月底還沒完全算進來。加權指數從 10/6 收盤高點 49,823，跌到 11/20 收盤 36,033，跌了 27.7%。11/27 收在 39,308。跌很多，所以會慌；金額破紀錄，還不等於已經看懂。</p>
+<figure class="fig">
+<div class="facts" role="img" aria-label="加權指數 10/6 收盤 49,823，11/20 收盤 36,033、跌 27.7%，11/27 收盤 39,308。11 月外資賣超約 1.12 兆，證交所統計至 11/27。">
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 16l4-5 3 3 8-9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="k">10/6 收盤</span><span class="v">49,823</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8l4 5 3-3 8 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="k">11/20 收盤</span><span class="v"><span class="fv-down">36,033</span></span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v10M8 11l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="k">高點到 11/20</span><span class="v"><span class="fv-down">跌 27.7%</span></span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3.5v3M16 3.5v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="k">11/27 收盤</span><span class="v">39,308</span></div>
+</div>
+<figcaption>加權指數收盤。紅字是上漲，綠字是下跌。11 月賣超約 1.12 兆，這 1.12 兆是證交所統計至 11/27。</figcaption>
+</figure>
+<figure class="fig">
+<div class="flow" role="img" aria-label="先看三件事：看比例，看可能原因，買賣超是結果不是預言。">
+<div class="flow-row">
+<div class="step"><small>①</small><b>看比例</b><span>不只看金額</span></div>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="step"><small>②</small><b>看為什麼賣</b><span>可能原因</span></div>
+</div>
+<div class="flow-row" style="margin-top:8px;grid-template-columns:minmax(0,1fr)">
+<div class="step after"><small>③</small><b>買賣超是結果</b><span>不是預言</span></div>
+</div>
+</div>
+<figcaption>三件事的順序。先把數字看懂，再決定緊不緊張。</figcaption>
+</figure>
+<h2>第一件：看比例，不只看金額</h2>
+<p>1.12 兆聽起來像把市場搬走。先看台股自己變多大：上市市值從 2008 年底的 11.7 兆，長到約 118 兆。池子變大以後，同一句「賣超破兆」，占池子的比例不一定比以前更重。</p>
+<figure class="fig">
+<div class="flow" role="img" aria-label="上市市值從 2008 年底 11.7 兆，到 2026 年 11 月約 118 兆。">
+<div class="flow-row">
+<div class="step"><small>2008 年底</small><b>11.7 兆</b><span>上市市值</span></div>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="step after"><small>2026/11</small><b>約 118 兆</b><span>上市市值</span></div>
+</div>
+<p class="same">池子變大，同樣金額占得比較少</p>
+</div>
+<figcaption>2008 年底 11.7 兆，對到 2026 年 11 月約 118 兆。後面的市值含估算。</figcaption>
+</figure>
+<p>11 月這筆賣超，占市值大約 0.76%。占市值比例是估算，不是證交所直接公布的百分比。用同一套估算去比，它低於 2020 年 3 月的約 1.05%，也低於 2026 年 3 月的約 0.84%、2011 年 8 月的約 0.83%、2008 年 10 月的約 0.79%。金額最高，比例大約排第 5。市值有一部分是估的，這個名次只適合看個大概。只看「破兆」，很容易把現在想得比 2020 年 3 月更嚴重；換成占比，這次還比較小。</p>
+<figure class="fig">
+<div class="bars" role="img" aria-label="賣超占市值比例（估算）：2020/3 約 1.05%，2026/3 約 0.84%，2011/8 約 0.83%，2008/10 約 0.79%，2026/11 約 0.76%。">
+<div class="row"><span class="name">2020/3</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="num"><span class="fv-down">約 1.05%</span></span></div>
+<div class="row"><span class="name">2026/3</span><span class="track"><span class="fill" style="width:80%"></span></span><span class="num"><span class="fv-down">約 0.84%</span></span></div>
+<div class="row"><span class="name">2011/8</span><span class="track"><span class="fill" style="width:79.05%"></span></span><span class="num"><span class="fv-down">約 0.83%</span></span></div>
+<div class="row"><span class="name">2008/10</span><span class="track"><span class="fill" style="width:75.24%"></span></span><span class="num"><span class="fv-down">約 0.79%</span></span></div>
+<div class="row is-ref"><span class="name">2026/11</span><span class="track"><span class="fill" style="width:72.38%"></span></span><span class="num"><span class="fv-down">約 0.76%</span></span></div>
+</div>
+<figcaption>賣超占上月底上市市值的比例，是估算。長條依 1.05% 為滿格。金色是這次 11 月。綠字是賣超占比，不是股價跌幅。</figcaption>
+</figure>
+<h2>第二件：看外資為什麼賣</h2>
+<p>外資不是一個人，是很多家機構加總後的淨賣超。有人賣、也有人買，新聞上的數字是相減的結果。賣的理由可能是權重調整、匯率、避險，或漲多之後把部位調回來。這些是可能原因，來自券商或媒體的分析，不是賣超數字本身能證明的事實。</p>
+<figure class="fig">
+<div class="facts" role="img" aria-label="可能原因：再平衡、指數權重調整、匯率、期貨避險、全球科技股降低風險。這些是券商或媒體的分析，不是確定事實。">
+<div class="fact"><span class="k">可能原因</span><span class="v">比重超標，再平衡</span></div>
+<div class="fact"><span class="k">可能原因</span><span class="v">指數調整權重</span></div>
+<div class="fact"><span class="k">可能原因</span><span class="v">新台幣一度貶破 33</span></div>
+<div class="fact"><span class="k">可能原因</span><span class="v">期貨避險</span></div>
+<div class="fact"><span class="k">可能原因</span><span class="v">科技股降低風險</span></div>
+</div>
+<figcaption>可能原因，來自券商或媒體分析。例如有分析提到 MSCI 調權重。不是賣超數字能證明的事實。</figcaption>
+</figure>
+<p>2020、2021、2024、2025 這四年，外資全年都淨賣超，大盤當年卻都上漲。今年到 11/27，外資累計賣超 3 兆 4,909 億，大盤仍上漲 35.7%。這還不是完整的一年，不能拿來和那四個全年直接比誰賣比較多，只說明賣超和「看空台灣」不是同一句話。11/20 外資仍持有上市股票市值 55.6 兆，約占 47.1%。賣了很多，不代表人已經走光。</p>
+<figure class="fig">
+<div class="bars" role="img" aria-label="外資全年賣超：2020 年 5,395 億，2021 年 4,540 億，2024 年 6,952 億，2025 年 5,995 億。">
+<div class="row"><span class="name">2020</span><span class="track"><span class="fill" style="width:77.6%"></span></span><span class="num"><span class="fv-down">5,395 億</span></span></div>
+<div class="row"><span class="name">2021</span><span class="track"><span class="fill" style="width:65.3%"></span></span><span class="num"><span class="fv-down">4,540 億</span></span></div>
+<div class="row"><span class="name">2024</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="num"><span class="fv-down">6,952 億</span></span></div>
+<div class="row"><span class="name">2025</span><span class="track"><span class="fill" style="width:86.23%"></span></span><span class="num"><span class="fv-down">5,995 億</span></span></div>
+</div>
+<figcaption>全年外資淨賣超，證交所月資料加總。綠字是賣超。長條依 6,952 億為滿格。</figcaption>
+</figure>
+<figure class="fig">
+<div class="bars" role="img" aria-label="同年大盤上漲：2020 年 22.8%，2021 年 23.7%，2024 年 28.5%，2025 年 25.7%。">
+<div class="row"><span class="name">2020</span><span class="track"><span class="fill" style="width:80%"></span></span><span class="num"><span class="fv-up">+22.8%</span></span></div>
+<div class="row"><span class="name">2021</span><span class="track"><span class="fill" style="width:83.16%"></span></span><span class="num"><span class="fv-up">+23.7%</span></span></div>
+<div class="row"><span class="name">2024</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="num"><span class="fv-up">+28.5%</span></span></div>
+<div class="row"><span class="name">2025</span><span class="track"><span class="fill" style="width:90.18%"></span></span><span class="num"><span class="fv-up">+25.7%</span></span></div>
+</div>
+<figcaption>同一年的大盤漲跌。紅字是上漲。長條依 28.5% 為滿格。外資在賣，指數仍可以漲。</figcaption>
+</figure>
+<p>這波指數怎麼跌下來，可以看<a href="{R}notes/tw-drop-1120/">11/20 那一周的大跌</a>。大跌之後，<a href="{R}notes/bottom-signals-1123/">止跌訊號可以看哪些</a>，是觀察清單，不是買進訊號。<a href="{R}learn/national-security-fund-what/">國安基金</a>進場，也不等於底部到了。</p>
+<h2>第三件：買賣超是結果，不是預言</h2>
+<p>買賣超記的是已經成交的事。它只告訴你過去這段時間外資淨賣了多少，沒有附帶接下來一定會怎樣。</p>
+<p>賣超占市值 0.4% 以上、而且 12 個月後有資料的月份，有 26 個。這 26 個月裡，12 個月後 19 次上漲、7 次下跌。漲的比較多，但後來的漲跌很散，從 −48% 到 +80% 都有，跟一般月份差不多，沒有固定劇本。過去不代表未來。</p>
+<figure class="fig">
+<div class="stack" role="img" aria-label="賣超占市值 0.4% 以上、有 12 個月後資料的 26 個月：19 次上漲，7 次下跌。">
+<div class="stack-bar"><i class="a" style="width:73.08%"></i><i class="b" style="width:26.92%"></i></div>
+<ul class="stack-key"><li><span class="fv-up">12 個月後上漲 19 次</span></li><li class="b"><span class="fv-down">下跌 7 次</span></li></ul>
+</div>
+<figcaption>26 個月有後續資料。紅字是上漲，綠字是下跌。長條只表示 19 和 7 的多寡。過去不代表未來。</figcaption>
+</figure>
+<figure class="fig">
+<div class="flow" role="img" aria-label="買賣超是已經成交的結果，之後沒有固定劇本，過去不代表未來。">
+<div class="flow-row">
+<div class="step"><small>已經發生</small><b>買賣超</b><span>是結果</span></div>
+<div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="step after"><small>不能當成</small><b>預言</b><span>沒有固定劇本</span></div>
+</div>
+<p class="same">過去不代表未來</p>
+</div>
+<figcaption>歷史上大賣超之後，有續跌，也有急殺後回升。那是事後觀察，不是預測規則。</figcaption>
+</figure>
+<p>之後還在跌的例子有，急殺後又回升的例子也有。那是事後才看得到的背景，不是現在可以拿來預測的規則。跌了多少才叫<a href="{R}notes/pullback-correction-bear/">回檔、修正或熊市</a>，可以另外看那一篇的分法。分法是用來認識波動，不是用來決定今天進出。</p>
+<h2>先搞懂，再決定緊不緊張</h2>
+<p>三件事放在一起：金額要換成占市值的比例，而且占市值比例是估算；賣超要問可能原因，不要直接當成看空；買賣超是結果，不是預言。1.12 兆是證交所統計至 11/27。看到連賣，先把這三層對一下，再看自己的預備金，和這筆錢什麼時候要用。</p>
+<figure class="fig">
+<div class="facts" role="img" aria-label="收尾三件事：看比例且占比是估算，賣超只是可能原因，買賣超是結果不是預言。">
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v4l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="k">①</span><span class="v">看比例，占比是估算</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 12h6M12 9v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="k">②</span><span class="v">先問可能原因</span></div>
+<div class="fact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h10M5 17h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="k">③</span><span class="v">結果，不是預言</span></div>
+</div>
+<figcaption>三件事。不猜下一根，也不給買賣建議。</figcaption>
+</figure>
+<p>還沒開始投資的話，可以先<a href="{R}lead/">免費領取《投資新手入門清單》</a>，對著清單檢查，而不是跟著標題動作。</p>
+<p>僅供教育參考，非投資建議。</p>
+<h2>來源</h2>
+<ul>
+<li>證交所三大法人買賣金額統計（月，BFI82U；11 月為至 11/27）：<a href="https://www.twse.com.tw/fund/BFI82U?response=json&amp;type=month&amp;monthDate=20261101" target="_blank" rel="noopener">BFI82U</a></li>
+<li>證交所市場成交資訊（核對指數）：<a href="https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&amp;date=20261101" target="_blank" rel="noopener">FMTQIK</a></li>
+<li><a href="https://wwwc.twse.com.tw/downloads/zh/about/company/factbook/2008/1.01.htm" target="_blank" rel="noopener">證交所 Fact Book 2008</a>（早期市值）</li>
+<li><a href="https://www.twse.com.tw/downloads/zh/about/company/annual_97.pdf" target="_blank" rel="noopener">證交所 2008 年報</a>（2008 年市值）</li>
+<li><a href="https://www.sfb.gov.tw/ch/home.jsp?id=1011&amp;parentpath=0%2C4%2C109" target="_blank" rel="noopener">金管會證期局：上市、櫃各年度市值</a></li>
+<li><a href="https://stat.fsc.gov.tw/competitiveness" target="_blank" rel="noopener">金管會金融市場統計</a></li>
+<li>加權指數月底收盤（與證交所核對）：<a href="https://query1.finance.yahoo.com/v8/finance/chart/%5ETWII" target="_blank" rel="noopener">Yahoo Finance ^TWII</a></li>
+<li>賣超原因為券商或媒體分析，不是確定事實：<a href="https://www.skis.com.tw/Report/education/20261127-5.html" target="_blank" rel="noopener">新光證券</a>、<a href="https://www.moneyweekly.com.tw/ArticleData/Info/Article/263681" target="_blank" rel="noopener">理財周刊</a>、<a href="https://www.chinatimes.com/newspapers/20261128000411-260110" target="_blank" rel="noopener">中時</a></li>
+<li>外資持股市值：<a href="https://www.ctee.com.tw/news/20261123701163-430201" target="_blank" rel="noopener">工商時報</a></li>
+</ul>`},
 ];

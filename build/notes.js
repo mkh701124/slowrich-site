@@ -7,6 +7,7 @@
 // before-you-invest-3-things、10-terms-for-financial-news、dca-vs-lump-sum、what-is-a-stock、
 // compound-interest、5-beginner-mistakes、what-is-etf、open-brokerage-account、5-questions-before-investing、
 // twd-fx-outflow、national-security-fund-what、berkshire-q3-buyback、0050-intro、0056-intro。
+// foreign-selling-1128 從一開始就只在 /learn/，/notes/ 同名網址只做轉址，不要寫進本檔。
 module.exports = [
 {
   slug:'ai-cds-1127',
