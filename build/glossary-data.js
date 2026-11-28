@@ -208,7 +208,9 @@ window.GLOSSARY = {
         "t1",
         "t10",
         "t9"
-      ]
+      ],
+      "note": "pe-english",
+      "noteAnchor": "本益比英文怎麼說、怎麼看"
     },
     {
       "id": "t9",
